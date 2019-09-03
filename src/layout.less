@@ -1,3 +1,39 @@
 body{
-  margin: 20px;
+}
+
+#logo{
+  position: absolute;
+  margin: @space-medium;
+
+  img{
+    width: var(--widthlogo);
+    height: auto;
+  }
+}
+
+#version{
+  position: absolute;
+  bottom:0;
+  right: 0;
+  margin: @space-medium;
+}
+
+
+#main{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .header{
+    margin-left: calc(var(--widthlogo) +  @space-medium*2);
+    text-align: center;
+    margin-bottom: @space-big;
+  }
+}
+
+#nav{
+  position: absolute;
+  left:  @space-big;
+  bottom:  @space-big;
 }
