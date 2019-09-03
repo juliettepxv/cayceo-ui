@@ -152,7 +152,7 @@ module.exports = {
                     {loader: "file-loader",
                         options: {
                             name (file) {
-                                let outputFileName=getAssetPath(file);
+                                let outputFileName="dist/"+getAssetPath(file);
                                 //écrit le nom du fichier dans un fichier texte pour qu'on puisse l'exploiter par la suite
                                 require('mkdirp')('dist/assets', function(err) {
                                     // path exists unless there was an error
