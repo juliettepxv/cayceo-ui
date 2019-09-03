@@ -1,4 +1,4 @@
-import Casque from "./ui/Casque";
+import Casque from "./ui/components/Casque";
 import Home from "./ui/screens/Home";
 import Dashboard from "./ui/screens/Dashboard";
 
@@ -26,7 +26,7 @@ $body.on("click","[data-show-screen]",function(){
     showScreen($(this).attr("data-show-screen"));
 })
 
-showScreen("home");
+showScreen("dashboard");
 
 
 

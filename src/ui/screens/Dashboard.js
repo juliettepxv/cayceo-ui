@@ -1,4 +1,4 @@
-import Casque from "../Casque";
+import Casque from "../components/Casque";
 
 export default class Dashboard {
     constructor(){
@@ -6,8 +6,8 @@ export default class Dashboard {
 
         for(let i=1;i<=5;i++){
             let c=new Casque();
-            c.setNumero("0"+i);
-            this.$main.append(c.$main);
+            c.setNumero(i);
+            this.$main.find("#casques").append(c.$main);
         }
 
 
