@@ -1,5 +1,7 @@
 import Casque from "../components/Casque";
 
+let infos= new Array("Disponible");
+
 export default class Dashboard {
     constructor(){
         this.$main=$(require("./dashboard.html"));

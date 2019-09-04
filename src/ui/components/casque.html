@@ -1,22 +1,54 @@
-<div class="casque" casque="">
+<div class="casque"
+     casque=""
+     is-selected="0|1"
+     battery="">
 
     <div class="elements">
 
-        <span></span>
+        <div class="badge warning">
+            <svg class="ico-24">
+                <use xlink:href="dist/svg-collection/icon.svg#icon-check"/>
+                <!--<use xlink:href="dist/svg-collection/icon.svg#icon-pause"/>
+               <use xlink:href="dist/svg-collection/icon.svg#icon-warning"/>-->
+           </svg>
+       </div>
 
-        <svg class="ico-64">
-            <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
-        </svg>
+       <div class="label state">
+           <span>Disponible</span>
+       </div>
 
-        <div class="label">
+       <span class="nb"></span>
+
+       <!--
+      <div class="ico-casque">
+           <svg class=" ico-64">
+               <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
+           </svg>
+       </div>-->
+
+        <h3 class="title">
+            La plage
+        </h3>
+        <h3 class="timer">
+            -3:40
+        </h3>
+
+        <div class="label battery">
             <svg class="ico-24">
                 <use xlink:href="dist/svg-collection/icon.svg#icon-battery"/>
             </svg>
+            <!--
+          <svg class="ico-24">
+              <use xlink:href="dist/svg-collection/icon.svg#icon-flash"/>
+          </svg>-->
 
-                10%
+          <span>10%</span>
+      </div>
 
-        </div>
+  </div>
 
-    </div>
+  <button class="btn-small">
+      <span>Stop</span>
+  </button>
 
 </div>

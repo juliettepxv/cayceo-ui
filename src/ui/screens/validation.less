@@ -1,0 +1,39 @@
+.validation{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+
+  .elements{
+    background-color: @color-green;
+    opacity: 0.60;
+    padding: @space-medium;
+    border-radius: 90px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: @space-medium;
+
+    *[class^="element-"]{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0 @space-medium;
+      border-right: 3px solid @color-white-opacity;
+
+      &:last-child{
+        border: none;
+      }
+
+      img{
+        border: 2px solid white;
+        border-radius: 100%;
+        width: 60px;
+        height: 60px;
+        margin-bottom: @space-tiny;
+      }
+    }
+  }
+
+
+}

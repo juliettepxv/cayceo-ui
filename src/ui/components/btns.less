@@ -2,7 +2,7 @@ button{
   border: none;
   text-align: left;
 
-  &.btn {
+  &.btn,  &.btn-small {
 
     .h3;
 
@@ -14,16 +14,24 @@ button{
     height: 60px;
     padding: 0 @space-medium;
     margin-right: @space-tiny;
-    border-radius: 60px;
-    .shadow;
-
     .txt{
       padding-left: @space-tiny;
     }
 
+    border-radius: 60px;
+    .shadow;
+
+    &.btn-small {
+      height: 40px;
+      padding: 0 @space-small;
+      margin-right: 0;
+      .txt{
+        padding-left: 0;
+      }
+
+    }
+
   }
-
-
 
 
   &.big-btn {
@@ -41,4 +49,22 @@ button{
       margin-left: @space-small;
     }
   }
+
+  &.btn-green{
+
+    .h2;
+
+    display: inline-flex;
+    align-items: center;
+    color: white;
+    background-color: @color-green;
+    border-radius: 60px;
+    padding: @space-small calc(@space-big + 10px);
+    .big-shadow;
+
+    margin:0 @space-tiny;
+
+  }
+
+
 }
