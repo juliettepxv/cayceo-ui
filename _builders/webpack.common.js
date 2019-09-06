@@ -58,14 +58,17 @@ var lessOptions=function(){
         optimization: 2,
         cleancss: false,
         paths: ["dist"],
+        rootpath:"./",
         relativeUrls: true,
+        rewriteUrls:'local',
         syncImport: false,
         strictUnits: false,
+
         strictMath: true,
         strictImports: true,
         ieCompat: false,
         sourceMap: true,
-        url:false,
+        url:true,
         plugins: [lessPluginAutoprefix],
         modifyVars: {
             webpackTime: "'"+webpackTime()+"'",
@@ -89,10 +92,12 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, '../dist'),
+        path: path.resolve(__dirname, '../dist')
     },
     plugins: [
-        new MiniCssExtractPlugin({filename: "./[name].css"}),
+        new MiniCssExtractPlugin({
+            filename: "[name].css"
+        }),
         new SpriteLoaderPlugin(),
         {
             apply: (compiler) => {
@@ -141,7 +146,9 @@ module.exports = {
                 test: /\.(html)$/,
                 use: {
                     loader: 'html-loader',
-                    options: {}
+                    options: {
+                        root:"dist/"
+                    }
                 }
             },
             //images svg etc...
@@ -149,10 +156,10 @@ module.exports = {
                 test: /\.(jpg|gif|txt|png|svg)$/,
                 exclude: /inline|fonts.*\.(svg)|svg-collection.*$/,
                 use: [
-                    {loader: "file-loader",
+                    {loader: "url-loader",
                         options: {
                             name (file) {
-                                let outputFileName="dist/"+getAssetPath(file);
+                                let outputFileName=""+getAssetPath(file);
                                 //écrit le nom du fichier dans un fichier texte pour qu'on puisse l'exploiter par la suite
                                 require('mkdirp')('dist/assets', function(err) {
                                     // path exists unless there was an error
@@ -181,13 +188,12 @@ module.exports = {
             {
                 test: /\.(less)$/,
                 use: [
+
                     {
                         loader:MiniCssExtractPlugin.loader
-                    },
-                    {
-                        loader:"css-loader"
-                    },
-                    {
+                    }
+                    ,{loader:"css-loader"}
+                    ,{
                         loader:"less-loader",
                         options: lessOptions()
                     },
