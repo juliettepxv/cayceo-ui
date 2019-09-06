@@ -1,25 +1,20 @@
 .film {
-
   position: relative;
-  background-color: @color-green;
-  border-radius: 100%;
   color: white;
-  width: 160px;
-  height: 160px;
   margin: 0 @space-tiny;
   text-align: center;
-  .big-shadow;
+
+  >img{
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+    border: 2px solid #fff;
+    .big-shadow;
+    object-fit: contain;
+  }
 
   .elements{
-    display: block;
-    width: 100%;
-    height: 100%;
-    .label{
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-    }
+    margin-top: -20px;
   }
 
   .indications{

@@ -1,47 +1,51 @@
 <div class="casque"
-     casque=""
+     numero=""
+     state="STATE_HORS_LIGNE"
      is-selected="0|1"
-     battery="">
+     battery=""
+
+        >
 
     <div class="elements">
 
         <div class="badge warning">
-            <svg class="ico-24">
+            <svg class="ico-24 check">
                 <use xlink:href="dist/svg-collection/icon.svg#icon-check"/>
-                <!--<use xlink:href="dist/svg-collection/icon.svg#icon-pause"/>
-               <use xlink:href="dist/svg-collection/icon.svg#icon-warning"/>-->
+           </svg>
+            <svg class="ico-24 paused">
+                <use xlink:href="dist/svg-collection/icon.svg#icon-pause"/>
+           </svg>
+            <svg class="ico-24 attention">
+               <use xlink:href="dist/svg-collection/icon.svg#icon-warning"/>
            </svg>
        </div>
 
        <div class="label state">
-           <span>Disponible</span>
+           <span></span>
        </div>
 
-       <span class="nb"></span>
+       <span class="nb">99</span>
 
-       <!--
+
       <div class="ico-casque">
            <svg class=" ico-64">
                <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
            </svg>
-       </div>-->
+       </div>
 
-        <h3 class="title">
-            La plage
-        </h3>
-        <h3 class="timer">
-            -3:40
-        </h3>
+        <div class="preview-film">
+            <h3 class="title">La plage</h3>
+            <h3 class="timer">-3:40</h3>
+        </div>
+
 
         <div class="label battery">
-            <svg class="ico-24">
+            <svg class="ico-24 not-plugged">
                 <use xlink:href="dist/svg-collection/icon.svg#icon-battery"/>
             </svg>
-            <!--
-          <svg class="ico-24">
+            <svg class="ico-24 is-plugged">
               <use xlink:href="dist/svg-collection/icon.svg#icon-flash"/>
-          </svg>-->
-
+            </svg>
           <span>10%</span>
       </div>
 

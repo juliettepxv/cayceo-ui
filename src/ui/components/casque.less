@@ -90,4 +90,67 @@
 
   }
 
+  --warning-check-display:none;
+  --warning-paused-display:none;
+  --warning-attention-display:none;
+
+  &[state='STATE_HORS_LIGNE']{
+    --state-text:"Hors ligne";
+    --state-color:@color-grey-light;
+    --state-pointer-event:none;
+    --warning-display:flex;
+    --warning-attention-display:block;
+  }
+  &[state='STATE_DECHARGE']{
+    --state-text:"Déchargé";
+    --state-color:@color-grey-light;
+    --state-pointer-event:none;
+    --warning-display:flex;
+    --warning-attention-display:block;
+  }
+  &[state='STATE_DISPONIBLE']{
+    --state-text:"Disponible";
+    --state-color:@color-green;
+    --state-pointer-event:auto;
+    --warning-display:none;
+  }
+  &[state='STATE_EN_COURS']{
+    --state-text:"En cours";
+    --state-color:@color-green;
+    --state-pointer-event:auto;
+    --warning-display:none;
+  }
+  &[state='STATE_EN_ATTENTE']{
+    --state-text:"En attente";
+    --state-color:@color-green;
+    --state-pointer-event:auto;
+    --warning-display:flex;
+    --warning-paused-display: block;
+  }
+
+  &[state]{
+
+    pointer-events: var(--state-pointer-event);
+    background-color: var(--state-color);
+    .label.state{
+      background-color: var(--state-color);
+      &:after{
+        content: var(--state-text)
+      }
+    }
+    .warning{
+      display: var(--warning-display);
+      .check{
+        display: var(--warning-check-display);
+      }
+      .paused{
+        display: var(--warning-paused-display);
+      }
+      .attention{
+        display: var(--warning-attention-display);
+      }
+    }
+  }
+
+
 }
