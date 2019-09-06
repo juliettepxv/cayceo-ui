@@ -6,51 +6,76 @@ export default class Casque {
     constructor(numero){
         this.$main=$(require("./casque.html"));
         /**
+         *
+         * @type {Film|null}
+         */
+        this.film=null;
+        /**
          * @type {string} numero Numéro affiché du casque
          */
         this.numero=numero;
         //affiche le numero du casque
         this.$main.find(".nb").text(numero);
         this.$main.attr("casque",numero);
-
         this._setState(Casque.STATE_HORS_LIGNE);
     }
 
     /**
-     *
+     * Définit l'état général du casque
      * @param {string} state disponible|en attente|en cours|hors ligne|déchargé
      * @zzzprivate
      */
     _setState(state){
         this.$main.attr("state",state);
     }
-
     /**
-     * Ajoute un casque à la liste et le renvoie
-     * @param {string} numero Numero affiché du casque
-     * @return {Casque}
+     * Affiche le niveau de chargement de la baterrie
+     * @param {number} percent Définit si la batterie est en charge ou non
      */
-    static addCasque(numero){
-        let c=new Casque(numero);
-        Casque.list[numero]=c;
-        return c;
+    setBattery(percent=50){
+        percent=Math.floor(percent);
+        this.$main.find("[battery-level]").text(`${percent}%`);
+        if(percent<=5){
+            this._setState(Casque.STATE_DECHARGE);
+        }
     }
 
     /**
-     * Renvoie un casque par son numero
-     * @param numero
-     * @returns {Casque}
+     * Affiche si la batterie est en charge ou non
+     * @param {boolean} plugged true pour branché
      */
-    static getCasqueByNumero(numero){
-        return Casque.list[numero];
+    setBatteryPlugged(plugged=false){
+        this.$main.find("[battery-plugged]").attr("battery-plugged",plugged?"1":"0");
     }
+
+    /**
+     * Associe (ou désassocie) un film au casque
+     * @param {Film|null} film
+     */
+    setFilm(film){
+        this.film=film;
+        let $contenu=this.$main.find("[has-film]");
+        let $film=$contenu.find(".preview-film");
+        let $filmTitle=$film.find(".title");
+        let $filmImg=$film.find("img");
+        if(film){
+            $contenu.attr("has-film","1");
+            $filmTitle.text(film.title);
+            $filmImg.attr("src",film.image);
+        }else{
+            $contenu.attr("has-film","0");
+            $filmTitle.text("...");
+            $filmImg.attr("src","");
+        }
+
+    }
+
+
+
+
 }
 
-/**
- *
- * @type {Casque[]}
- */
-Casque.list={};
+
 Casque.STATE_DISPONIBLE="STATE_DISPONIBLE";
 Casque.STATE_EN_COURS="STATE_EN_COURS";
 Casque.STATE_EN_ATTENTE="STATE_EN_ATTENTE";

@@ -1,12 +1,23 @@
-<div class="casque"
-     numero=""
-     state="STATE_HORS_LIGNE"
-     is-selected="0|1"
-     battery=""
-
-        >
+<div class="casque">
 
     <div class="elements">
+
+        <div class="contenu" has-film="0">
+
+            <div class="ico-casque">
+                <svg class=" ico-64">
+                    <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
+                </svg>
+            </div>
+
+            <div class="preview-film">
+                <img src="../components/placeholder.jpg" alt="">
+                <h3 class="title">La plage</h3>
+                <h3 class="timer">-3:40</h3>
+            </div>
+
+        </div>
+
 
         <div class="badge warning">
             <svg class="ico-24 check">
@@ -27,26 +38,15 @@
        <span class="nb">99</span>
 
 
-      <div class="ico-casque">
-           <svg class=" ico-64">
-               <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
-           </svg>
-       </div>
 
-        <div class="preview-film">
-            <h3 class="title">La plage</h3>
-            <h3 class="timer">-3:40</h3>
-        </div>
-
-
-        <div class="label battery">
+        <div class="label battery" battery-plugged="0">
             <svg class="ico-24 not-plugged">
                 <use xlink:href="dist/svg-collection/icon.svg#icon-battery"/>
             </svg>
             <svg class="ico-24 is-plugged">
               <use xlink:href="dist/svg-collection/icon.svg#icon-flash"/>
             </svg>
-          <span>10%</span>
+             <span battery-level>10%</span>
       </div>
 
   </div>

@@ -1,15 +1,16 @@
-import Casque from "../components/Casque";
+import ScreenUi from "./ScreenUi";
+import CasqueList from "../components/CasqueList";
 
 let infos= new Array("Disponible");
 
-export default class SelectCasques {
+export default class SelectCasques extends ScreenUi{
     constructor(){
+        super();
+        let me=this;
         this.$main=$(require("./select-casques.html"));
-
-        for(let i=1;i<=5;i++){
-            let c=new Casque(i);
-            this.$main.find("#casques").append(c.$main);
-        }
+        this.on(ScreenUi.EVENT_ADDED_TO_STAGE,function(){
+            me.$main.find("#casques").append(CasqueList.inst().$main);
+        });
 
 
 

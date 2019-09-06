@@ -1,8 +1,7 @@
 .casque {
 
   position: relative;
-  background-color: @color-green;
-  border-radius: 100%;
+
   color: white;
   width: 160px;
   height: 160px;
@@ -18,6 +17,12 @@
 
     height: 180px;
 
+    .warning{
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
     .state{
       position: absolute;
       left: 50%;
@@ -28,40 +33,77 @@
     .nb{
       display: block;
       position: absolute;;
-      top:30px;
+      top:20px;
       left: 50%;
       transform: translateX(-50%);
       .h1;
       margin-top: @space-tiny;
     }
 
-    >h3{
-      position: absolute;;
-      top:75px;
-      left: 50%;
-      transform: translateX(-50%);
-      text-transform: uppercase;
-      &.title{
 
-      }
-      &.timer{
-        margin-top: 20px;
-      }
 
-    }
-
-    .warning{
+    .contenu{
       position: absolute;
       top: 0;
-      right: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+      overflow: hidden;
+      &[has-film="0"]{
+        .preview-film{
+          display: none;
+        }
+        .ico-casque{
+          display: flex;
+        }
+      }
+      &[has-film='1']{
+        .preview-film{
+          display: flex;
+        }
+        .ico-casque{
+          display: none;
+        }
+      }
+
+      .preview-film{
+        width: 100%;
+        height: 100%;
+        >img{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0.9;
+          filter:saturate(0.5) brightness(0.8);
+        }
+        >h3{
+          position: absolute;;
+          top:75px;
+          left: 50%;
+          transform: translateX(-50%);
+          text-transform: uppercase;
+          &.title{
+          }
+          &.timer{
+            margin-top: 20px;
+          }
+        }
+
+      }
+      .ico-casque{
+        background-color: var(--state-color);
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+      }
+
     }
 
-    .ico-casque{
-      position: absolute;;
-      top:55px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+
+
 
 
 
@@ -70,7 +112,8 @@
       left: 50%;
       bottom: -5px;
       transform: translateX(-50%);
-
+      background-color: var(--battery-color);
+      /*
       &:after{
         content: "";
         display: block;
@@ -81,14 +124,29 @@
         top:10px;
         left: 14px;
       }
+
+      */
+
+      &[battery-plugged]{
+        .not-plugged{
+          display: inline-block;
+        }
+        .is-plugged{
+          display: none;
+        }
+      }
+      &[battery-plugged='1']{
+        .not-plugged{
+          display: none;
+        }
+        .is-plugged{
+          display: inline-block;
+        }
+      }
     }
 
-
   }
 
-  .btn-small{
-
-  }
 
   --warning-check-display:none;
   --warning-paused-display:none;
@@ -97,6 +155,7 @@
   &[state='STATE_HORS_LIGNE']{
     --state-text:"Hors ligne";
     --state-color:@color-grey-light;
+    --battery-color:@color-grey-light;
     --state-pointer-event:none;
     --warning-display:flex;
     --warning-attention-display:block;
@@ -104,6 +163,7 @@
   &[state='STATE_DECHARGE']{
     --state-text:"Déchargé";
     --state-color:@color-grey-light;
+    --battery-color:@color-pink;
     --state-pointer-event:none;
     --warning-display:flex;
     --warning-attention-display:block;
@@ -111,18 +171,21 @@
   &[state='STATE_DISPONIBLE']{
     --state-text:"Disponible";
     --state-color:@color-green;
+    --battery-color:@color-green;
     --state-pointer-event:auto;
     --warning-display:none;
   }
   &[state='STATE_EN_COURS']{
     --state-text:"En cours";
     --state-color:@color-green;
+    --battery-color:@color-green;
     --state-pointer-event:auto;
     --warning-display:none;
   }
   &[state='STATE_EN_ATTENTE']{
     --state-text:"En attente";
     --state-color:@color-green;
+    --battery-color:@color-green;
     --state-pointer-event:auto;
     --warning-display:flex;
     --warning-paused-display: block;
@@ -131,7 +194,6 @@
   &[state]{
 
     pointer-events: var(--state-pointer-event);
-    background-color: var(--state-color);
     .label.state{
       background-color: var(--state-color);
       &:after{

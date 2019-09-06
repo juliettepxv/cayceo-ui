@@ -1,16 +1,17 @@
 import Casque from "../components/Casque";
+import ScreenUi from "./ScreenUi";
+import CasqueList from "../components/CasqueList";
 
 let infos= new Array("Disponible");
 
-export default class Dashboard {
+export default class Dashboard extends ScreenUi{
     constructor(){
+        super();
+        let me=this;
         this.$main=$(require("./dashboard.html"));
-        console.log(Casque.list);
-        console.log(typeof Casque.list);
-        for(let c in Casque.list){
-            this.$main.find("#casques").append(Casque.list[c].$main);
-        }
-
+        this.on(ScreenUi.EVENT_ADDED_TO_STAGE,function(){
+            me.$main.find("#casques").append(CasqueList.inst().$main);
+        });
     }
 
 }
