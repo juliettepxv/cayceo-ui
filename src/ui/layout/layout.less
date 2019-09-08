@@ -1,10 +1,22 @@
 body{
+
+  ---z-screen:10;
+  ---z-nav:100;
+  ---z-popin:1000;
+
+  user-select: none;
+
 }
+
+[data-show-screen],[data-show-popin]{
+  cursor: pointer;
+}
+
 
 #logo{
   position: absolute;
+  z-index: var(---z-nav);
   margin: @space-medium;
-
   img{
     width: var(--widthlogo);
     height: auto;
@@ -13,6 +25,7 @@ body{
 
 #version{
   position: absolute;
+  z-index: var(---z-nav);
   bottom:0;
   right: 0;
   margin: @space-medium;
@@ -20,20 +33,15 @@ body{
 
 
 #main{
+  z-index: var(---z-screen);
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
-
-  .header{
-    width: 100%;
-    margin: 0 calc(var(--widthlogo) +  @space-medium*2);
-    text-align: center;
-    margin-bottom: @space-big;
-  }
 }
 
 #nav{
+  z-index: var(---z-nav);
   display: flex;
   position: absolute;
   left:  @space-big;

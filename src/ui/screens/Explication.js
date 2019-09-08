@@ -4,5 +4,6 @@ export default class Explication extends ScreenUi{
     constructor(){
         super();
         this.$main=$(require("./explication.html"));
+        this.$main.data("obj",this);
     }
 }

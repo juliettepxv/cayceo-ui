@@ -1,5 +1,5 @@
 import Casque from "../components/Casque";
-import ScreenUi from "./ScreenUi";
+import ScreenUi from "../screens/ScreenUi";
 import CasqueList from "../components/CasqueList";
 
 let infos= new Array("Disponible");

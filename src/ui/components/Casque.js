@@ -17,7 +17,30 @@ export default class Casque {
         //affiche le numero du casque
         this.$main.find(".nb").text(numero);
         this.$main.attr("casque",numero);
+
         this._setState(Casque.STATE_HORS_LIGNE);
+        //permet d'accéder à cet objet via le DOM
+        this.$main.data("obj",this);
+    }
+
+    /**
+     * sélectionne ou désélectionne le casque
+     */
+    toggleCheck(){
+        this.$main.toggleClass("checked");
+    }
+    /**
+     * désélectionne le casque
+     */
+    unCheck(){
+        this.$main.removeClass("checked");
+    }
+    /**
+     * Retourne true si le casque est sélectionné
+     * @returns {boolean}
+     */
+    isChecked(){
+        return this.$main.hasClass("checked");
     }
 
     /**

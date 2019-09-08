@@ -8,6 +8,8 @@
   margin: 0 @space-tiny;
   text-align: center;
 
+  background-color: yellow;
+
   // autres css
   //.big-shadow;
   //border: 2px solid white;
@@ -49,6 +51,7 @@
       width: 100%;
       height: 100%;
       border-radius: 100%;
+      .big-shadow;
       overflow: hidden;
       &[has-film="0"]{
         .preview-film{
@@ -156,7 +159,6 @@
     --state-text:"Hors ligne";
     --state-color:@color-grey-light;
     --battery-color:@color-grey-light;
-    --state-pointer-event:none;
     --warning-display:flex;
     --warning-attention-display:block;
   }
@@ -164,7 +166,6 @@
     --state-text:"Déchargé";
     --state-color:@color-grey-light;
     --battery-color:@color-pink;
-    --state-pointer-event:none;
     --warning-display:flex;
     --warning-attention-display:block;
   }
@@ -172,36 +173,37 @@
     --state-text:"Disponible";
     --state-color:@color-green;
     --battery-color:@color-green;
-    --state-pointer-event:auto;
     --warning-display:none;
   }
   &[state='STATE_EN_COURS']{
     --state-text:"En cours";
     --state-color:@color-green;
     --battery-color:@color-green;
-    --state-pointer-event:auto;
     --warning-display:none;
   }
   &[state='STATE_EN_ATTENTE']{
     --state-text:"En attente";
     --state-color:@color-green;
     --battery-color:@color-green;
-    --state-pointer-event:auto;
+
     --warning-display:flex;
     --warning-paused-display: block;
   }
 
   &[state]{
 
-    pointer-events: var(--state-pointer-event);
     .label.state{
       background-color: var(--state-color);
-      &:after{
-        content: var(--state-text)
+      >span{
+        &:after{
+          content: var(--state-text)
+        }
       }
+
     }
     .warning{
       display: var(--warning-display);
+      background-color: var(--color-pink);
       .check{
         display: var(--warning-check-display);
       }
@@ -211,6 +213,17 @@
       .attention{
         display: var(--warning-attention-display);
       }
+    }
+  }
+
+
+  .actions{
+    outline: 1px solid red;
+    display: flex;
+    justify-content: center;
+    >*{
+      margin: 4px;
+      white-space: nowrap;
     }
   }
 

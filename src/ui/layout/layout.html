@@ -1,13 +1,16 @@
-<div>
+<div debug-is-enabled="0">
+
     <div id="logo" data-show-screen="home">
         <img src="../components/placeholder.jpg" alt="logo"/>
     </div>
-    <div id="version" class="indication">
+
+    <div id="version" class="indication" data-show-popin="debug">
         <div>Version 1.0.2</div>
     </div>
 
     <div id="main">
     </div>
+
 
     <div id="nav">
         <button class="btn" data-show-screen="home">
@@ -15,7 +18,7 @@
                 <use xlink:href="dist/svg-collection/icon.svg#icon-home"/>
             </svg>
         </button>
-        <button class="btn" data-show-screen="dashboard">
+        <button class="btn" data-show-popin="dashboard">
             <svg class="ico-24">
                 <use xlink:href="dist/svg-collection/icon.svg#icon-dashboard"/>
             </svg>

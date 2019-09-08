@@ -11,6 +11,7 @@ export default class Films extends ScreenUi{
         Films._inst=this;
         
         this.$main=$(require("./films.html"));
+        this.$main.data("obj",this);
         /**
          * La liste des films
          * @type {Film[]}

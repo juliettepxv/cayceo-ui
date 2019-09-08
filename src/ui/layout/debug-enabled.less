@@ -1,0 +1,23 @@
+[debug-is-enabled='0']{
+  [debug-enabled='flex'],
+  [debug-enabled='block'],
+  [debug-enabled='inline'],
+  [debug-enabled='inline-flex']
+  {
+    display: none !important;
+  }
+}
+[debug-is-enabled='1']{
+  [debug-enabled='flex']{
+    display: flex;
+  }
+  [debug-enabled='block']{
+    display: block;
+  }
+  [debug-enabled='inline']{
+    display: inline;
+  }
+  [debug-enabled='inline-flex']{
+    display: inline-flex;
+  }
+}

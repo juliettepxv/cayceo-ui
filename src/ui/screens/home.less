@@ -1,9 +1,12 @@
-.home{
-  img{
-    z-index: -1;
-    position: absolute;
-    top: 60px;
-    left:350px;
+[screen='home']{
+  flex-direction: row;
+  >button{
+    position: relative;
+    z-index: 2;
+  }
+  >img{
+    z-index: 1;
+    margin-left: -50px;
     width: 530px;
     height: auto;
   }

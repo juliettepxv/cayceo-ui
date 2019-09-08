@@ -4,5 +4,6 @@ export default class Validation extends ScreenUi{
     constructor(){
         super();
         this.$main=$(require("./validation.html"));
+        this.$main.data("obj",this);
     }
 }
