@@ -12,12 +12,13 @@ export default class SelectCasques extends ScreenUi{
 
         this.on(ScreenUi.EVENT_ADDED_TO_STAGE,function(){
             me.$main.find("#casques").append(CasqueList.inst().$main);
+            for(let c in ui.casques.list){
+                //check/uncheck
+                ui.casques.list[c].$main.on("click",function(){
+                    ui.casques.list[c].toggleCheck();
+                });
+            }
 
-            let $casques=me.$main.find("#casques .casque");
-            //check/uncheck
-            $casques.on("click",function(){
-               $(this).data("obj").toggleCheck();
-            });
         });
 
 
