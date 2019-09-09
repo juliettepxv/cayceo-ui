@@ -46,8 +46,8 @@ ui.on("READY",function(){
     let c1= ui.casques.addCasque(1);
     let c2= ui.casques.addCasque(2);
     let c3= ui.casques.addCasque(3);
-    let c4= ui.casques.addCasque(4);
     let c5= ui.casques.addCasque(5);
+    let c4= ui.casques.addCasque(4);
     c1._setState(Casque.STATE_DISPONIBLE);
     c2._setState(Casque.STATE_EN_ATTENTE);
     c3._setState(Casque.STATE_HORS_LIGNE);
