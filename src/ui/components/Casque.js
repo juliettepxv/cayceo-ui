@@ -27,6 +27,7 @@ export default class Casque {
      * sélectionne ou désélectionne le casque
      */
     toggleCheck(){
+        console.log("toggleCheck",this);
         this.$main.toggleClass("checked");
     }
     /**
@@ -77,16 +78,16 @@ export default class Casque {
      */
     setFilm(film){
         this.film=film;
-        let $contenu=this.$main.find("[has-film]");
+        let $contenu=this.$main.find(".contenu");
         let $film=$contenu.find(".preview-film");
         let $filmTitle=$film.find(".title");
         let $filmImg=$film.find("img");
         if(film){
-            $contenu.attr("has-film","1");
+            this.$main.attr("has-film","1");
             $filmTitle.text(film.title);
             $filmImg.attr("src",film.image);
         }else{
-            $contenu.attr("has-film","0");
+            this.$main.attr("has-film","0");
             $filmTitle.text("...");
             $filmImg.attr("src","");
         }

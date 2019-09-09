@@ -1,8 +1,6 @@
 [screen='selectCasques']{
   #casques{
 
-
-
     .casque{
 
       //------------dans tous les cas---------------------
@@ -16,11 +14,15 @@
           display: flex;
         }
       }
+      .actions{
+        [action='stop-casque']{
+          display: none !important;
+        }
+      }
 
       //---------etats selectionnables--------------------
 
       &[state='STATE_DISPONIBLE'],&[state='STATE_EN_ATTENTE']{
-        outline: 1px solid green;
         --warning-display:none;
         --warning-check-display:none;
         --warning-paused-display:none;
@@ -28,11 +30,13 @@
         //position checked ou pas...
         &.checked{
           .badge.warning{
-            background: var(--bg-gradient-green);
+            background: var(--color-pink);
             --warning-display:flex;
             --warning-check-display:flex;
           }
           .contenu{
+            pointer-events: auto;
+            cursor: pointer;
             .ico-casque{
               background: var(--bg-gradient-green);
             }
@@ -45,7 +49,6 @@
       //--------etats non selectionnables-----------------
 
       &[state='STATE_HORS_LIGNE'],&[state='STATE_DECHARGE'],&[state='STATE_EN_COURS']{
-        outline: 1px solid red;
         //tout est gris
         .label.state{
           background-color: @color-grey-light;
@@ -55,6 +58,7 @@
         }
         --battery-color:@color-grey-light;
         .contenu{
+          pointer-events: none;
           .ico-casque{
             background: @color-grey-light;
           }

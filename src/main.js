@@ -17,86 +17,106 @@ window.$=document.$ = window.jQuery = require("jquery");
 window.$body=$("body");
 window.ui=new Ui();
 
-//Layout------------------------------------
 
-ui.layout.setVersion("1.17.3");
-ui.layout.setLogo("./medias/logo-cayceo.png");
+//Exemples de méthodes à configurer depuis electron
 
-//screens-----------------------------------
-/**
- *
- * @type {ScreenUi[]}
- */
+ui.on("QUIT",function(){
+    alert("quitter l'application");
+});
+ui.on("UPDATE_CONTENT",function(){
+    alert("Mettre à jour le contenu");
+});
+ui.on("RESET_ALL",function(){
+    alert("Reset !!!");
+});
+ui.on("STOP_CASQUE",function(numero){
+    alert(`Arrêter la lecture sur le casque numéro ${numero}`);
+});
+
+
+ui.on("READY",function(){
+    //Layout------------------------------------
+    ui.layout.setVersion("1.17.3");
+    ui.layout.setLogo("./medias/logo-cayceo.png");
+    /**
+     *
+     * @type {ScreenUi[]}
+     */
 //casques----------------------------------
-let c1= ui.casques.addCasque(1);
-let c2= ui.casques.addCasque(2);
-let c3= ui.casques.addCasque(3);
-let c4= ui.casques.addCasque(4);
-let c5= ui.casques.addCasque(5);
-c1._setState(Casque.STATE_DISPONIBLE);
-c2._setState(Casque.STATE_EN_ATTENTE);
-c3._setState(Casque.STATE_HORS_LIGNE);
-c4._setState(Casque.STATE_EN_COURS);
-c5._setState(Casque.STATE_DECHARGE);
+    let c1= ui.casques.addCasque(1);
+    let c2= ui.casques.addCasque(2);
+    let c3= ui.casques.addCasque(3);
+    let c4= ui.casques.addCasque(4);
+    let c5= ui.casques.addCasque(5);
+    c1._setState(Casque.STATE_DISPONIBLE);
+    c2._setState(Casque.STATE_EN_ATTENTE);
+    c3._setState(Casque.STATE_HORS_LIGNE);
+    c4._setState(Casque.STATE_EN_COURS);
+    c5._setState(Casque.STATE_DECHARGE);
 
-setInterval(function(){
-    for(let c in ui.casques.list){
-        if(Math.random()>0.95){
-            let items=[
-                Casque.STATE_DISPONIBLE,
-                Casque.STATE_EN_ATTENTE,
-                Casque.STATE_HORS_LIGNE,
-                Casque.STATE_EN_COURS,
-                //Casque.STATE_DECHARGE,
-            ];
-            ui.casques.list[c]._setState(
-                items[Math.floor(Math.random()*items.length)]
-            );
+    setInterval(function(){
+        for(let c in ui.casques.list){
+            if(Math.random()>0.95){
+                let items=[
+                    Casque.STATE_DISPONIBLE,
+                    Casque.STATE_EN_ATTENTE,
+                    Casque.STATE_HORS_LIGNE,
+                    Casque.STATE_EN_COURS,
+                    //Casque.STATE_DECHARGE,
+                ];
+                ui.casques.list[c]._setState(
+                    items[Math.floor(Math.random()*items.length)]
+                );
+            }
+
+            if(Math.random()>0.95){
+                ui.casques.list[c].setBattery(Math.round(Math.random()*100));
+            }
+            if(Math.random()>0.95){
+                ui.casques.list[c].setBatteryPlugged(Math.random()>0.5);
+            }
         }
-
-        if(Math.random()>0.95){
-            ui.casques.list[c].setBattery(Math.round(Math.random()*100));
-        }
-        if(Math.random()>0.95){
-            ui.casques.list[c].setBatteryPlugged(Math.random()>0.5);
-        }
-    }
-},1000);
+    },1000);
 
 
-//films-----------------------------------
+    //films-----------------------------------
 
 
-let f1=ui.screens.films.addFilm();
-f1.setTitle("La plage");
-f1.setImage("medias/plage.jpg");
-f1.addTag("Pédiatrie");
-f1.addTag("Stress");
+    let f1=ui.screens.films.addFilm();
+    f1.setTitle("La plage");
+    f1.setImage("medias/plage.jpg");
+    f1.addTag("Pédiatrie");
+    f1.addTag("Stress");
 
-let f2=ui.screens.films.addFilm();
-f2.setTitle("La forêt");
-f2.setImage("medias/foret.jpg");
-f2.addTag("Stress");
+    let f2=ui.screens.films.addFilm();
+    f2.setTitle("La forêt");
+    f2.setImage("medias/foret.jpg");
+    f2.addTag("Stress");
 
-let f3=ui.screens.films.addFilm();
-f3.setTitle("La plage");
-f3.setImage("medias/plage.jpg");
-f3.addTag("Violence");
-f3.addTag("Drogue");
+    let f3=ui.screens.films.addFilm();
+    f3.setTitle("Le machin");
+    f3.setImage("medias/plage.jpg");
+    f3.addTag("Violence");
+    f3.addTag("Drogue");
 
-let f4=ui.screens.films.addFilm();
-f4.setTitle("La plage");
-f4.setImage("medias/plage.jpg");
-f4.addTag("Sexe");
-f4.addTag("Licornes");
+    let f4=ui.screens.films.addFilm();
+    f4.setTitle("Le bidule");
+    f4.setImage("medias/plage.jpg");
+    f4.addTag("Sexe");
+    f4.addTag("Licornes");
 
-let f5=ui.screens.films.addFilm();
-f5.setTitle("La plage");
-f5.setImage("medias/plage.jpg");
-f5.addTag("Poneys");
-f5.addTag("Arc en ciel");
+    let f5=ui.screens.films.addFilm();
+    f5.setTitle("Le chose");
+    f5.setImage("medias/plage.jpg");
+    f5.addTag("Poneys");
+    f5.addTag("Arc en ciel");
 
-c1.setFilm(f4);
+    c1.setFilm(f4);
+    c3.setFilm(f1);
+});
+
+
+
 
 
 

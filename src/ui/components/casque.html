@@ -1,9 +1,8 @@
-<div class="casque" checked="0" >
+<div class="casque" has-film="0">
 
     <div class="elements">
 
-        <div class="contenu" has-film="0">
-
+        <button class="contenu" >
             <div class="ico-casque">
                 <svg class=" ico-64">
                     <use xlink:href="dist/svg-collection/icon.svg#icon-casque"/>
@@ -15,9 +14,7 @@
                 <h3 class="title">La plage</h3>
                 <h3 class="timer">-3:40</h3>
             </div>
-
-        </div>
-
+        </button>
 
         <div class="badge warning">
             <svg class="ico-24 check">
@@ -52,10 +49,10 @@
   </div>
 
     <div class="actions">
-        <button class="btn-small">
+        <button action="stop-casque" class="btn-small">
             <span>Stop</span>
         </button>
-        <button debug-enabled='inline-flex' class="btn-small">
+        <button data-show-popin="debug" debug-enabled='inline-flex' class="btn-small">
             <svg class="ico-16"><use xlink:href="dist/svg-collection/icon.svg#icon-settings-1"></use></svg>
         </button>
     </div>

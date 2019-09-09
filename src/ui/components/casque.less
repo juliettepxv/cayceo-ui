@@ -8,12 +8,29 @@
   margin: 0 @space-tiny;
   text-align: center;
 
-  background-color: yellow;
 
-  // autres css
-  //.big-shadow;
-  //border: 2px solid white;
-  //background: linear-gradient(180deg, @color-green 0%, @color-green-light 100%) ;
+  &[has-film="0"]{
+    .preview-film{
+      display: none;
+    }
+    .ico-casque{
+      display: flex;
+    }
+    .actions{
+      [action='stop-casque']{
+        display: none;
+      }
+    }
+  }
+  &[has-film='1']{
+    .preview-film{
+      display: flex;
+    }
+    .ico-casque{
+      display: none;
+    }
+  }
+
 
   .elements{
 
@@ -53,22 +70,6 @@
       border-radius: 100%;
       .big-shadow;
       overflow: hidden;
-      &[has-film="0"]{
-        .preview-film{
-          display: none;
-        }
-        .ico-casque{
-          display: flex;
-        }
-      }
-      &[has-film='1']{
-        .preview-film{
-          display: flex;
-        }
-        .ico-casque{
-          display: none;
-        }
-      }
 
       .preview-film{
         width: 100%;
@@ -116,19 +117,6 @@
       bottom: -5px;
       transform: translateX(-50%);
       background-color: var(--battery-color);
-      /*
-      &:after{
-        content: "";
-        display: block;
-        width: 6px;
-        height: 4px;
-        position: absolute;
-        background-color: white;
-        top:10px;
-        left: 14px;
-      }
-
-      */
 
       &[battery-plugged]{
         .not-plugged{
@@ -218,7 +206,6 @@
 
 
   .actions{
-    outline: 1px solid red;
     display: flex;
     justify-content: center;
     >*{

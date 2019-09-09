@@ -1,9 +1,10 @@
 import ScreenUi from "../screens/ScreenUi";
+import Ui from "../Ui";
 
-export default class PopIn {
+export default class PopInWindow {
     constructor(){
         let me=this;
-        this.$main=($(require("./popin.html")));
+        this.$main=($(require("./popinWindow.html")));
         this.$main.find(".close").on("click",function(){
             me.hide();
         })
@@ -20,11 +21,11 @@ export default class PopIn {
      * Cache la popin
      */
     hide(){
-        this.$main.addClass("hidden");
         console.log("masque popin");
+        this.$main.addClass("hidden");
         if(ui.currentScreen){
             console.log("simule added to stage sur ",ui.currentScreen);
-            ui.currentScreen.emit(ScreenUi.EVENT_ADDED_TO_STAGE);
+            ui.currentScreen.emit(Ui.EVENT_ADDED_TO_STAGE);
         }
     }
 }
