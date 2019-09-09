@@ -16,6 +16,16 @@ import PopIn from "./popin/PopIn";
 export default class Ui {
     constructor(){
         let me=this;
+        /**
+         *
+         * @type {null|PopinUi}
+         */
+        this.currentPopin=null;
+        /**
+         *
+         * @type {null|ScreenUi}
+         */
+        this.currentScreen=null;
         this.layout = new Layout();
         $body.prepend(this.layout.$main);
         this.popIn=new PopIn();
@@ -47,8 +57,10 @@ export default class Ui {
         $body.on("click","[data-show-popin]",function(){
             me.showPopin($(this).attr("data-show-popin"));
         });
+        setTimeout(function(){
+            me.showScreen("home");
+        },1000)
 
-        me.showScreen("home");
 
     }
 
@@ -58,6 +70,7 @@ export default class Ui {
      */
     showScreen(screenName){
         document.title=screenName;
+
         this.hidePopin();
         $("#main").empty().append(this.screens[screenName].$main);
         this.screens[screenName].emit(ScreenUi.EVENT_ADDED_TO_STAGE);

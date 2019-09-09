@@ -21,10 +21,10 @@ export default class PopIn {
      */
     hide(){
         this.$main.addClass("hidden");
-        console.log("masque popin")
-        if(ScreenUi.getCurrent()){
-            console.log("simule added to stage sur ",ScreenUi.getCurrent())
-            ScreenUi.getCurrent().emit(ScreenUi.EVENT_ADDED_TO_STAGE);
+        console.log("masque popin");
+        if(ui.currentScreen){
+            console.log("simule added to stage sur ",ui.currentScreen);
+            ui.currentScreen.emit(ScreenUi.EVENT_ADDED_TO_STAGE);
         }
     }
 }
