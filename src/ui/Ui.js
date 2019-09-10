@@ -14,6 +14,7 @@ import PopInWindow from "./popin/PopInWindow";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
+import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
 
 /**
@@ -49,6 +50,12 @@ export default class Ui extends EventEmitter{
          *
          */
         this.layout.$main.append(this._popIn.$main);
+        /**
+         * Le menu en bas
+         * @type {Nav}
+         */
+        this.nav=new Nav();
+        this.layout.$main.append(this.nav.$main);
 
         /**
          * La liste des casques
@@ -116,19 +123,32 @@ export default class Ui extends EventEmitter{
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
-                   me.showScreen("films");
+                   me.showScreen("films","from-right");
                    break;
 
                case "select-film":
                    let film=me.screens.films.getFilmById($(this).closest("[film]").attr("film"));
                    me.screens.validation.setFilm(film);
-                   me.showScreen("selectDuree");
+                   me.showScreen("selectDuree","from-right");
                    break;
 
                case "select-duree":
                    let duree=$(this).attr("duree");
                    me.screens.validation.setDuree(duree);
-                   me.showScreen("validation");
+                   me.showScreen("validation","from-right");
+                   break;
+
+               case "valid-seance":
+                   let casquesNumeros=[];
+                   me.screens.selectCasques.unSelectAll();
+                   for(let i=0;i<me.screens.validation.casques.length;i++){
+                       casquesNumeros.push(me.screens.validation.casques[i].numero);
+                   }
+                   me.emit("NEW_SEANCE",{
+                       "film":me.screens.validation.film.filmId,
+                       "duree":me.screens.validation.duree,
+                       "casques":casquesNumeros
+                   });
                    break;
 
                default:
@@ -137,7 +157,10 @@ export default class Ui extends EventEmitter{
         });
 
         $body.on("click","[data-show-screen]",function(){
-            me.showScreen($(this).attr("data-show-screen"));
+            me.showScreen(
+                $(this).attr("data-show-screen"),
+                $(this).attr("data-show-screen-transi")
+            );
         });
         $body.on("click","[data-show-popin]",function(){
             me.showPopin($(this).attr("data-show-popin"));
@@ -171,16 +194,37 @@ export default class Ui extends EventEmitter{
     }
 
     /**
+     * Affiche l'écran Explication et donne un feedback sur les éventuelles non installations
+     * @param {string[]} numerosCasquesSuccess Les numéros de casques où l'installation a pu se faire
+     * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
+     */
+    seanceReady(numerosCasquesSuccess=[],numerosCasquesError=[]){
+        this.showScreen("explication","from-right");
+        this.screens.explication.displayInstallationFeedback(
+            numerosCasquesSuccess,
+            numerosCasquesError
+        )
+    }
+
+    /**
      * Affiche l'écran demandé
      * @param {string} screenName
+     * @param {string} transi La transition à utiliser
      */
-    showScreen(screenName){
+    showScreen(screenName,transi=""){
         document.title=screenName;
+        let me=this;
         this.hidePopin();
-        let screen=this.screens[screenName];
-        $("#main").empty().append(screen.$main);
-        screen.emit(Ui.EVENT_ADDED_TO_STAGE);
-        this.currentScreen=screen;
+        setTimeout(function(){
+            $("[transi]").attr("transi",transi);
+            let screen=me.screens[screenName];
+            $("#main").empty().append(screen.$main);
+            screen.emit(Ui.EVENT_ADDED_TO_STAGE);
+            me.currentScreen=screen;
+            },50
+        )
+
+
     }
     /**
      * Affiche la popin demandée

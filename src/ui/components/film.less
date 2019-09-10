@@ -3,8 +3,12 @@
   color: white;
   margin: 0 @space-tiny;
   text-align: center;
+  >*{
+    position: relative;
+  }
 
   button{
+    z-index: 1;
     background-color: transparent;
     width: 160px;
     height: 160px;
@@ -13,7 +17,6 @@
     overflow: hidden;
     padding: 0;
     margin: 0;
-
     .big-shadow;
     >img{
       width: 100%;
@@ -24,10 +27,12 @@
 
 
   .elements{
+    z-index: 2;
     margin-top: -20px;
   }
 
   .indications{
+    z-index: 2;
    margin-top: 15px;
   }
 

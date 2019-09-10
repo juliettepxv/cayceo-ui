@@ -5,7 +5,10 @@ body{
   ---z-popin:1000;
 
   user-select: none;
-
+  overflow: hidden;
+}
+[transi]{
+  overflow: hidden;
 }
 
 [data-show-screen],[data-show-popin]{
@@ -14,6 +17,7 @@ body{
 
 
 #logo{
+  background-color: transparent;
   position: absolute;
   z-index: var(---z-nav);
   margin: @space-medium;
@@ -40,10 +44,3 @@ body{
   align-items: center;
 }
 
-#nav{
-  z-index: var(---z-nav);
-  display: flex;
-  position: absolute;
-  left:  @space-big;
-  bottom:  @space-big;
-}

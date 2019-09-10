@@ -1,5 +1,6 @@
 import Film from "../components/Film";
 import ScreenUi from "./ScreenUi";
+import Ui from "../Ui";
 
 export default class Films extends ScreenUi{
     constructor(){
@@ -10,6 +11,10 @@ export default class Films extends ScreenUi{
          * @type {Film[]}
          */
         this.list=[];
+        this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
+            ui.nav.displayHome(true,false);
+            ui.nav.displayBack(true,"selectCasques");
+        });
     }
 
     /**
