@@ -14,6 +14,7 @@ import PopInWindow from "./popin/PopInWindow";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
+import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
 
 /**
@@ -49,6 +50,12 @@ export default class Ui extends EventEmitter{
          *
          */
         this.layout.$main.append(this._popIn.$main);
+        /**
+         * Le menu en bas
+         * @type {Nav}
+         */
+        this.nav=new Nav();
+        this.layout.$main.append(this.nav.$main);
 
         /**
          * La liste des casques
@@ -131,6 +138,19 @@ export default class Ui extends EventEmitter{
                    me.showScreen("validation");
                    break;
 
+               case "valid-seance":
+                   let casquesNumeros=[];
+                   me.screens.selectCasques.unSelectAll();
+                   for(let i=0;i<me.screens.validation.casques.length;i++){
+                       casquesNumeros.push(me.screens.validation.casques[i].numero);
+                   }
+                   me.emit("NEW_SEANCE",{
+                       "film":me.screens.validation.film.filmId,
+                       "duree":me.screens.validation.duree,
+                       "casques":casquesNumeros
+                   });
+                   break;
+
                default:
                    alert(`action ${a} non prise en charge`);
            }
@@ -168,6 +188,19 @@ export default class Ui extends EventEmitter{
 
         this.emit("READY");
 
+    }
+
+    /**
+     * Affiche l'écran Explication et donne un feedback sur les éventuelles non installations
+     * @param {string[]} numerosCasquesSuccess Les numéros de casques où l'installation a pu se faire
+     * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
+     */
+    seanceReady(numerosCasquesSuccess=[],numerosCasquesError=[]){
+        this.showScreen("explication");
+        this.screens.explication.displayInstallationFeedback(
+            numerosCasquesSuccess,
+            numerosCasquesError
+        )
     }
 
     /**

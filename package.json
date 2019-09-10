@@ -1,5 +1,5 @@
 {
-  "name": "webpack-common",
+  "name": "cayceo-ui",
   "version": "1.0.0",
   "scripts": {
     "watch-dev": "webpack --watch --config _builders/webpack.dev.js",

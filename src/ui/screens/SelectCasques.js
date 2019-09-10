@@ -13,32 +13,42 @@ export default class SelectCasques extends ScreenUi{
         this.$main=$(require("./selectCasques.html"));
         this.$main.data("obj",this);
 
-        let $ok=me.$main.find("[ok]");
 
-        /**
-         * Affiche ou pa sle bouton ok en fonction des casques selectionnés ou non
-         */
-        let refresh=function(){
-            if(me.getSelecteds().length){
-                $ok.attr("visible","1");
-            }else{
-                $ok.attr("visible","0");
-            }
-        };
+
 
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
+
+            ui.nav.displayHome(true,false);
+            ui.nav.displayBack(true,"home");
+
             me.$main.find("#casques").append(CasqueList.inst().$main);
             for(let c in ui.casques.list){
                 //check/uncheck
                 ui.casques.list[c].$main.find(".elements").off("click").on("click",function(){
                     ui.casques.list[c].toggleCheck();
-                    refresh();
+                    me._refresh();
                 });
             }
+
         });
 
 
     }
+
+
+    /**
+     * Affiche ou pas le bouton ok en fonction des casques selectionnés ou non
+     * @private
+     */
+    _refresh(){
+        let me=this;
+        let $ok=me.$main.find("[ok]");
+        if(me.getSelecteds().length){
+            $ok.attr("visible","1");
+        }else{
+            $ok.attr("visible","0");
+        }
+    };
 
     /**
      * Renvoie la liste des casques selectionnés
@@ -51,5 +61,13 @@ export default class SelectCasques extends ScreenUi{
             arr.push(ui.casques.list[$(this).attr("casque")]);
         });
         return arr;
+    }
+
+    /**
+     * Désélectionne tous les casques
+     */
+    unSelectAll(){
+        this.$main.find("#casques [casque]").removeClass("checked");
+        this._refresh();
     }
 }

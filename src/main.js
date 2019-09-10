@@ -32,6 +32,32 @@ ui.on("RESET_ALL",function(){
 ui.on("STOP_CASQUE",function(numero){
     alert(`Arrêter la lecture sur le casque numéro ${numero}`);
 });
+ui.on("WAKE_UP_CASQUES",function(numero){
+    alert(`il faut réveiller les casques`);
+});
+ui.on("NEW_SEANCE",function(seance){
+    alert("Electron doit installer une nouvelle séance");
+    console.log("séance a installer:",seance);
+
+    //ici on va simuler le résultat de l'installation
+
+    setTimeout(function(){
+
+        let casquesOk=[];
+        let casquesPasOk=[];
+        for(let i=0;i<seance.casques.length;i++){
+            if(Math.random()>0.5){
+                casquesOk.push(seance.casques[i]);
+            }else{
+                casquesPasOk.push(seance.casques[i]);
+            }
+        }
+        ui.seanceReady(
+            casquesOk,
+            casquesPasOk
+        );
+    },3000);
+});
 
 
 ui.on("READY",function(){
