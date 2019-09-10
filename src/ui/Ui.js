@@ -199,7 +199,7 @@ export default class Ui extends EventEmitter{
      * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
      */
     seanceReady(numerosCasquesSuccess=[],numerosCasquesError=[]){
-        this.showScreen("explication");
+        this.showScreen("explication","from-right");
         this.screens.explication.displayInstallationFeedback(
             numerosCasquesSuccess,
             numerosCasquesError
@@ -213,12 +213,17 @@ export default class Ui extends EventEmitter{
      */
     showScreen(screenName,transi=""){
         document.title=screenName;
+        let me=this;
         this.hidePopin();
-        $("[transi]").attr("transi",transi);
-        let screen=this.screens[screenName];
-        $("#main").empty().append(screen.$main);
-        screen.emit(Ui.EVENT_ADDED_TO_STAGE);
-        this.currentScreen=screen;
+        setTimeout(function(){
+            $("[transi]").attr("transi",transi);
+            let screen=me.screens[screenName];
+            $("#main").empty().append(screen.$main);
+            screen.emit(Ui.EVENT_ADDED_TO_STAGE);
+            me.currentScreen=screen;
+            },50
+        )
+
 
     }
     /**
