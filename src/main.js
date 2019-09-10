@@ -82,35 +82,56 @@ ui.on("READY",function(){
     //films-----------------------------------
 
 
-    let f1=ui.screens.films.addFilm();
-    f1.setTitle("La plage");
-    f1.setImage("medias/plage.jpg");
-    f1.addTag("Pédiatrie");
-    f1.addTag("Stress");
+    let f1=ui.screens.films.addFilm(
+        "id1",
+        "La plage",
+        "medias/plage.jpg"
+        )
+        .addTag("Pédiatrie")
+        .addTag("Stress");
 
-    let f2=ui.screens.films.addFilm();
-    f2.setTitle("La forêt");
-    f2.setImage("medias/foret.jpg");
-    f2.addTag("Stress");
+    let f2=ui.screens.films.addFilm(
+        "id2",
+        "La forêt",
+        "medias/foret.jpg"
+        )
+        .addTag("Stress");
 
-    let f3=ui.screens.films.addFilm();
-    f3.setTitle("Le machin");
-    f3.setImage("medias/plage.jpg");
-    f3.addTag("Violence");
-    f3.addTag("Drogue");
+    //ne va pas marcher et provoquera un console.warn car le film id2 est déjà dans la liste
+    let film2Again=ui.screens.films.addFilm(
+        "id2",
+        "Ne doit pas s'afficher",
+        "medias/foret.jpg"
+        )
+        .addTag("Stress");
 
-    let f4=ui.screens.films.addFilm();
-    f4.setTitle("Le bidule");
-    f4.setImage("medias/plage.jpg");
-    f4.addTag("Sexe");
-    f4.addTag("Licornes");
 
-    let f5=ui.screens.films.addFilm();
-    f5.setTitle("Le chose");
-    f5.setImage("medias/plage.jpg");
-    f5.addTag("Poneys");
-    f5.addTag("Arc en ciel");
+    let f3=ui.screens.films.addFilm(
+        "id3",
+        "Le machin",
+        "medias/plage.jpg"
+        )
+        .addTag("Violence")
+        .addTag("Drogue");
 
+    let f4=ui.screens.films.addFilm(
+        "id4",
+        "Le bidule",
+        "medias/plage.jpg"
+        )
+        .addTag("Sexe")
+        .addTag("Licornes");
+
+    let f5=ui.screens.films.addFilm(
+        "id5",
+        "Le chose",
+        "medias/plage.jpg"
+        )
+        .addTag("Poneys")
+        .addTag("Arc en ciel");
+
+
+    //applique un film à un casque
     c1.setFilm(f4);
     c3.setFilm(f1);
 });

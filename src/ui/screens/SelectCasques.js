@@ -15,6 +15,9 @@ export default class SelectCasques extends ScreenUi{
 
         let $ok=me.$main.find("[ok]");
 
+        /**
+         * Affiche ou pa sle bouton ok en fonction des casques selectionnés ou non
+         */
         let refresh=function(){
             if(me.getSelecteds().length){
                 $ok.attr("visible","1");

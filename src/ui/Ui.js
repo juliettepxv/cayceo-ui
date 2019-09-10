@@ -13,6 +13,7 @@ import PopinUi from "./popin/PopinUi"
 import PopInWindow from "./popin/PopInWindow";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
+import SelectDuree from "./screens/SelectDuree";
 const EventEmitter = require('event-emitter-es6');
 
 /**
@@ -112,6 +113,24 @@ export default class Ui extends EventEmitter{
                    me.emit("STOP_CASQUE",$(this).closest("[casque]").attr("casque"));
                    break;
 
+               case "select-casques":
+                   let casques=me.screens.selectCasques.getSelecteds();
+                   me.screens.validation.setCasques(casques);
+                   me.showScreen("films");
+                   break;
+
+               case "select-film":
+                   let film=me.screens.films.getFilmById($(this).closest("[film]").attr("film"));
+                   me.screens.validation.setFilm(film);
+                   me.showScreen("selectDuree");
+                   break;
+
+               case "select-duree":
+                   let duree=$(this).attr("duree");
+                   me.screens.validation.setDuree(duree);
+                   me.showScreen("validation");
+                   break;
+
                default:
                    alert(`action ${a} non prise en charge`);
            }
@@ -131,6 +150,7 @@ export default class Ui extends EventEmitter{
             "home":new Home(),
             "films":new Films(),
             "selectCasques":new SelectCasques(),
+            "selectDuree":new SelectDuree(),
             "filters":new Filters(),
             "validation":new Validation(),
             "explication":new Explication(),
