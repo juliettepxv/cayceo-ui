@@ -123,19 +123,19 @@ export default class Ui extends EventEmitter{
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
-                   me.showScreen("films");
+                   me.showScreen("films","from-right");
                    break;
 
                case "select-film":
                    let film=me.screens.films.getFilmById($(this).closest("[film]").attr("film"));
                    me.screens.validation.setFilm(film);
-                   me.showScreen("selectDuree");
+                   me.showScreen("selectDuree","from-right");
                    break;
 
                case "select-duree":
                    let duree=$(this).attr("duree");
                    me.screens.validation.setDuree(duree);
-                   me.showScreen("validation");
+                   me.showScreen("validation","from-right");
                    break;
 
                case "valid-seance":
@@ -157,7 +157,10 @@ export default class Ui extends EventEmitter{
         });
 
         $body.on("click","[data-show-screen]",function(){
-            me.showScreen($(this).attr("data-show-screen"));
+            me.showScreen(
+                $(this).attr("data-show-screen"),
+                $(this).attr("data-show-screen-transi")
+            );
         });
         $body.on("click","[data-show-popin]",function(){
             me.showPopin($(this).attr("data-show-popin"));
@@ -206,14 +209,17 @@ export default class Ui extends EventEmitter{
     /**
      * Affiche l'écran demandé
      * @param {string} screenName
+     * @param {string} transi La transition à utiliser
      */
-    showScreen(screenName){
+    showScreen(screenName,transi=""){
         document.title=screenName;
         this.hidePopin();
+        $("[transi]").attr("transi",transi);
         let screen=this.screens[screenName];
         $("#main").empty().append(screen.$main);
         screen.emit(Ui.EVENT_ADDED_TO_STAGE);
         this.currentScreen=screen;
+
     }
     /**
      * Affiche la popin demandée
