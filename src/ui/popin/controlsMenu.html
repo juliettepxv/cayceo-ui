@@ -1,7 +1,5 @@
 <div popin="controlsMenu" class="">
 
-    <h1 class="header">Contrôles</h1>
-
     <div class="list">
 
         <button class="btn-green btn-small" action="emit" emit-name="QUIT">
@@ -27,6 +25,12 @@
                 <span debug-enabled='none'>Activer</span>
                 <span debug-enabled='inline'>Désactiver</span>
                 le débuggage
+            </span>
+        </button>
+
+        <button debug-enabled='flex' class="btn-green btn-small" action="emit" emit-name="OPEN_CONSOLE">
+            <span>
+                Ouvrir la console
             </span>
         </button>
     </div>
