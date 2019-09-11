@@ -3,7 +3,7 @@ const fs = require('fs');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const webpack = require('webpack');
 const svgCollection = require("./svg-collection/svgCollection.js");
-
+let lastCompile=0;
 var mode="development";
 
 //webpack time
@@ -87,8 +87,9 @@ module.exports = {
     entry: {
         //Le point d'entrée principal
         "main":              path.resolve("./src/main.js"),
+        "cayceoUi":              path.resolve("./src/CayceoUi.js"),
         //générateur de sprites svg
-        "svg-collection":   path.resolve("./_builders/svg-collection/svg-collection-require-all.js"),
+        "svgCollectionRequireAll":   path.resolve("./_builders/svg-collection/svg-collection-require-all.js"),
     },
     output: {
         filename: '[name].js',
@@ -111,7 +112,15 @@ module.exports = {
             apply: (compiler) => {
                 compiler.hooks.done.tap('AfterEmitPlugin', (compilation) => {
                     console.log("Fin  de la compilation "+new Date());
-                    svgCollection.buildHtmlPreviews();
+                    let now=new Date().getTime()
+                    if(now - lastCompile > 1000 * 5){
+                        console.log("no recursion "+String(now - lastCompile))
+                        svgCollection.buildHtmlPreviews();
+                    }else{
+                        console.log("prevent recursion "+String(now - lastCompile))
+                    }
+                    lastCompile=new Date().getTime();
+
 
                 });
             }
@@ -135,7 +144,7 @@ module.exports = {
             {
                 test: /fonts.*\.(eot|ttf|otf|woff|woff2|svg)$/,
                 use: [
-                    {loader: "file-loader",
+                    {loader: "url-loader",
                         options: {
                             name (file) {
                                 return getAssetPath(file,false,"font");
@@ -157,7 +166,7 @@ module.exports = {
             //images svg etc...
             {
                 test: /\.(jpg|gif|txt|png|svg)$/,
-                exclude: /inline|fonts.*\.(svg)|svg-collection.*$/,
+                exclude: /dist|inline|fonts.*\.(svg)|svg-collection.*$/,
                 use: [
                     {loader: "url-loader",
                         options: {

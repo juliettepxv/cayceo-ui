@@ -25,9 +25,10 @@ var svgCollection={
     buildHtmlPreview(collection){
         console.log("crée la preview html de "+collection);
         //mise à jour de la preview html
-        let previewHtml="./dist/svg-collection/"+collection+".html";
+        let previewHtml="./dist/svgCollection/"+collection+".html";
         let html=fs.readFileSync("./_builders/svg-collection/main-preview.template.html");
-        let svg=fs.readFileSync("./dist/svg-collection/"+collection+".svg");
+        let svg=fs.readFileSync("./dist/svgCollection/"+collection+".svg");
+        fs.copyFileSync("./dist/svgCollection/"+collection+".svg", "./dist/"+collection+".lib.html");
         html=String(html).replace("${title}",""+collection+" svg symbol collection");
         html=String(html).replace("${svg}",svg);
         fs.writeFileSync(previewHtml, html, 'utf8', function(){});
@@ -39,7 +40,7 @@ var svgCollection={
      */
     spritePathFromFilePath(file){
         let collection=this.collectionFromFilePath(file);
-        return "svg-collection/"+collection+".svg";
+        return "svgCollection/"+collection+".svg";
     },
     /**
      * Dans la chaine svg-collection-toto/titi.svg renverra "toto"
