@@ -26,10 +26,11 @@ import css from '!!raw-loader!../../dist/main.css';
 export default class Ui extends EventEmitter{
 
     _loadAssets(){
-
-        let $style=$("<style>"+css+"</style>");
+        if(!$(["this-is-the-css"]).length){
+            let $style=$("<style>"+css+"</style>");
+            $body.append($style);
+        }
         let $svg=$(require("../../dist/icon.lib.html"));
-        $body.append($style);
         $body.append($svg);
     }
     constructor(){
