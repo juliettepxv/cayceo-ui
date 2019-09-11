@@ -20,22 +20,23 @@ window.ui=new Ui();
 
 //Exemples de méthodes à configurer depuis electron
 
-ui.on("QUIT",function(){
+
+ui.on(CMD.QUIT,function(){
     alert("quitter l'application");
 });
-ui.on("UPDATE_CONTENT",function(){
+ui.on(CMD.UPDATE_CONTENT,function(){
     alert("Mettre à jour le contenu");
 });
-ui.on("RESET_ALL",function(){
+ui.on(CMD.RESET_ALL,function(){
     alert("Reset !!!");
 });
-ui.on("STOP_CASQUE",function(numero){
+ui.on(CMD.STOP_CASQUE,function(numero){
     alert(`Arrêter la lecture sur le casque numéro ${numero}`);
 });
-ui.on("WAKE_UP_CASQUES",function(numero){
+ui.on(CMD.WAKE_UP_CASQUES,function(numero){
     alert(`il faut réveiller les casques`);
 });
-ui.on("OPEN_CONSOLE",function(numero){
+ui.on(CMD.OPEN_CONSOLE,function(numero){
     alert(`il faut ouvrir la console dans electron`);
 });
 ui.on("NEW_SEANCE",function(seance){

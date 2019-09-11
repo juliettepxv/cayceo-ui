@@ -1,6 +1,6 @@
 {
   "name": "cayceo-ui",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "scripts": {
     "watch-dev": "webpack --watch --config _builders/webpack.dev.js",
     "build-prod": "webpack --config _builders/webpack.prod.js",

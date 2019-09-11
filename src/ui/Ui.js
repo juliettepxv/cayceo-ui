@@ -16,7 +16,8 @@ import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
 import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
-require("../main.less")
+require("../main.less");
+require("./CMD.js");
 
 import css from '!!raw-loader!../../dist/main.css';
 
@@ -26,9 +27,12 @@ import css from '!!raw-loader!../../dist/main.css';
 export default class Ui extends EventEmitter{
 
     _loadAssets(){
-        if(!$(["this-is-the-css"]).length){
+        if(!$("[this-is-the-css]").length){
+            console.log("inject css");
             let $style=$("<style>"+css+"</style>");
             $body.append($style);
+        }else{
+            console.log("DO NOT inject css");
         }
         let $svg=$(require("../../dist/icon.lib.html"));
         $body.append($svg);
@@ -274,3 +278,4 @@ export default class Ui extends EventEmitter{
 * @type {string}
 */
 Ui.EVENT_ADDED_TO_STAGE="EVENT_ADDED_TO_STAGE";
+
