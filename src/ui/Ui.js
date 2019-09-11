@@ -20,23 +20,14 @@ require("../main.less");
 require("./CMD.js");
 
 import css from '!!raw-loader!../../dist/main.css';
+import Logs from "./popin/Logs";
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */
 export default class Ui extends EventEmitter{
 
-    _loadAssets(){
-        if(!$("[this-is-the-css]").length){
-            console.log("inject css");
-            let $style=$("<style>"+css+"</style>");
-            $body.append($style);
-        }else{
-            console.log("DO NOT inject css");
-        }
-        let $svg=$(require("../../dist/icon.lib.html"));
-        $body.append($svg);
-    }
+
     constructor(){
         super();
         let me=this;
@@ -122,6 +113,28 @@ export default class Ui extends EventEmitter{
 
     }
 
+    /**
+     * Charge la CSS et les icones SVG
+     * @private
+     */
+    _loadAssets(){
+        //css en style ou pas?
+        if(!$("[this-is-the-css]").length){
+            console.log("inject css");
+            let $style=$("<style>"+css+"</style>");
+            $body.append($style);
+        }else{
+            console.log("DO NOT inject css");
+        }
+        //svg injecté
+        let $svg=$(require("../../dist/icon.lib.html"));
+        $body.append($svg);
+    }
+
+    /**
+     *
+     * @private
+     */
     _initStuff(){
         let me=this;
 
@@ -138,7 +151,7 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "stop-casque":
-                   me.emit("STOP_CASQUE",$(this).closest("[casque]").attr("casque"));
+                   me.emit(CMD.STOP_CASQUE,$(this).closest("[casque]").attr("casque"));
                    break;
 
                case "select-casques":
@@ -165,7 +178,7 @@ export default class Ui extends EventEmitter{
                    for(let i=0;i<me.screens.validation.casques.length;i++){
                        casquesNumeros.push(me.screens.validation.casques[i].numero);
                    }
-                   me.emit("NEW_SEANCE",{
+                   me.emit(CMD.NEW_SEANCE,{
                        "film":me.screens.validation.film.filmId,
                        "duree":me.screens.validation.duree,
                        "casques":casquesNumeros
@@ -205,6 +218,7 @@ export default class Ui extends EventEmitter{
          */
         this.popIns={
             "dashboard":new Dashboard(),
+            "logs":new Logs(),
             "debug":null,
             "controlsMenu":new ControlsMenu(),
         };
@@ -267,6 +281,14 @@ export default class Ui extends EventEmitter{
         this._popIn.hide();
         ui.currentPopin=null;
         $("#popin-content").empty();
+    }
+
+    /**
+     * Enregistre une log visible qui sera dans la popin de log
+     * @param message
+     */
+    log(message){
+        this.popIns.logs.log(message);
     }
 
 

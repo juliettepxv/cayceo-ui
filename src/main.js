@@ -68,6 +68,10 @@ ui.on("READY",function(){
     //Layout------------------------------------
     ui.layout.setVersion("1.17.3");
     ui.layout.setLogo("./medias/logo-cayceo.png");
+    ui.log("hello");
+    setInterval(function(){
+        ui.log("hello log ")
+    },5*1000);
     /**
      *
      * @type {ScreenUi[]}
