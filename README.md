@@ -1,2 +1,2 @@
-# webpack-common
-Une configuration webpack pour commencer un projet html + javascript + less/css 
+# Cayceo-ui
+L'interface utilisateur des bornes Cayceo.

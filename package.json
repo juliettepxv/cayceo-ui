@@ -1,11 +1,18 @@
 {
   "name": "cayceo-ui",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "description": "L'interface utilisateur des bornes Cayceo",
+  "license": "WTFPL",
+  "main": "dist/cayceoUi.js",
   "scripts": {
     "watch-dev": "webpack --watch --config _builders/webpack.dev.js",
     "build-prod": "webpack --config _builders/webpack.prod.js",
     "build-prod-stats": "webpack --config _builders/webpack.prod.js --json > _builders/stats-prod.json",
     "npm-install": "npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juliettepxv/cayceo-ui.git"
   },
   "dependencies": {
     "event-emitter-es6": "^1.1.5",
