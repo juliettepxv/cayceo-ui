@@ -60,6 +60,9 @@ ui.on("NEW_SEANCE",function(seance){
             casquesOk,
             casquesPasOk
         );
+
+
+
     },3000);
 });
 
@@ -110,7 +113,13 @@ ui.on("READY",function(){
                 ui.casques.list[c].setBatteryPlugged(Math.random()>0.5);
             }
         }
+        //histoire de tester
+        ui.popIns.casquesAdbData.displayData(new Date())
+
     },1000);
+
+
+
 
 
     //films-----------------------------------

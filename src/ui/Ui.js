@@ -21,6 +21,7 @@ require("./CMD.js");
 
 import css from '!!raw-loader!../../dist/main.css';
 import Logs from "./popin/Logs";
+import ObjectLogger from "./popin/ObjectLogger";
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
@@ -223,9 +224,12 @@ export default class Ui extends EventEmitter{
          */
         this.popIns={
             "dashboard":new Dashboard(),
+            "controlsMenu":new ControlsMenu(),
             "logs":new Logs(),
             "debug":null,
-            "controlsMenu":new ControlsMenu(),
+            "webApiData":new ObjectLogger("Web Api data"),
+            "casquesAdbData":new ObjectLogger("Casques ADB data"),
+            "casquesSocketData":new ObjectLogger("Casques socket data"),
         };
         //todo popin debug
 
