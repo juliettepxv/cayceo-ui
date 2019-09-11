@@ -18,7 +18,11 @@ window.$body=$("body");
 window.ui=new Ui();
 
 
+
+
 //Exemples de méthodes à configurer depuis electron
+
+ui.displaySplashScreen("Hello world");
 
 
 ui.on(CMD.QUIT,function(){
@@ -173,10 +177,16 @@ ui.on("READY",function(){
         .addTag("Poneys")
         .addTag("Arc en ciel");
 
-
     //applique un film à un casque
     c1.setFilm(f4);
     c3.setFilm(f1);
+
+    //va effacer l'id 4 (Le bidule)  de la liste au bout de 30 secondes
+    setTimeout(function(){
+        ui.screens.films.removeFilm("id4");
+    },30*1000);
+
+
 });
 
 

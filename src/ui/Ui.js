@@ -22,6 +22,7 @@ require("./CMD.js");
 import css from '!!raw-loader!../../dist/main.css';
 import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
+import Splash from "./screens/Splash";
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
@@ -105,19 +106,10 @@ export default class Ui extends EventEmitter{
             }
         };
 
-
-
-
         //----------------go---------------
-
-
-        setTimeout(function(){
-            me._initStuff();
-            me.showScreen("home");
-        },10)
-
-
+        me._initStuff();
     }
+
 
     /**
      * Charge la CSS et les icones SVG
@@ -210,6 +202,7 @@ export default class Ui extends EventEmitter{
          * @type {{films: Films, filters: Filters, selectCasques: SelectCasques, validation: Validation, explication: Explication, home: Home}}
          */
         this.screens={
+            "splash":new Splash(),
             "home":new Home(),
             "films":new Films(),
             "selectCasques":new SelectCasques(),
@@ -235,6 +228,11 @@ export default class Ui extends EventEmitter{
 
         this.emit("READY");
 
+    }
+
+    displaySplashScreen(message){
+        this.showScreen("splash");
+        this.screens.splash.log(message)
     }
 
     /**

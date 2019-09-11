@@ -18,6 +18,20 @@ export default class Films extends ScreenUi{
     }
 
     /**
+     * Renvoie la liste des ids
+     * @private
+     * @returns {string[]}
+     */
+    _ids(){
+        let ids=[];
+        for(let i=0;i<this.list.length;i++) {
+            let f = this.list[i];
+            ids.push(f.filmId);
+        }
+        return ids;
+    }
+
+    /**
      * Renvoie un film par son id
      * @param {string} filmId identifiant du film à trouver
      * @returns {Film|null}
@@ -34,7 +48,8 @@ export default class Films extends ScreenUi{
 
     /**
      * Crée et ajoute un film à la liste et renvoie le Film créé.
-     * Si le film avec cet id existe déjà ne fera rien, mais fera un console.warn et renverra l'occurence de l'ojet
+     * Si le film avec cet id existe déjà ne fera rien,
+     * mais fera un console.warn et renverra l'occurence de l'ojet
      * @param {string} filmId identifiant du film
      * @param {string} title titre du film
      * @param {string} imgUrl url de l'image du film
@@ -65,6 +80,22 @@ export default class Films extends ScreenUi{
                 return;
             }
         }
-        console.warn(`Le film ayant pour id ${{filmId}} ne peut pas être supprimé, il n'est pas dans la liste`)
+        console.warn(`Le film ayant pour id ${filmId} ne peut pas être supprimé, il n'est pas dans la liste`)
     }
+
+    /**
+     * Supprime les films dont l'id n'est pas spécifié dans la liste
+     * @param {string[]} toKeepIds La liste des ids qui doivent rester
+     */
+    /*
+    cleanList(toKeepIds){
+        let ids=this._ids();
+        for(let i=0;i<ids.length;i++){
+            if($.inArray(ids[i],toKeepIds) === -1){
+                ui.log(`supression du film ${this.getFilmById(ids[i]).title}`);
+                this.removeFilm(ids[i]);
+            }
+        }
+    }
+    */
 }

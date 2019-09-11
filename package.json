@@ -1,6 +1,6 @@
 {
   "name": "cayceo-ui",
-  "version": "1.0.11",
+  "version": "1.0.14",
   "description": "L'interface utilisateur des bornes Cayceo",
   "license": "WTFPL",
   "main": "dist/cayceoUi.js",
