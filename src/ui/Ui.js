@@ -16,14 +16,30 @@ import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
 import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
+require("../main.less")
+
+import css from '!!raw-loader!../../dist/main.css';
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */
 export default class Ui extends EventEmitter{
+
+    _loadAssets(){
+
+        let $style=$("<style>"+css+"</style>");
+        let $svg=$(require("../../dist/icon.lib.html"));
+        $body.append($style);
+        $body.append($svg);
+    }
     constructor(){
         super();
         let me=this;
+        console.log("cayceo-ui version",VERSION);
+
+        this._loadAssets();
+
+
         /**
          * La popin en cours
          * @type {null|PopinUi}

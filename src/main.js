@@ -12,7 +12,7 @@ import CasqueList from "./ui/components/CasqueList";
 import Ui from "./ui/Ui";
 
 
-require("./main.less");
+
 window.$=document.$ = window.jQuery = require("jquery");
 window.$body=$("body");
 window.ui=new Ui();
@@ -34,6 +34,9 @@ ui.on("STOP_CASQUE",function(numero){
 });
 ui.on("WAKE_UP_CASQUES",function(numero){
     alert(`il faut réveiller les casques`);
+});
+ui.on("OPEN_CONSOLE",function(numero){
+    alert(`il faut ouvrir la console dans electron`);
 });
 ui.on("NEW_SEANCE",function(seance){
     alert("Electron doit installer une nouvelle séance");
