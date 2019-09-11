@@ -31,7 +31,12 @@ export default class Ui extends EventEmitter{
     constructor(){
         super();
         let me=this;
-        console.log("cayceo-ui version",VERSION);
+
+        /**
+         * La version de cayceo UI
+         */
+        this.version=VERSION;
+        console.log("cayceo-ui version",this.version);
 
         this._loadAssets();
 
