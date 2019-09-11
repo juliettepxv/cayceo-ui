@@ -1,43 +1,47 @@
 <div popin="controlsMenu" class="">
 
-    <div class="list">
+    <div class="row">
 
-        <button class="btn-green btn-small" action="emit" emit-name="QUIT">
-            <span>
-                Quitter
-            </span>
-        </button>
 
-        <button class="btn-green btn-small" action="emit" emit-name="UPDATE_CONTENT">
-            <span>
+        <div class="col-sm-6">
+            <button action="emit" emit-name="UPDATE_CONTENT">
                 Mettre à jour les contenus
-            </span>
-        </button>
-
-        <button class="btn-green btn-small" action="emit" emit-name="RESET_ALL">
-            <span>
+            </button>
+            <button action="emit" emit-name="RESET_ALL">
                 Tout réinitialiser
-            </span>
-        </button>
+            </button>
+            <button action="emit" emit-name="QUIT">
+                Fermer l'application
+            </button>
+        </div>
 
-        <button class="btn-green btn-small" action="debug-toggle">
-            <span>
-                <span debug-enabled='none'>Activer</span>
-                <span debug-enabled='inline'>Désactiver</span>
-                le mode développeur
-            </span>
-        </button>
 
-        <button debug-enabled='flex' class="btn-green btn-small" action="emit" emit-name="OPEN_CONSOLE">
-            <span>
+
+        <div class="col-sm-6">
+            <button action="debug-toggle">
+                <span>
+                    <span debug-enabled='none'>Activer</span>
+                    <span debug-enabled='inline'>Désactiver</span>
+                    le mode développeur
+                </span>
+            </button>
+
+            <button debug-enabled='flex' action="emit" emit-name="OPEN_CONSOLE">
                 Ouvrir la console
-            </span>
-        </button>
-        <button debug-enabled='flex' class="btn-green btn-small" data-show-popin="logs">
-            <span>
-                Afficher les logs
-            </span>
-        </button>
+            </button>
+            <button debug-enabled='flex' data-show-popin="logs">
+                Logs générales
+            </button>
+            <button debug-enabled='flex' data-show-popin="webApiData">
+                Web Api data
+            </button>
+            <button debug-enabled='flex' data-show-popin="casquesAdbData">
+                Casques ADB data
+            </button>
+            <button debug-enabled='flex' data-show-popin="casquesSocketData">
+                Casques socket data
+            </button>
+        </div>
     </div>
 
 </div>
