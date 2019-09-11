@@ -8,7 +8,7 @@ export default class Layout {
      * @param version
      */
     setVersion(version){
-        this.$main.find("#version>div").text(`Version ${version}`)
+        this.$main.find("#version>div").text(`Version ${version} / ui-${VERSION}`)
     }
     /**
      * Permet de définir le logo
