@@ -1,5 +1,9 @@
 export default class Layout {
     constructor(){
+        /**
+         * @private
+         * @type {jQuery.fn.init|*|jQuery|HTMLElement}
+         */
         this.$main=$(require("./layout.html"));
         this._$logo=this.$main.find("#logo");
     }

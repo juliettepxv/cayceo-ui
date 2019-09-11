@@ -1,6 +1,6 @@
 {
   "name": "cayceo-ui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "L'interface utilisateur des bornes Cayceo",
   "license": "WTFPL",
   "main": "dist/cayceoUi.js",
@@ -8,7 +8,8 @@
     "watch-dev": "webpack --watch --config _builders/webpack.dev.js",
     "build-prod": "webpack --config _builders/webpack.prod.js",
     "build-prod-stats": "webpack --config _builders/webpack.prod.js --json > _builders/stats-prod.json",
-    "npm-install": "npm install"
+    "npm-install": "npm install",
+    "npm-publish": "npm publish"
   },
   "repository": {
     "type": "git",
