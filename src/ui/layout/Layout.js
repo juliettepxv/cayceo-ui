@@ -6,6 +6,7 @@ export default class Layout {
          */
         this.$main=$(require("./layout.html"));
         this._$logo=this.$main.find("#logo");
+        this._loadAssets();
     }
     /**
      * Permet de d'afficher un numéro de version'
@@ -20,5 +21,23 @@ export default class Layout {
      */
     setLogo(imgUrl){
         this._$logo.find("img").attr("src",imgUrl);
+    }
+
+    /**
+     * Charge la CSS et les icones SVG
+     * @private
+     */
+    _loadAssets(){
+        //css en style ou pas?
+        if(!$("[this-is-the-css]").length){
+            console.log("inject css");
+            let $style=$("<style>"+css+"</style>");
+            $body.append($style);
+        }else{
+            console.log("DO NOT inject css");
+        }
+        //svg injecté
+        let $svg=$(require("../../../dist/icon.lib.html"));
+        $body.append($svg);
     }
 }

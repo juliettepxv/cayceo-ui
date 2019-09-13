@@ -47,9 +47,6 @@ export default class Ui extends EventEmitter{
         this.version=VERSION;
         console.log("cayceo-ui version",this.version);
 
-        this._loadAssets();
-
-
         /**
          * La popin en cours
          * @type {null|PopinUi}
@@ -118,23 +115,7 @@ export default class Ui extends EventEmitter{
     }
 
 
-    /**
-     * Charge la CSS et les icones SVG
-     * @private
-     */
-    _loadAssets(){
-        //css en style ou pas?
-        if(!$("[this-is-the-css]").length){
-            console.log("inject css");
-            let $style=$("<style>"+css+"</style>");
-            $body.append($style);
-        }else{
-            console.log("DO NOT inject css");
-        }
-        //svg injecté
-        let $svg=$(require("../../dist/icon.lib.html"));
-        $body.append($svg);
-    }
+
 
     /**
      *
