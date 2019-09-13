@@ -1,3 +1,5 @@
+import ObjectLogger from "../popin/ObjectLogger";
+
 export default class Casque {
     /**
      *
@@ -21,6 +23,11 @@ export default class Casque {
         this._setState(Casque.STATE_HORS_LIGNE);
         //permet d'accéder à cet objet via le DOM
         this.$main.data("obj",this);
+        /**
+         * La popin où on affichera les infos du casque
+         * @type {ObjectLogger}
+         */
+        this.infoPopIn=new ObjectLogger("Casque "+this.numero);
     }
 
     /**

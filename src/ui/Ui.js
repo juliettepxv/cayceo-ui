@@ -71,11 +71,11 @@ export default class Ui extends EventEmitter{
          * @private
          * @type {PopInWindow}
          */
-        this._popIn=new PopInWindow();
+        this._popInWindow=new PopInWindow();
         /**
          *
          */
-        this.layout.$main.append(this._popIn.$main);
+        this.layout.$main.append(this._popInWindow.$main);
         /**
          * Le menu en bas
          * @type {Nav}
@@ -162,19 +162,19 @@ export default class Ui extends EventEmitter{
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
-                   me.showScreen("films","from-right");
+                   me.screens.films.show("from-right");
                    break;
 
                case "select-film":
                    let film=me.screens.films.getFilmById($(this).closest("[film]").attr("film"));
                    me.screens.validation.setFilm(film);
-                   me.showScreen("selectDuree","from-right");
+                   me.screens.selectDuree.show("from-right");
                    break;
 
                case "select-duree":
                    let duree=$(this).attr("duree");
                    me.screens.validation.setDuree(duree);
-                   me.showScreen("validation","from-right");
+                   me.screens.validation.show("from-right");
                    break;
 
                case "valid-seance":
@@ -196,13 +196,13 @@ export default class Ui extends EventEmitter{
         });
 
         $body.on("click","[data-show-screen]",function(){
-            me.showScreen(
+            me._showScreenByName(
                 $(this).attr("data-show-screen"),
                 $(this).attr("data-show-screen-transi")
             );
         });
         $body.on("click","[data-show-popin]",function(){
-            me.showPopin($(this).attr("data-show-popin"));
+            me._showPopinByName($(this).attr("data-show-popin"));
         });
         /**
          * La liste exhaustive des écrans
@@ -237,8 +237,12 @@ export default class Ui extends EventEmitter{
 
     }
 
+    /**
+     * Affiche l'écran de log et y ajoute le message fourni.
+     * @param message
+     */
     displaySplashScreen(message){
-        this.showScreen("splash");
+        this.screens.splash.show();
         this.screens.splash.log(message)
     }
 
@@ -248,7 +252,7 @@ export default class Ui extends EventEmitter{
      * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
      */
     seanceReady(numerosCasquesSuccess=[],numerosCasquesError=[]){
-        this.showScreen("explication","from-right");
+        this.screens.explication.show("from-right");
         this.screens.explication.displayInstallationFeedback(
             numerosCasquesSuccess,
             numerosCasquesError
@@ -257,42 +261,55 @@ export default class Ui extends EventEmitter{
 
     /**
      * Affiche l'écran demandé
-     * @param {string} screenName
+     * @param {ScreenUi} screen
      * @param {string} transi La transition à utiliser
      */
-    showScreen(screenName,transi=""){
-        document.title=screenName;
+    showScreen(screen,transi=""){
         let me=this;
         this.hidePopin();
         setTimeout(function(){
             $("[transi]").attr("transi",transi);
-            let screen=me.screens[screenName];
             $("#main").empty().append(screen.$main);
-            screen.emit(Ui.EVENT_ADDED_TO_STAGE);
-            me.currentScreen=screen;
+                screen.emit(Ui.EVENT_ADDED_TO_STAGE);
+                me.currentScreen=screen;
             },50
         )
-
-
+    }
+    /**
+     * Affiche l'écran demandé
+     * @param {string} screenName
+     * @param {string} transi La transition à utiliser
+     * @private
+     */
+    _showScreenByName(screenName, transi=""){
+       this.showScreen(this.screens[screenName],transi) ;
     }
     /**
      * Affiche la popin demandée
-     * @param {string} popinName
+     * @param {PopinUi} popin
      */
-    showPopin(popinName){
-        console.log("show popin:",popinName);
-        this._popIn.show();
-        let pop=this.popIns[popinName];
-        $("#popin-content").empty().append(pop.$main);
-        pop.emit(Ui.EVENT_ADDED_TO_STAGE);
-        this.currentPopin=pop;
+    showPopin(popin){
+        this._popInWindow.show();
+        $("#popin-content").empty().append(popin.$main);
+        popin.emit(Ui.EVENT_ADDED_TO_STAGE);
+        this.currentPopin=popin;
+    }
+
+    /**
+     *
+     * Affiche la popin demandée
+     * @param {string} popinName
+     * @private
+     */
+    _showPopinByName(popinName){
+        this.showPopin(this.popIns[popinName])
     }
 
     /**
      * Masque la popin (et vide son contenu)
      */
     hidePopin(){
-        this._popIn.hide();
+        this._popInWindow.hide();
         ui.currentPopin=null;
         $("#popin-content").empty();
     }

@@ -8,6 +8,7 @@ export default class Validation extends ScreenUi{
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,false);
             ui.nav.displayBack(true,"selectDuree");
+            ui.nav.displayDashboard(true);
         });
     }
 

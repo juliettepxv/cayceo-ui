@@ -27,7 +27,7 @@ setTimeout(function(){
     let t=10;
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
-        ui.showScreen("home");
+        ui.screens.home.show();
     },t * 1000);
 },2 * 1000);
 

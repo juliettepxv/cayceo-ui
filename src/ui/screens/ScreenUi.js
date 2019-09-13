@@ -6,6 +6,9 @@ export default class ScreenUi extends EventEmitter{
         let me=this;
         this.$main=$("<div></div>");
     }
+    show(transi=""){
+        window.ui.showScreen(this,transi);
+    }
 
 
 }

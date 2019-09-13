@@ -20,6 +20,7 @@ export default class SelectCasques extends ScreenUi{
 
             ui.nav.displayHome(true,false);
             ui.nav.displayBack(true,"home");
+            ui.nav.displayDashboard(true);
 
             me.$main.find("#casques").append(CasqueList.inst().$main);
             for(let c in ui.casques.list){

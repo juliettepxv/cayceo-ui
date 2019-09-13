@@ -9,6 +9,7 @@ export default class Explication extends ScreenUi{
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,true);
             ui.nav.displayBack(false);
+            ui.nav.displayDashboard(true);
         });
     }
     /**

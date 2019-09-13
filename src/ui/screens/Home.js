@@ -13,6 +13,7 @@ export default class Home extends ScreenUi{
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(false);
             ui.nav.displayBack(false,"home");
+            ui.nav.displayDashboard(true,true);
         });
 
     }

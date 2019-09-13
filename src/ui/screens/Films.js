@@ -14,6 +14,7 @@ export default class Films extends ScreenUi{
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,false);
             ui.nav.displayBack(true,"selectCasques");
+            ui.nav.displayDashboard(true);
         });
     }
 
