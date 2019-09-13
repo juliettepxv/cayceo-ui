@@ -24,6 +24,13 @@ import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
 
+
+
+//todo debug mode online / offline
+//todo debug mode downloading + progress
+//todo debug mode film / info
+//todo debug mode film / afficher identifiant
+
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */

@@ -23,6 +23,14 @@ window.ui=new Ui();
 //Exemples de méthodes à configurer depuis electron
 
 ui.displaySplashScreen("Hello world");
+setTimeout(function(){
+    let t=10;
+    ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
+    setTimeout(function(){
+        ui.showScreen("home");
+    },t * 1000);
+},2 * 1000);
+
 
 
 ui.on(CMD.QUIT,function(){
