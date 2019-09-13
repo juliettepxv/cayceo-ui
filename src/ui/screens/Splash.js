@@ -3,13 +3,14 @@
  */
 import ScreenUi from "./ScreenUi";
 import Ui from "../Ui";
+import LogsField from "../components/LogsField";
 
 
 export default class Splash extends ScreenUi{
     constructor(){
         super();
         this.$main=$(require("./splash.html"));
-        this.logs=[];
+        this._logs=new LogsField(this.$main.find(".logs-field"))
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(false);
             ui.nav.displayBack(false,"home");
@@ -21,8 +22,7 @@ export default class Splash extends ScreenUi{
      * @param {string} str Ce qu'il faut logger :)
      */
     log(str){
-        this.logs.push(str);
-        this.$main.find("pre").html(this.logs.join("\n"));
+        this._logs.log(str);
     }
 
 

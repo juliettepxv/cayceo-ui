@@ -1,4 +1,5 @@
 import PopinUi from "./PopinUi"
+import LogsField from "../components/LogsField";
 
 /**
  * Contenu de popin permettant d'afficher des logs
@@ -6,8 +7,12 @@ import PopinUi from "./PopinUi"
 export default class Logs extends PopinUi{
     constructor(){
         super();
-        this.logs="";
         this.$main=$(require("./logs.html"));
+        this._logs=new LogsField(this.$main.find(".logs-field"));
+        this._logs.modeReplace=false;
+        this._logs.injectTop=true;
+        this._logs.displayTime=true;
+
     }
 
     /**
@@ -15,10 +20,9 @@ export default class Logs extends PopinUi{
      * @param {string} str Ce qu'il faut logger :)
      */
     log(str){
-        str=new Date().toUTCString()+"\n"+str;
-        this.logs=str+"\n\n"+this.logs;
-        this.$main.find("textarea").val(this.logs);
         console.log(str);
+        this._logs.log(str);
+
     }
 
 }
