@@ -27,17 +27,27 @@ export default class Film {
 
 
         //applique les propriétés
-        this._setImage(imgUrl)._setTitle(title);
+        this._setImage(imgUrl)
+            ._setTitle(title);
 
         //popin...
         let popinName=`Film ${this.filmId}`;
         /**
          * La popin où on affichera les infos du film
          * @type {ObjectLogger}
+         * @private
          */
-        this.infoPopIn=new ObjectLogger(popinName);
+        this._infoPopIn=new ObjectLogger(popinName);
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
-        ui.popIns[popinName]=this.infoPopIn;
+        ui.popIns[popinName]=this._infoPopIn;
+    }
+
+    /**
+     * Permet d'afficher dans la popin de détail du film ses infos
+     * @param {object|array|string} details Les infos à afficher
+     */
+    setDetails(details){
+        this._infoPopIn.displayData(details);
     }
 
     /**
@@ -70,7 +80,7 @@ export default class Film {
      * @returns {Film}
      */
     addTag(tag){
-        this.$main.find(".indications").append($(`<div class='indication'>${tag}</div>`));
+        this.$main.find(".tags").append($(`<div class='tag'>${tag}</div>`));
         return this;
     }
 }

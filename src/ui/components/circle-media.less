@@ -1,34 +1,40 @@
 .circle-media{
-
+  position: relative;
+  *{
+    pointer-events: none;
+  }
+  button{
+    cursor: pointer;
+    pointer-events: auto;
+  }
   >.circle{
+    position: relative;
     .img.bg-circle{}
   }
   >.badge{
+    position: absolute;
   }
   >.label{
+    position: absolute;
     &.top{
     }
     &.bottom{
     }
   }
   >.actions{
+    position: relative;
   }
 
 
-  position: relative;
+
   color: white;
   margin: 0 @space-tiny;
   text-align: center;
   --radius:160px;
-  >*{
-    position: absolute;
-  }
+
 
 
   >.circle{
-      position: relative;
-      top: 0;
-      left: 0;
       width:var(--radius);
       height: var(--radius);
       border-radius: 100%;
@@ -47,7 +53,6 @@
   }
 
   >.badge{
-    position: absolute;
     top: 0;
     right: 0;
   }
@@ -59,7 +64,7 @@
       top: -5px;
     }
     &.bottom{
-      bottom: -5px;
+      top: calc( var(--radius) -  15px);
       .big-shadow;
     }
   }

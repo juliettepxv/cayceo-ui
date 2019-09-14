@@ -29,10 +29,19 @@ export default class Casque {
         /**
          * La popin où on affichera les infos du casque
          * @type {ObjectLogger}
+         * @private
          */
-        this.infoPopIn=new ObjectLogger(popinName);
+        this._infoPopIn=new ObjectLogger(popinName);
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
-        ui.popIns[popinName]=this.infoPopIn;
+        ui.popIns[popinName]=this._infoPopIn;
+    }
+
+    /**
+     * Permet d'afficher dans la popin de détail du casque ses infos détaillées
+     * @param {object|array|string} details Les infos à afficher
+     */
+    setDetails(details){
+        this._infoPopIn.displayData(details);
     }
 
     /**

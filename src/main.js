@@ -52,7 +52,7 @@ ui.on(CMD.OPEN_CONSOLE,function(numero){
     alert(`il faut ouvrir la console dans electron`);
 });
 ui.on("NEW_SEANCE",function(seance){
-    alert("Electron doit installer une nouvelle séance");
+    alert(`Electron doit installer une nouvelle séance`);
     console.log("séance a installer:",seance);
 
     //ici on va simuler le résultat de l'installation
@@ -72,10 +72,9 @@ ui.on("NEW_SEANCE",function(seance){
         );
 
         for(let i = 0;i<casquesOk.length;i++){
-            console.log("zzz",casquesOk[i])
             ui.casques.getCasqueByNumero(casquesOk[i])
                 .setFilm(
-                    ui.screens.films.getFilmById(seance.film)
+                    ui.films.getFilmById(seance.film)
                 )
                 ._setState(Casque.STATE_EN_ATTENTE)
         }
@@ -106,52 +105,88 @@ ui.on("READY",function(){
 
     //films-----------------------------------
 
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id1",
         "La plage",
         "medias/plage.jpg"
         )
         .addTag("Pédiatrie")
-        .addTag("Stress");
+        .addTag("Stress")
+        .setDetails(
+        {
+            "test":Math.random(),
+            "id":"id1"
+        }
+    );
 
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id2",
         "La forêt",
         "medias/foret.jpg"
         )
-        .addTag("Stress");
+        .addTag("Stress")
+        .setDetails(
+        {
+            "test":Math.random(),
+            "id":"id2"
+        }
+    );
 
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id3",
         "Le machin",
         "medias/plage.jpg"
         )
         .addTag("Violence")
-        .addTag("Drogue");
+        .addTag("Drogue")
+        .setDetails(
+        {
+            "test":Math.random(),
+            "id":"id3"
+        }
+    );
 
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id4",
         "Le bidule",
         "medias/plage.jpg"
         )
         .addTag("Sexe")
-        .addTag("Licornes");
+        .addTag("Licornes")
+        .setDetails(
+        {
+            "test":Math.random(),
+            "id":"id4"
+        }
+    );
 
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id5",
         "Le chose",
         "medias/plage.jpg"
         )
         .addTag("Poneys")
-        .addTag("Arc en ciel");
+        .addTag("Arc en ciel")
+        .setDetails(
+        {
+            "test":Math.random(),
+            "id":"id5"
+        }
+    );
 
     //ne va pas marcher car le film id2 est déjà dans la liste
-    ui.screens.films.addFilm(
+    ui.films.addFilm(
         "id2",
         "Ne doit pas s'afficher",
         "medias/foret.jpg"
-    )
-        .addTag("Stress");
+        )
+        .addTag("Stress")
+        ._infoPopIn.displayData(
+        {
+            "test":Math.random(),
+            "id":"id2"
+            }
+        );
 
     //fake datas en boucle...
 
@@ -178,7 +213,7 @@ ui.on("READY",function(){
             if(Math.random()>0.95){
                 casque.setBatteryPlugged(Math.random()>0.5);
             }
-            casque.infoPopIn.displayData({
+            casque.setDetails({
                 numero:casque.numero,
                 "some":{
                     random:Math.random(),

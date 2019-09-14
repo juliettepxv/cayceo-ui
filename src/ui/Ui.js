@@ -85,6 +85,11 @@ export default class Ui extends EventEmitter{
          * @type {CasqueList}
          */
         this.casques=new CasqueList();
+        /**
+         * La liste des films
+         * @type {Films}
+         */
+        this.films=new Films();
 
 
         /**
@@ -192,7 +197,7 @@ export default class Ui extends EventEmitter{
         this.screens={
             "splash":new Splash(),
             "home":new Home(),
-            "films":new Films(),
+            "films":this.films,
             "selectCasques":new SelectCasques(),
             "selectDuree":new SelectDuree(),
             "filters":new Filters(),
