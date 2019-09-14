@@ -19,7 +19,7 @@ const EventEmitter = require('event-emitter-es6');
 require("../main.less");
 require("./CMD.js");
 
-import css from '!!raw-loader!../../dist/main.css';
+
 import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";

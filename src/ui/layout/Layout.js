@@ -1,3 +1,5 @@
+import css from '!!raw-loader!../../../dist/main.css';
+
 export default class Layout {
     constructor(){
         /**
