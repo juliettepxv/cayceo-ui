@@ -1,13 +1,20 @@
-<div film="">
+<div film="" class="circle-media">
 
-    <button action="select-film">
-        <img src="./placeholder.jpg" alt="film">
+
+    <button class="circle" action="select-film" >
+            <img class="bg-circle"
+                 src="./placeholder.jpg"
+                 alt="film">
     </button>
 
-    <div class="elements">
-        <div class="label">
-            <span class="title">Titre du Film</span>
-        </div>
+    <div class="label bottom">
+        <span class="title">Titre du Film</span>
+    </div>
+
+    <div class="actions">
+        <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-small">
+            <svg class="ico-16"><use xlink:href="#icon-settings-1"></use></svg>
+        </button>
     </div>
 
     <div class="indications">
@@ -16,7 +23,5 @@
         <div class="indication">Stress</div>
         -->
     </div>
-
-
 
 </div>

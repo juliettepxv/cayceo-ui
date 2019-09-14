@@ -25,7 +25,7 @@ export default class SelectCasques extends ScreenUi{
             me.$main.find("#casques").append(CasqueList.inst().$main);
             for(let c in ui.casques.list){
                 //check/uncheck
-                ui.casques.list[c].$main.find(".elements").off("click").on("click",function(){
+                ui.casques.list[c].$main.find("button.circle").off("click").on("click",function(){
                     ui.casques.list[c].toggleCheck();
                     me._refresh();
                 });

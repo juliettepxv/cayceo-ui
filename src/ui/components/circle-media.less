@@ -1,0 +1,78 @@
+.circle-media{
+
+  >.circle{
+    .img.bg-circle{}
+  }
+  >.badge{
+  }
+  >.label{
+    &.top{
+    }
+    &.bottom{
+    }
+  }
+  >.actions{
+  }
+
+
+  position: relative;
+  color: white;
+  margin: 0 @space-tiny;
+  text-align: center;
+  --radius:160px;
+  >*{
+    position: absolute;
+  }
+
+
+  >.circle{
+      position: relative;
+      top: 0;
+      left: 0;
+      width:var(--radius);
+      height: var(--radius);
+      border-radius: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      .big-shadow;
+
+      img.bg-circle {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+  }
+
+  >.badge{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  >.label {
+    left: 50%;
+    transform: translateX(-50%);
+    &.top{
+      top: -5px;
+    }
+    &.bottom{
+      bottom: -5px;
+      .big-shadow;
+    }
+  }
+
+  >.actions{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    >*{
+      margin: 4px;
+      white-space: nowrap;
+    }
+  }
+
+}

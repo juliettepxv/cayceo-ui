@@ -1,3 +1,5 @@
+import ObjectLogger from "../popin/ObjectLogger";
+
 export default class Film {
     /**
      *
@@ -26,6 +28,16 @@ export default class Film {
 
         //applique les propriétés
         this._setImage(imgUrl)._setTitle(title);
+
+        //popin...
+        let popinName=`Film ${this.filmId}`;
+        /**
+         * La popin où on affichera les infos du film
+         * @type {ObjectLogger}
+         */
+        this.infoPopIn=new ObjectLogger(popinName);
+        this.$main.find("[popin-info]").attr("data-show-popin",popinName);
+        ui.popIns[popinName]=this.infoPopIn;
     }
 
     /**

@@ -21,6 +21,7 @@ export default class CasqueList{
      * @return {Casque}
      */
     addCasque(numero){
+        console.log("zzzzzzzzzzzzz",numero);
         let c=new Casque(numero);
         this.list[numero]=c;
         this.$main.append(c.$main);

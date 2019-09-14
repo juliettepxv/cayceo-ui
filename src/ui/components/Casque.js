@@ -17,17 +17,22 @@ export default class Casque {
          */
         this.numero=numero;
         //affiche le numero du casque
-        this.$main.find(".nb").text(numero);
+        this.$main.find("[numero]").text(numero);
         this.$main.attr("casque",numero);
 
         this._setState(Casque.STATE_HORS_LIGNE);
         //permet d'accéder à cet objet via le DOM
         this.$main.data("obj",this);
+
+        //popin...
+        let popinName=`Casque ${this.numero}`;
         /**
          * La popin où on affichera les infos du casque
          * @type {ObjectLogger}
          */
-        this.infoPopIn=new ObjectLogger("Casque "+this.numero);
+        this.infoPopIn=new ObjectLogger(popinName);
+        this.$main.find("[popin-info]").attr("data-show-popin",popinName);
+        ui.popIns[popinName]=this.infoPopIn;
     }
 
     /**
@@ -61,13 +66,18 @@ export default class Casque {
     }
     /**
      * Affiche le niveau de chargement de la baterrie
-     * @param {number} percent Définit si la batterie est en charge ou non
+     * @param {number} percent
      */
     setBattery(percent=50){
         percent=Math.floor(percent);
+        percent=Math.min(100,percent);
+        percent=Math.max(0,percent);
+
         this.$main.find("[battery-level]").text(`${percent}%`);
         if(percent<=5){
-            this._setState(Casque.STATE_DECHARGE);
+            this.$main.attr("battery-low","1");
+        }else{
+            this.$main.attr("battery-low","0");
         }
     }
 
@@ -76,17 +86,17 @@ export default class Casque {
      * @param {boolean} plugged true pour branché
      */
     setBatteryPlugged(plugged=false){
-        this.$main.find("[battery-plugged]").attr("battery-plugged",plugged?"1":"0");
+        this.$main.attr("plugged",plugged?"1":"0");
     }
 
     /**
      * Associe (ou désassocie) un film au casque
      * @param {Film|null} film
+     * @return Casque
      */
     setFilm(film){
         this.film=film;
-        let $contenu=this.$main.find(".contenu");
-        let $film=$contenu.find(".preview-film");
+        let $film=this.$main.find(".preview-film");
         let $filmTitle=$film.find(".title");
         let $filmImg=$film.find("img");
         if(film){
@@ -98,6 +108,7 @@ export default class Casque {
             $filmTitle.text("...");
             $filmImg.attr("src","");
         }
+        return this;
 
     }
 

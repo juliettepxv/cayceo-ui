@@ -18,6 +18,9 @@ export default class Explication extends ScreenUi{
      * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
      */
     displayInstallationFeedback(numerosCasquesSuccess=[],numerosCasquesError=[]){
+        //fais des copies
+        numerosCasquesSuccess=numerosCasquesSuccess.splice();
+        numerosCasquesError=numerosCasquesError.splice();
         let recap="";
         let help="";
         let i;

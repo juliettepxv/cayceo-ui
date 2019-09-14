@@ -24,7 +24,7 @@ window.ui=new Ui();
 
 ui.displaySplashScreen("Hello world");
 setTimeout(function(){
-    let t=10;
+    let t=2;
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
         ui.screens.home.show();
@@ -56,9 +56,7 @@ ui.on("NEW_SEANCE",function(seance){
     console.log("séance a installer:",seance);
 
     //ici on va simuler le résultat de l'installation
-
     setTimeout(function(){
-
         let casquesOk=[];
         let casquesPasOk=[];
         for(let i=0;i<seance.casques.length;i++){
@@ -73,7 +71,14 @@ ui.on("NEW_SEANCE",function(seance){
             casquesPasOk
         );
 
-
+        for(let i = 0;i<casquesOk.length;i++){
+            console.log("zzz",casquesOk[i])
+            ui.casques.getCasqueByNumero(casquesOk[i])
+                .setFilm(
+                    ui.screens.films.getFilmById(seance.film)
+                )
+                ._setState(Casque.STATE_EN_ATTENTE)
+        }
 
     },3000);
 });
@@ -91,20 +96,70 @@ ui.on("READY",function(){
      *
      * @type {ScreenUi[]}
      */
-//casques----------------------------------
-    let c1= ui.casques.addCasque(1);
-    let c2= ui.casques.addCasque(2);
-    let c3= ui.casques.addCasque(3);
-    let c5= ui.casques.addCasque(5);
-    let c4= ui.casques.addCasque(4);
-    c1._setState(Casque.STATE_DISPONIBLE);
-    c2._setState(Casque.STATE_EN_ATTENTE);
-    c3._setState(Casque.STATE_HORS_LIGNE);
-    c4._setState(Casque.STATE_EN_COURS);
-    c5._setState(Casque.STATE_DECHARGE);
+    //casques----------------------------------
+
+    ui.casques.addCasque(1)._setState(Casque.STATE_DISPONIBLE);
+    ui.casques.addCasque(2)._setState(Casque.STATE_EN_ATTENTE);
+    ui.casques.addCasque(3)._setState(Casque.STATE_HORS_LIGNE);
+    ui.casques.addCasque(5)._setState(Casque.STATE_EN_COURS);
+    ui.casques.addCasque(4)._setState(Casque.STATE_DECHARGE);
+
+    //films-----------------------------------
+
+    ui.screens.films.addFilm(
+        "id1",
+        "La plage",
+        "medias/plage.jpg"
+        )
+        .addTag("Pédiatrie")
+        .addTag("Stress");
+
+    ui.screens.films.addFilm(
+        "id2",
+        "La forêt",
+        "medias/foret.jpg"
+        )
+        .addTag("Stress");
+
+    ui.screens.films.addFilm(
+        "id3",
+        "Le machin",
+        "medias/plage.jpg"
+        )
+        .addTag("Violence")
+        .addTag("Drogue");
+
+    ui.screens.films.addFilm(
+        "id4",
+        "Le bidule",
+        "medias/plage.jpg"
+        )
+        .addTag("Sexe")
+        .addTag("Licornes");
+
+    ui.screens.films.addFilm(
+        "id5",
+        "Le chose",
+        "medias/plage.jpg"
+        )
+        .addTag("Poneys")
+        .addTag("Arc en ciel");
+
+    //ne va pas marcher car le film id2 est déjà dans la liste
+    ui.screens.films.addFilm(
+        "id2",
+        "Ne doit pas s'afficher",
+        "medias/foret.jpg"
+    )
+        .addTag("Stress");
+
+    //fake datas en boucle...
 
     setInterval(function(){
+
+        //random sur les casques
         for(let c in ui.casques.list){
+            let casque=ui.casques.list[c];
             if(Math.random()>0.95){
                 let items=[
                     Casque.STATE_DISPONIBLE,
@@ -113,86 +168,28 @@ ui.on("READY",function(){
                     Casque.STATE_EN_COURS,
                     //Casque.STATE_DECHARGE,
                 ];
-                ui.casques.list[c]._setState(
+                casque._setState(
                     items[Math.floor(Math.random()*items.length)]
                 );
             }
-
             if(Math.random()>0.95){
-                ui.casques.list[c].setBattery(Math.round(Math.random()*100));
+                casque.setBattery(Math.round(Math.random()*100));
             }
             if(Math.random()>0.95){
-                ui.casques.list[c].setBatteryPlugged(Math.random()>0.5);
+                casque.setBatteryPlugged(Math.random()>0.5);
             }
+            casque.infoPopIn.displayData({
+                numero:casque.numero,
+                "some":{
+                    random:Math.random(),
+                    datas:Math.random()
+                }
+            })
         }
         //histoire de tester
         ui.popIns.casquesAdbData.displayData(new Date())
 
     },1000);
-
-
-
-
-
-    //films-----------------------------------
-
-
-    let f1=ui.screens.films.addFilm(
-        "id1",
-        "La plage",
-        "medias/plage.jpg"
-        )
-        .addTag("Pédiatrie")
-        .addTag("Stress");
-
-    let f2=ui.screens.films.addFilm(
-        "id2",
-        "La forêt",
-        "medias/foret.jpg"
-        )
-        .addTag("Stress");
-
-    //ne va pas marcher et provoquera un console.warn car le film id2 est déjà dans la liste
-    let film2Again=ui.screens.films.addFilm(
-        "id2",
-        "Ne doit pas s'afficher",
-        "medias/foret.jpg"
-        )
-        .addTag("Stress");
-
-
-    let f3=ui.screens.films.addFilm(
-        "id3",
-        "Le machin",
-        "medias/plage.jpg"
-        )
-        .addTag("Violence")
-        .addTag("Drogue");
-
-    let f4=ui.screens.films.addFilm(
-        "id4",
-        "Le bidule",
-        "medias/plage.jpg"
-        )
-        .addTag("Sexe")
-        .addTag("Licornes");
-
-    let f5=ui.screens.films.addFilm(
-        "id5",
-        "Le chose",
-        "medias/plage.jpg"
-        )
-        .addTag("Poneys")
-        .addTag("Arc en ciel");
-
-    //applique un film à un casque
-    c1.setFilm(f4);
-    c3.setFilm(f1);
-
-    //va effacer l'id 4 (Le bidule)  de la liste au bout de 30 secondes
-    setTimeout(function(){
-        ui.screens.films.removeFilm("id4");
-    },30*1000);
 
 
 });

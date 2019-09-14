@@ -1,58 +1,57 @@
-<div class="casque" has-film="0">
+<div casque=""
+     class="circle-media"
+     has-film="0"
+     battery-low="0"
+     plugged="0"
+     selectable="0"
+>
 
-    <div class="elements">
+    <button class="circle" >
 
-        <button class="contenu" >
-            <div class="ico-casque">
-                <svg class=" ico-64">
-                    <use xlink:href="#icon-casque"/>
-                </svg>
-            </div>
-
-            <div class="preview-film">
-                <img src="../components/placeholder.jpg" alt="">
-                <h3 class="title">La plage</h3>
-                <h3 class="timer">-3:40</h3>
-            </div>
-        </button>
-
-        <div class="badge warning">
-            <svg class="ico-24 check">
-                <use xlink:href="#icon-check"/>
-           </svg>
-            <svg class="ico-24 paused">
-                <use xlink:href="#icon-pause"/>
-           </svg>
-            <svg class="ico-24 attention">
-               <use xlink:href="#icon-warning"/>
-           </svg>
-       </div>
-
-       <div class="label state">
-           <span></span>
-       </div>
-
-       <span class="nb">99</span>
-
-
-
-        <div class="label battery" battery-plugged="0">
-            <svg class="ico-24 not-plugged">
-                <use xlink:href="#icon-battery"/>
+        <div class="ico-casque">
+            <svg class=" ico-64">
+                <use xlink:href="#icon-casque"/>
             </svg>
-            <svg class="ico-24 is-plugged">
-              <use xlink:href="#icon-flash"/>
-            </svg>
-             <span battery-level>10%</span>
-      </div>
+        </div>
+        <div class="preview-film">
+            <img class="bg-circle" src="../components/placeholder.jpg" alt="">
+            <h3 class="title">La plage</h3>
+            <h3 class="timer">-3:40</h3>
+        </div>
+        <span numero>99</span>
+    </button>
 
-  </div>
+    <div class="badge warning">
+        <svg class="ico-24 check">
+            <use xlink:href="#icon-check"/>
+        </svg>
+        <svg class="ico-24 paused">
+            <use xlink:href="#icon-pause"/>
+        </svg>
+        <svg class="ico-24 attention">
+            <use xlink:href="#icon-warning"/>
+        </svg>
+    </div>
+
+    <div class="label top state">
+        <span></span>
+    </div>
+
+    <div class="label bottom battery" >
+        <svg class="ico-24 not-plugged">
+            <use xlink:href="#icon-battery"/>
+        </svg>
+        <svg class="ico-24 is-plugged">
+            <use xlink:href="#icon-flash"/>
+        </svg>
+        <span battery-level>10%</span>
+    </div>
 
     <div class="actions">
         <button action="stop-casque" class="btn-small">
             <span>Stop</span>
         </button>
-        <button data-show-popin="debug" debug-enabled='inline-flex' class="btn-small">
+        <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-small">
             <svg class="ico-16"><use xlink:href="#icon-settings-1"></use></svg>
         </button>
     </div>

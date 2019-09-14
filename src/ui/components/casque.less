@@ -1,14 +1,6 @@
-.casque {
+[casque]{
 
-  position: relative;
-
-  color: white;
-  width: 160px;
-  height: 160px;
-  margin: 0 @space-tiny;
-  text-align: center;
-
-
+  //film ou pas?
   &[has-film="0"]{
     .preview-film{
       display: none;
@@ -32,114 +24,79 @@
   }
 
 
-  .elements{
-
-    height: 180px;
-
-    .warning{
-      position: absolute;
-      top: 0;
-      right: 0;
+  >.circle{
+    >.preview-film{
+      width: 100%;
+      height: 100%;
+      >img{
+        opacity: 0.9;
+        filter:saturate(0.5) brightness(0.8);
+      }
+      >h3{
+        position: absolute;;
+        top:75px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-transform: uppercase;
+        &.title{
+        }
+        &.timer{
+          margin-top: 20px;
+        }
+      }
     }
-
-    .state{
-      position: absolute;
-      left: 50%;
-      top: -5px;
-      transform: translateX(-50%);
+    >.ico-casque{
+      background-color: var(--state-color);
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
     }
-
-    .nb{
+    >[numero]{
       display: block;
       position: absolute;;
       top:20px;
-      left: 50%;
-      transform: translateX(-50%);
-      .h1;
-      margin-top: @space-tiny;
-    }
-
-
-
-    button.contenu{
-      position: absolute;
-      top: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      border-radius: 100%;
-      .big-shadow;
-      overflow: hidden;
-      margin: 0;
-      padding: 0;
-
-      .preview-film{
-        width: 100%;
-        height: 100%;
-        >img{
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          opacity: 0.9;
-          filter:saturate(0.5) brightness(0.8);
-        }
-        >h3{
-          position: absolute;;
-          top:75px;
-          left: 50%;
-          transform: translateX(-50%);
-          text-transform: uppercase;
-          &.title{
-          }
-          &.timer{
-            margin-top: 20px;
-          }
-        }
-
-      }
-      .ico-casque{
-        background-color: var(--state-color);
-        width: 100%;
-        height: 100%;
-        align-items: center;
-        justify-content: center;
-      }
-
-    }
-
-
-
-
-
-
-    .battery{
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-      background-color: var(--battery-color);
-
-      &[battery-plugged]{
-        .not-plugged{
-          display: inline-block;
-        }
-        .is-plugged{
-          display: none;
-        }
-      }
-      &[battery-plugged='1']{
-        .not-plugged{
-          display: none;
-        }
-        .is-plugged{
-          display: inline-block;
-        }
-      }
+      margin-top: @space-tiny;
+      text-align: center;
+      .h1;
     }
 
   }
 
+
+
+
+  //niveau batterie...
+  &[battery-low="0"]{
+    --battery-color: var(--color-green);
+  }
+  &[battery-low="1"]{
+    --battery-color: var(--color-pink);
+  }
+
+  //branché ou pas...
+  &[plugged='0']{
+    .not-plugged{
+      display: inline-block;
+    }
+    .is-plugged{
+      display: none;
+    }
+  }
+  &[plugged='1']{
+    .not-plugged{
+      display: none;
+    }
+    .is-plugged{
+      display: inline-block;
+    }
+  }
+
+  .battery{
+    background-color: var(--battery-color);
+  }
 
   --warning-check-display:none;
   --warning-paused-display:none;
@@ -155,27 +112,22 @@
   &[state='STATE_DECHARGE']{
     --state-text:"Déchargé";
     --state-color:@color-grey-light;
-    --battery-color:@color-pink;
     --warning-display:flex;
     --warning-attention-display:block;
   }
   &[state='STATE_DISPONIBLE']{
     --state-text:"Disponible";
     --state-color:@color-green;
-    --battery-color:@color-green;
     --warning-display:none;
   }
   &[state='STATE_EN_COURS']{
     --state-text:"En cours";
     --state-color:@color-green;
-    --battery-color:@color-green;
     --warning-display:none;
   }
   &[state='STATE_EN_ATTENTE']{
     --state-text:"En attente";
     --state-color:@color-green;
-    --battery-color:@color-green;
-
     --warning-display:flex;
     --warning-paused-display: block;
   }
@@ -189,7 +141,6 @@
           content: var(--state-text)
         }
       }
-
     }
     .warning{
       display: var(--warning-display);
@@ -207,14 +158,7 @@
   }
 
 
-  .actions{
-    display: flex;
-    justify-content: center;
-    >*{
-      margin: 4px;
-      white-space: nowrap;
-    }
-  }
+
 
 
 }
