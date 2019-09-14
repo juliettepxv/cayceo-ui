@@ -26,7 +26,7 @@ export default class SelectCasques extends ScreenUi{
             for(let c in ui.casques.list){
                 //check/uncheck
                 ui.casques.list[c].$main.find("button.circle").off("click").on("click",function(){
-                    ui.casques.list[c].toggleCheck();
+                    ui.casques.list[c].toggleSelected();
                     me._refresh();
                 });
             }
@@ -56,7 +56,7 @@ export default class SelectCasques extends ScreenUi{
      * @returns {Casque[]}
      */
     getSelecteds(){
-        let $casques=this.$main.find("#casques [casque].checked");
+        let $casques=this.$main.find("#casques [casque][is-selectable='1'][is-selected='1']");
         let arr=[];
         $casques.each(function(){
             arr.push(ui.casques.list[$(this).attr("casque")]);
@@ -68,7 +68,7 @@ export default class SelectCasques extends ScreenUi{
      * Désélectionne tous les casques
      */
     unSelectAll(){
-        this.$main.find("#casques [casque]").removeClass("checked");
+        this.$main.find("#casques [casque]").attr("is-selected","0");
         this._refresh();
     }
 }

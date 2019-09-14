@@ -7,71 +7,56 @@ button{
     filter: brightness(0.9) contrast(1.5);
   }
 
-  &.btn,&.btn-small {
-
-    .h3;
-
-
-
+  &.btn,&.big-btn,&.btn-small,&.btn-tiny {
     display: inline-flex;
+    flex-shrink: 0;
     justify-content: center;
     align-items: center;
     color: white;
+    --h:60px;
     background-color: @color-grey-dark;
-    height: 60px;
-    padding: 0 @space-medium;
+    .shadow;
+    .h3;
+    height: var(--h);
+    border-radius: var(--h);
     margin-right: var(--spacetiny);
     .txt{
       padding-left: @space-tiny;
-    }
-
-    border-radius: 60px;
-    .shadow;
-
-    &.btn-small {
-      height: 40px;
-      padding: 0 @space-small;
-      margin-right: 0;
-      .txt&:only-child{
+      &:only-child{
         padding-left: 0;
       }
     }
   }
 
-
-  &.big-btn {
-    .h2;
-    display: inline-flex;
-    align-items: center;
-    color: white;
-    background-color: @color-green;
-    border-radius: 60px;
-    padding: @space-medium calc(@space-big + 10px);
+  &.big-btn{
+    min-height: var(--h);
+    height: auto;
     .big-shadow;
+    .h2;
+    padding: @space-medium calc(@space-big + 10px);
     svg {
       margin-left: @space-small;
     }
   }
-
-  &.btn-green{
-
-    .h2;
-
-    display: inline-flex;
-    align-items: center;
-    color: white;
-    background-color: @color-green;
-    border-radius: 60px;
-    padding: @space-small calc(@space-big + 10px);
-    .big-shadow;
-    margin:0 @space-tiny;
+  &.btn-small {
+    --h:40px;
+    padding: 0 @space-small;
   }
-
+  &.btn-tiny {
+    --h:25px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
   &.btn-circle{
     border-radius: 100%;
-    height: 40px;
-    width: 40px;
+    height: var(--h);
+    width: var(--h);
     padding: 0;
+  }
+
+  &.btn-green{
+    background-color: @color-green;
+    margin:0 @space-tiny;
   }
 
 

@@ -14,6 +14,7 @@ export default class Home extends ScreenUi{
             ui.nav.displayHome(false);
             ui.nav.displayBack(false,"home");
             ui.nav.displayDashboard(true,true);
+            ui.screens.selectCasques.unSelectAll();
         });
 
     }

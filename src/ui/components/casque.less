@@ -1,30 +1,10 @@
 [casque]{
 
-  //film ou pas?
-  &[has-film="0"]{
-    .preview-film{
-      display: none;
-    }
-    .ico-casque{
-      display: flex;
-    }
-    .actions{
-      [action='stop-casque']{
-        display: none;
-      }
-    }
-  }
-  &[has-film='1']{
-    .preview-film{
-      display: flex;
-    }
-    .ico-casque{
-      display: none;
-    }
-  }
 
 
   >.circle{
+    background-color: var(--color-green);
+    pointer-events: none;
     >.preview-film{
       width: 100%;
       height: 100%;
@@ -46,11 +26,15 @@
       }
     }
     >.ico-casque{
-      background-color: var(--state-color);
       width: 100%;
       height: 100%;
       align-items: center;
       justify-content: center;
+      flex-grow: 0;
+      flex-shrink: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     >[numero]{
       display: block;
@@ -65,15 +49,24 @@
 
   }
 
-
-
+  .label.state{
+    >span{
+      &:before{
+        content:var(--state-text);
+      }
+    }
+  }
 
   //niveau batterie...
   &[battery-low="0"]{
-    --battery-color: var(--color-green);
+    .battery{
+      background-color: var(--color-green);
+    }
   }
   &[battery-low="1"]{
-    --battery-color: var(--color-pink);
+    .battery{
+      background-color: var(--color-pink);
+    }
   }
 
   //branché ou pas...
@@ -94,71 +87,96 @@
     }
   }
 
-  .battery{
-    background-color: var(--battery-color);
+  .badge{
+    background-color: var(--color-pink);
+    display: none;
+    .attention{
+      display: none;
+    }
+    .check{
+      display: none;
+    }
   }
 
-  --warning-check-display:none;
-  --warning-paused-display:none;
-  --warning-attention-display:none;
+  &[is-online='1']{
+    &[has-film='0']{
+      --state-text:"Disponible";
+      .preview-film{
+        display: none;
+      }
+      .ico-casque{
+        display: flex;
+      }
+      [action='stop-casque']{
+        display: none;
+      }
+      [action='play-casque']{
+        display: none;
+      }
 
-  &[state='STATE_HORS_LIGNE']{
-    --state-text:"Hors ligne";
-    --state-color:@color-grey-light;
-    --battery-color:@color-grey-light;
-    --warning-display:flex;
-    --warning-attention-display:block;
-  }
-  &[state='STATE_DECHARGE']{
-    --state-text:"Déchargé";
-    --state-color:@color-grey-light;
-    --warning-display:flex;
-    --warning-attention-display:block;
-  }
-  &[state='STATE_DISPONIBLE']{
-    --state-text:"Disponible";
-    --state-color:@color-green;
-    --warning-display:none;
-  }
-  &[state='STATE_EN_COURS']{
-    --state-text:"En cours";
-    --state-color:@color-green;
-    --warning-display:none;
-  }
-  &[state='STATE_EN_ATTENTE']{
-    --state-text:"En attente";
-    --state-color:@color-green;
-    --warning-display:flex;
-    --warning-paused-display: block;
-  }
-
-  &[state]{
-
-    .label.state{
-      background-color: var(--state-color);
-      >span{
-        &:after{
-          content: var(--state-text)
+    }
+    &[has-film='1']{
+      //a un film
+      .preview-film{
+        display: flex;
+      }
+      .ico-casque{
+        display: none;
+      }
+      //en pause
+      &[is-playing='0']{
+        --state-text:"En attente";
+        .badge{
+          display: flex;
+          .paused{
+            display: flex;
+          }
+        }
+      }
+      //en lecture
+      &[is-playing='1']{
+        --state-text:"En cours";
+        [action='play-casque']{
+          display: none;
         }
       }
     }
-    .warning{
-      display: var(--warning-display);
-      background-color: var(--color-pink);
-      .check{
-        display: var(--warning-check-display);
-      }
-      .paused{
-        display: var(--warning-paused-display);
-      }
-      .attention{
-        display: var(--warning-attention-display);
-      }
+
+  }
+
+
+
+
+  &[is-online='0']{
+    --state-text:"Hors ligne";
+    .circle,.label{
+      background-color: var(--color-grey-light);
+    }
+    .badge{
+      display: none !important;
+    }
+    .preview-film{
+      display: none;
+    }
+    .ico-casque{
+      display: flex;
+    }
+    [action='stop-casque']{
+       display: none;
+     }
+    [action='play-casque']{
+      display: none;
     }
   }
 
+  .actions{
+    flex-wrap: wrap;
+    //flex-direction: column;
+    //align-items: center;
+  }
 
 
 
 
 }
+

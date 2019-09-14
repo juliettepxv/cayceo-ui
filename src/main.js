@@ -44,6 +44,21 @@ ui.on(CMD.RESET_ALL,function(){
 });
 ui.on(CMD.STOP_CASQUE,function(numero){
     alert(`Arrêter la lecture sur le casque numéro ${numero}`);
+    let c=ui.casques.getCasqueByNumero(numero);
+    c.setContenu(null);
+});
+ui.on(CMD.PLAY_CASQUE,function(numero){
+    alert(`Lancer la lecture sur le casque numéro ${numero}`);
+    let c=ui.casques.getCasqueByNumero(numero);
+    c.setIsPlaying(true);
+    let s=Math.random()*60*15;
+    let i=setInterval(function(){
+        s--;
+        c.displayTime(s);
+        if(s<0 || !c.contenu){
+            clearInterval(i);
+        }
+    },1000)
 });
 ui.on(CMD.WAKE_UP_CASQUES,function(numero){
     alert(`il faut réveiller les casques`);
@@ -60,7 +75,7 @@ ui.on("NEW_SEANCE",function(seance){
         let casquesOk=[];
         let casquesPasOk=[];
         for(let i=0;i<seance.casques.length;i++){
-            if(Math.random()>0.5){
+            if(Math.random()>0.01){
                 casquesOk.push(seance.casques[i]);
             }else{
                 casquesPasOk.push(seance.casques[i]);
@@ -73,10 +88,10 @@ ui.on("NEW_SEANCE",function(seance){
 
         for(let i = 0;i<casquesOk.length;i++){
             ui.casques.getCasqueByNumero(casquesOk[i])
-                .setFilm(
+                .setContenu(
                     ui.films.getFilmById(seance.film)
                 )
-                ._setState(Casque.STATE_EN_ATTENTE)
+                .displayTime(seance.duree*60)
         }
 
     },3000);
@@ -97,11 +112,11 @@ ui.on("READY",function(){
      */
     //casques----------------------------------
 
-    ui.casques.addCasque(1)._setState(Casque.STATE_DISPONIBLE);
-    ui.casques.addCasque(2)._setState(Casque.STATE_EN_ATTENTE);
-    ui.casques.addCasque(3)._setState(Casque.STATE_HORS_LIGNE);
-    ui.casques.addCasque(5)._setState(Casque.STATE_EN_COURS);
-    ui.casques.addCasque(4)._setState(Casque.STATE_DECHARGE);
+    ui.casques.addCasque(1).setOnline(true);
+    ui.casques.addCasque(2).setOnline(true);
+    ui.casques.addCasque(3).setOnline(true);
+    ui.casques.addCasque(5).setOnline(true);
+    ui.casques.addCasque(4).setOnline(false);
 
     //films-----------------------------------
 
@@ -196,16 +211,7 @@ ui.on("READY",function(){
         for(let c in ui.casques.list){
             let casque=ui.casques.list[c];
             if(Math.random()>0.95){
-                let items=[
-                    Casque.STATE_DISPONIBLE,
-                    Casque.STATE_EN_ATTENTE,
-                    Casque.STATE_HORS_LIGNE,
-                    Casque.STATE_EN_COURS,
-                    //Casque.STATE_DECHARGE,
-                ];
-                casque._setState(
-                    items[Math.floor(Math.random()*items.length)]
-                );
+                casque.setOnline(Math.random()>0.05);
             }
             if(Math.random()>0.95){
                 casque.setBattery(Math.round(Math.random()*100));

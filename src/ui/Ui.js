@@ -145,6 +145,10 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.STOP_CASQUE,$(this).closest("[casque]").attr("casque"));
                    break;
 
+               case "play-casque":
+                   me.emit(CMD.PLAY_CASQUE,$(this).closest("[casque]").attr("casque"));
+                   break;
+
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
@@ -165,7 +169,7 @@ export default class Ui extends EventEmitter{
 
                case "valid-seance":
                    let casquesNumeros=[];
-                   me.screens.selectCasques.unSelectAll();
+
                    for(let i=0;i<me.screens.validation.casques.length;i++){
                        casquesNumeros.push(me.screens.validation.casques[i].numero);
                    }
@@ -174,6 +178,7 @@ export default class Ui extends EventEmitter{
                        "duree":me.screens.validation.duree,
                        "casques":casquesNumeros
                    });
+                   me.screens.selectCasques.unSelectAll();
                    break;
 
                default:

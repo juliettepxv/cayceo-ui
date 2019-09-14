@@ -19,8 +19,8 @@ export default class Explication extends ScreenUi{
      */
     displayInstallationFeedback(numerosCasquesSuccess=[],numerosCasquesError=[]){
         //fais des copies
-        numerosCasquesSuccess=numerosCasquesSuccess.splice();
-        numerosCasquesError=numerosCasquesError.splice();
+        numerosCasquesSuccess=numerosCasquesSuccess.slice(0);
+        numerosCasquesError=numerosCasquesError.slice(0);
         let recap="";
         let help="";
         let i;

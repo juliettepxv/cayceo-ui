@@ -1,9 +1,12 @@
-<div casque=""
+<div casque="numero ici..."
      class="circle-media"
      has-film="0"
      battery-low="0"
      plugged="0"
-     selectable="0"
+     is-online="0"
+     is-playing="0"
+     is-selectable="0"
+     is-selected="0"
 >
 
     <button class="circle" >
@@ -15,8 +18,8 @@
         </div>
         <div class="preview-film">
             <img class="bg-circle" src="../components/placeholder.jpg" alt="">
-            <h3 class="title">La plage</h3>
-            <h3 class="timer">-3:40</h3>
+            <h3 class="title">...</h3>
+            <h3 class="timer">...</h3>
         </div>
         <span numero>99</span>
     </button>
@@ -48,10 +51,13 @@
     </div>
 
     <div class="actions">
-        <button action="stop-casque" class="btn-small">
+        <button action="play-casque" class="btn-tiny">
+            <span>Démarrer</span>
+        </button>
+        <button action="stop-casque" class="btn-tiny">
             <span>Stop</span>
         </button>
-        <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-small">
+        <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-tiny btn-circle">
             <svg class="ico-16"><use xlink:href="#icon-settings-1"></use></svg>
         </button>
     </div>

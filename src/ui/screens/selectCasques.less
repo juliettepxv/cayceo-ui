@@ -1,76 +1,47 @@
 [screen='selectCasques']{
   #casques{
 
-    .casque{
+    [casque]{
 
-      //------------dans tous les cas---------------------
+      //dans tous les cas sur cet écran...
+      .preview-film,
+      [action='stop-casque'],
+      .badge .paused,
+      .badge .warning
+      {
+        display: none;
+      }
+      .ico-casque{
+        display: flex;
+      }
 
-      //on affiche tout le temps l'icone du casque (pas le film)
-      .contenu{
-        .preview-film{
+      //PAS selectionnable
+      &[is-selectable='0']{
+        button.circle{
+          pointer-events: none !important;
+        }
+        .badge .check{
           display: none;
         }
-        .ico-casque{
-          display: flex;
-        }
-      }
-      .actions{
-        [action='stop-casque']{
-          display: none !important;
-        }
-      }
-
-      //TODO revoir la logique avec un atribut selectable=1 ou selectable=0
-
-
-      //---------etats selectionnables--------------------
-
-      &[state='STATE_DISPONIBLE'],&[state='STATE_EN_ATTENTE']{
-        --warning-display:none;
-        --warning-check-display:none;
-        --warning-paused-display:none;
-        --warning-attention-display:none;
-        //position checked ou pas...
-        &.checked{
-          .badge.warning{
-            background: var(--color-pink);
-            --warning-display:flex;
-            --warning-check-display:flex;
-          }
-          .contenu{
-            pointer-events: auto;
-            cursor: pointer;
-            .ico-casque{
-              background: var(--bg-gradient-green);
-            }
-          }
-        }
-      }
-
-
-      //--------etats non selectionnables-----------------
-
-      &[state='STATE_HORS_LIGNE'],&[state='STATE_DECHARGE'],&[state='STATE_EN_COURS']{
         //tout est gris
-        .label.state{
+        .label,.badge,.ico-casque{
           background-color: @color-grey-light;
         }
-        .badge.warning{
-          background: @color-grey-light;
+      }
+      //selectionnable
+      &[is-selectable='1']{
+        button.circle{
+          pointer-events: auto !important;
         }
-        --battery-color:@color-grey-light;
-        .contenu{
-          pointer-events: none;
-          .ico-casque{
-            background: @color-grey-light;
+        .badge{
+          display: none;
+        }
+        &[is-selected='1']{
+          .badge, .badge .check{
+            display: flex;
           }
         }
       }
-
-
-
-
-
 
     }
 

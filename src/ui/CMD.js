@@ -19,6 +19,11 @@ window.CMD.WAKE_UP_CASQUES="WAKE_UP_CASQUES";
  */
 window.CMD.STOP_CASQUE="STOP_CASQUE";
 /**
+ * Lancer la lecture sur le casque spécifié. Le premier argument est le numero du casque
+ * @type {string}
+ */
+window.CMD.PLAY_CASQUE="PLAY_CASQUE";
+/**
  * Demande l'installation d'une nouvelle séance. Le premier argument est un objet qui contient les casques, le film et la durée
  * @type {string}
  */
