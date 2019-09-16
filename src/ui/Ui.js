@@ -308,10 +308,11 @@ export default class Ui extends EventEmitter{
     /**
      * Enregistre une log visible qui sera dans la popin de log
      * @param message
+     * @param {boolean} logOnSplash si true affichera la log sur le splash screen aussi
      * @returns {LogLine}
      */
-    log(message){
-        return this.popIns.logs.log(message);
+    log(message,logOnSplash=false){
+        return this.popIns.logs.log(message,logOnSplash);
     }
 
 

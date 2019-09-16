@@ -1,3 +1,5 @@
+const EventEmitter = require('event-emitter-es6');
+
 export default class LogsField {
     constructor($main=null){
         /**
@@ -29,11 +31,23 @@ export default class LogsField {
     /**
      *
      * @param {object|string|array|*} stuff Ce qu'il faut logger
+     * @param {boolean} logOnSplash si true affichera la log sur le splash screen aussi
      * @returns {LogLine} Renvoie la ligne de log insérée de manière à pouvoir la modifier à postériori
      */
-    log(stuff){
+    log(stuff,logOnSplash=false){
         this.logs.push(stuff);
         let line=new LogLine(stuff,this.displayTime,this);
+        /**
+         *
+         * @type {LogLine}
+         */
+        let lineSplash=null;
+        if(logOnSplash){
+            lineSplash=ui.screens.splash.log(stuff);
+            line.on("CHANGE",function(content){
+                lineSplash.setContent(content);
+            })
+        }
         if(this.modeReplace){
             this.$main.empty().append(line.$main);
         }else{
@@ -49,7 +63,7 @@ export default class LogsField {
 
 }
 
-class LogLine {
+class LogLine extends EventEmitter{
     /**
      *
      * @param {} obj
@@ -57,6 +71,7 @@ class LogLine {
      * @param {LogsField} logField
      */
     constructor(obj,displayTime=true,logField){
+        super();
         this._logField = logField;
         this.$main=$("<div></div>");
         this.displayTime=displayTime;
@@ -80,6 +95,7 @@ class LogLine {
         if(moveTop){
             this._logField.$main.prepend(this.$main);
         }
+        this.emit("CHANGE",obj);
     }
     /**
      *

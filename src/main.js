@@ -24,7 +24,7 @@ window.ui=new Ui();
 
 ui.displaySplashScreen("Hello world");
 setTimeout(function(){
-    let t=2;
+    let t=10;
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
         ui.screens.home.show();
@@ -102,10 +102,10 @@ ui.on("READY",function(){
     //Layout------------------------------------
     ui.layout.setVersion("1.17.3");
     ui.layout.setLogo("./medias/logo-cayceo.png");
-    ui.log("hello");
+    let logLine=ui.log("hello",true);
     //toutes les 5 secondes dit hello
     setInterval(function(){
-        ui.log("hello log ")
+        logLine.setContent("hello on log and splash")
     },5*1000);
 
     //toutes les secondes dit l'heure sur la même ligne de log

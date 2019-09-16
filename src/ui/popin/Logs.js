@@ -18,11 +18,12 @@ export default class Logs extends PopinUi{
     /**
      * Enregistre une ligne de log
      * @param {string} str Ce qu'il faut logger :)
+     * @param {boolean} logOnSplash si true affichera la log sur le splash screen aussi
      * @return {LogLine}
      */
-    log(str){
+    log(str,logOnSplash=false){
         console.log(str);
-        return this._logs.log(str);
+        return this._logs.log(str,logOnSplash);
 
     }
 
