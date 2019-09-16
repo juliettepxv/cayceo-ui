@@ -33,7 +33,7 @@ export default class LogsField {
      */
     log(stuff){
         this.logs.push(stuff);
-        let line=new LogLine(stuff,this.displayTime);
+        let line=new LogLine(stuff,this.displayTime,this);
         if(this.modeReplace){
             this.$main.empty().append(line.$main);
         }else{
@@ -50,17 +50,25 @@ export default class LogsField {
 }
 
 class LogLine {
-    constructor(obj,displayTime=true){
+    /**
+     *
+     * @param {} obj
+     * @param {boolean} displayTime
+     * @param {LogsField} logField
+     */
+    constructor(obj,displayTime=true,logField){
+        this._logField = logField;
         this.$main=$("<div></div>");
         this.displayTime=displayTime;
-        this.setContent(obj);
+        this.setContent(obj,false);
     }
 
     /**
      * Définit le contenu de la log
      * @param obj
+     * @param {boolean} moveTop si true met la log en haut des autres
      */
-    setContent(obj){
+    setContent(obj,moveTop=true){
         let stuffHtml="";
         if(this.displayTime){
             stuffHtml+=new Date().toLocaleString()+"\n";
@@ -69,6 +77,9 @@ class LogLine {
             JSON.stringify(obj,null,2)
         );
         this.$main.empty().html(stuffHtml);
+        if(moveTop){
+            this._logField.$main.prepend(this.$main);
+        }
     }
     /**
      *
