@@ -125,6 +125,14 @@ ui.on("READY",function(){
     ui.casques.addCasque(5).setOnline(true);
     ui.casques.addCasque(4).setOnline(false);
 
+    //ajoute un casque 6 puis le supprime 5 secondes plus tard
+    setTimeout(function(){
+        ui.casques.addCasque(6);
+        setTimeout(function(){
+            ui.casques.removeCasque(6);
+        },1000*5);
+    },1000*20);
+
     //films-----------------------------------
 
     ui.films.addFilm(

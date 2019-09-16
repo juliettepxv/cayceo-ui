@@ -21,11 +21,23 @@ export default class CasqueList{
      * @return {Casque}
      */
     addCasque(numero){
-        console.log("zzzzzzzzzzzzz",numero);
         let c=new Casque(numero);
         this.list[numero]=c;
         this.$main.append(c.$main);
         return c;
+    }
+
+    /**
+     * Supprime un casque de la liste
+     * @param  {string} numero Numero affiché du casque
+     */
+    removeCasque(numero){
+        let c=this.getCasqueByNumero(numero);
+        if(c){
+            c.$main.remove();
+            this.list[numero]=null;
+            delete this.list[numero];
+        }
     }
     /**
      * Renvoie un casque par son numéro
