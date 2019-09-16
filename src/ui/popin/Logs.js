@@ -18,10 +18,11 @@ export default class Logs extends PopinUi{
     /**
      * Enregistre une ligne de log
      * @param {string} str Ce qu'il faut logger :)
+     * @return {LogLine}
      */
     log(str){
         console.log(str);
-        this._logs.log(str);
+        return this._logs.log(str);
 
     }
 

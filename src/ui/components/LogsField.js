@@ -10,12 +10,6 @@ export default class LogsField {
          */
         this.logs=[];
         /**
-         * Les logs formattées en html
-         * @type {Array}
-         * @private
-         */
-        this._logsHtml=[];
-        /**
          * Si true remplace les logs au lieu de les empiler
          * @type {boolean}
          */
@@ -32,37 +26,57 @@ export default class LogsField {
         this.displayTime=true;
     }
 
+    /**
+     *
+     * @param {object|string|array|*} stuff Ce qu'il faut logger
+     * @returns {LogLine} Renvoie la ligne de log insérée de manière à pouvoir la modifier à postériori
+     */
     log(stuff){
         this.logs.push(stuff);
-        let stuffHtml="";
-        if(this.displayTime){
-            stuffHtml+=new Date().toUTCString()+"\n";
-        }
-        stuffHtml+=LogsField._syntaxHighlight(
-            JSON.stringify(stuff,null,2)
-        );
-        this._logsHtml.push(stuffHtml);
-
-        let html;
+        let line=new LogLine(stuff,this.displayTime);
         if(this.modeReplace){
-            this.$main.html(stuffHtml);
+            this.$main.empty().append(line.$main);
         }else{
-            let $new=$(`<div>${stuffHtml}</div>`);
             if(this.injectTop){
-                this.$main.prepend($new);
+                this.$main.prepend(line.$main);
             }else{
-                this.$main.append($new);
+                this.$main.append(line.$main);
             }
         }
+        return line;
     }
 
+
+}
+
+class LogLine {
+    constructor(obj,displayTime=true){
+        this.$main=$("<div></div>");
+        this.displayTime=displayTime;
+        this.setContent(obj);
+    }
+
+    /**
+     * Définit le contenu de la log
+     * @param obj
+     */
+    setContent(obj){
+        let stuffHtml="";
+        if(this.displayTime){
+            stuffHtml+=new Date().toLocaleString()+"\n";
+        }
+        stuffHtml+=this._syntaxHighlight(
+            JSON.stringify(obj,null,2)
+        );
+        this.$main.empty().html(stuffHtml);
+    }
     /**
      *
      * @param {string} json json stringified
      * @returns {*}
      * @private
      */
-    static _syntaxHighlight(json) {
+    _syntaxHighlight(json) {
         json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
             var cls = 'number';

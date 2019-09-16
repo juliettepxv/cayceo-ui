@@ -20,9 +20,10 @@ export default class Splash extends ScreenUi{
     /**
      * Affiche le message
      * @param {string} str Ce qu'il faut logger :)
+     * @returns {LogLine}
      */
     log(str){
-        this._logs.log(str);
+        return this._logs.log(str);
     }
 
 

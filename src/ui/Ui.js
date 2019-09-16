@@ -308,9 +308,10 @@ export default class Ui extends EventEmitter{
     /**
      * Enregistre une log visible qui sera dans la popin de log
      * @param message
+     * @returns {LogLine}
      */
     log(message){
-        this.popIns.logs.log(message);
+        return this.popIns.logs.log(message);
     }
 
 

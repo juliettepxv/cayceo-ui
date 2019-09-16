@@ -15,10 +15,15 @@ export default class ObjectLogger extends PopinUi{
         this._logs.modeReplace=true;
     }
 
+    /**
+     *
+     * @param obj
+     * @returns {LogLine}
+     */
     displayData(obj){
         let me=this;
         this.$main.find("h1 small").text(new Date().toUTCString());
-        this._logs.log(obj);
+        return this._logs.log(obj);
     }
 
 }

@@ -103,9 +103,16 @@ ui.on("READY",function(){
     ui.layout.setVersion("1.17.3");
     ui.layout.setLogo("./medias/logo-cayceo.png");
     ui.log("hello");
+    //toutes les 5 secondes dit hello
     setInterval(function(){
         ui.log("hello log ")
     },5*1000);
+
+    //toutes les secondes dit l'heure sur la même ligne de log
+    let logTime=ui.log(new Date().toLocaleTimeString());
+    setInterval(function(){
+        logTime.setContent("je me mets à jour "+new Date().toLocaleTimeString())
+    },1*1000);
     /**
      *
      * @type {ScreenUi[]}
