@@ -14,10 +14,15 @@ window.CMD.OPEN_CONSOLE="OPEN_CONSOLE";
  */
 window.CMD.WAKE_UP_CASQUES="WAKE_UP_CASQUES";
 /**
- * Arreter la lecture sur le casque spécifié. Le premier argument est le numero du casque
+ * Arrêter la lecture sur le casque spécifié. Le premier argument est le numero du casque
  * @type {string}
  */
 window.CMD.STOP_CASQUE="STOP_CASQUE";
+/**
+ * Demande à supprimer (dés-indexer) un casque
+ * @type {string}
+ */
+window.CMD.REMOVE_CASQUE="REMOVE_CASQUE";
 /**
  * Lancer la lecture sur le casque spécifié. Le premier argument est le numero du casque
  * @type {string}

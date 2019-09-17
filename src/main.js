@@ -1,17 +1,5 @@
-import Casque from "./ui/components/Casque";
-import Home from "./ui/screens/Home";
-import Dashboard from "./ui/popin/Dashboard";
-import Filters from "./ui/screens/Filters";
-import Films from "./ui/screens/Films";
-import Validation from "./ui/screens/Validation";
-import Explication from "./ui/screens/Explication";
-import Layout from "./ui/layout/Layout";
-import SelectCasques from "./ui/screens/SelectCasques";
 import ScreenUi from "./ui/screens/ScreenUi";
-import CasqueList from "./ui/components/CasqueList";
 import Ui from "./ui/Ui";
-
-
 
 window.$=document.$ = window.jQuery = require("jquery");
 window.$body=$("body");
@@ -46,6 +34,9 @@ ui.on(CMD.STOP_CASQUE,function(numero){
     alert(`Arrêter la lecture sur le casque numéro ${numero}`);
     let c=ui.casques.getCasqueByNumero(numero);
     c.setContenu(null);
+});
+ui.on(CMD.REMOVE_CASQUE,function(numero){
+    alert(`désindexer le casque numéro ${numero}`);
 });
 ui.on(CMD.PLAY_CASQUE,function(numero){
     alert(`Lancer la lecture sur le casque numéro ${numero}`);
@@ -242,8 +233,7 @@ ui.on("READY",function(){
                 }
             })
         }
-        //histoire de tester
-        ui.popIns.casquesAdbData.displayData(new Date())
+
 
     },1000);
 

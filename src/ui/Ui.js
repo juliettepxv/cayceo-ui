@@ -14,15 +14,16 @@ import PopInWindow from "./popin/PopInWindow";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
+import AskForCasqueNumero from "./popin/AskForCasqueNumero";
 import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
 require("../main.less");
 require("./CMD.js");
 
-
 import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
+
 
 
 
@@ -145,6 +146,10 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.STOP_CASQUE,$(this).closest("[casque]").attr("casque"));
                    break;
 
+               case "remove-casque":
+                   me.emit(CMD.REMOVE_CASQUE,$(this).attr("numero"));
+                   break;
+
                case "play-casque":
                    me.emit(CMD.PLAY_CASQUE,$(this).closest("[casque]").attr("casque"));
                    break;
@@ -209,6 +214,9 @@ export default class Ui extends EventEmitter{
             "validation":new Validation(),
             "explication":new Explication(),
         };
+
+
+
         /**
          * La liste exhaustive des popins
          * @type {{debug: null, dashboard: Dashboard}}
@@ -219,13 +227,23 @@ export default class Ui extends EventEmitter{
             "logs":new Logs(),
             "debug":null,
             "webApiData":new ObjectLogger("Web Api data"),
-            "casquesAdbData":new ObjectLogger("Casques ADB data"),
-            "casquesSocketData":new ObjectLogger("Casques socket data"),
+            "askForCasqueNumero":new AskForCasqueNumero()
         };
-        //todo popin debug
+
+
+
+
 
         this.emit("READY");
 
+    }
+
+
+    askForCasqueNumero(cb){
+        this.showPopin(this.popIns.askForCasqueNumero);
+        this.popIns.askForCasqueNumero.$main.find("[numero]").off("click").on("click",function(){
+            cb($(this).attr("numero"));
+        })
     }
 
     /**

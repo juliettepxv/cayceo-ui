@@ -29,6 +29,8 @@ export default class Casque {
          * @private
          */
         this._infoPopIn=new ObjectLogger(popinName);
+        let $removeBtn=$(`<button action='remove-casque' numero='${this.numero}' class='btn-tiny'>Retirer</button>`)
+        this._infoPopIn.$main.find("nav").append($removeBtn);
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
         ui.popIns[popinName]=this._infoPopIn;
     }
@@ -56,8 +58,11 @@ export default class Casque {
         percent=Math.floor(percent);
         percent=Math.min(100,percent);
         percent=Math.max(0,percent);
-
+        if(isNaN(percent)){
+            percent="???";
+        }
         this.$main.find("[battery-level]").text(`${percent}%`);
+
         if(percent<=5){
             this.$main.attr("battery-low","1");
         }else{

@@ -13,9 +13,6 @@ export default class SelectCasques extends ScreenUi{
         this.$main=$(require("./selectCasques.html"));
         this.$main.data("obj",this);
 
-
-
-
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
 
             ui.nav.displayHome(true,false);
