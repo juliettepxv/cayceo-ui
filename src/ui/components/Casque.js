@@ -30,7 +30,7 @@ export default class Casque {
          */
         this._infoPopIn=new ObjectLogger(popinName);
         //ajoute des boutons
-        let $removeBtn=$(`<button action='remove-casque' numero='${this.numero}' class='btn-tiny'>Retirer</button>`);
+        let $removeBtn=$(`<button action='casque-remove' numero='${this.numero}' class='btn-tiny'>Retirer</button>`);
         this._infoPopIn.$main.find("nav").append($removeBtn);
 
         let $apkBtn=$(`<button action='casque-install-apk' numero='${this.numero}' class='btn-tiny'>Install APK</button>`);

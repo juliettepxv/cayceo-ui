@@ -165,12 +165,9 @@ export default class Ui extends EventEmitter{
                    me.emit($(this).attr("emit-name"));
                    break;
 
-               case "stop-casque":
-                   me.emit(CMD.STOP_CASQUE,$(this).closest("[casque]").attr("casque"));
-                   break;
 
-               case "remove-casque":
-                   me.emit(CMD.REMOVE_CASQUE,           $(this).attr("numero"));
+               case "casque-remove":
+                   me.emit(CMD.CASQUE_REMOVE,           $(this).attr("numero"));
                    break;
 
                case "casque-install-apk":
@@ -185,12 +182,13 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_REBOOT,           $(this).attr("numero"));
                    break;
 
-               case "play-casque":
-                   me.emit(CMD.PLAY_CASQUE,$(this).closest("[casque]").attr("casque"));
+               case "casque-play":
+                   me.emit(CMD.CASQUE_PLAY,$(this).closest("[casque]").attr("casque"));
                    break;
 
-
-
+               case "casque-stop":
+                   me.emit(CMD.CASQUE_STOP,$(this).closest("[casque]").attr("casque"));
+                   break;
 
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();

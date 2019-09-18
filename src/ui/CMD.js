@@ -17,17 +17,17 @@ window.CMD.WAKE_UP_CASQUES="WAKE_UP_CASQUES";
  * Arrêter la lecture sur le casque spécifié. Le premier argument est le numero du casque
  * @type {string}
  */
-window.CMD.STOP_CASQUE="STOP_CASQUE";
+window.CMD.CASQUE_STOP="CASQUE_STOP";
 /**
  * Demande à supprimer (dés-indexer) un casque
  * @type {string}
  */
-window.CMD.REMOVE_CASQUE="REMOVE_CASQUE";
+window.CMD.CASQUE_REMOVE="CASQUE_REMOVE";
 /**
  * Lancer la lecture sur le casque spécifié. Le premier argument est le numero du casque
  * @type {string}
  */
-window.CMD.PLAY_CASQUE="PLAY_CASQUE";
+window.CMD.CASQUE_PLAY="CASQUE_PLAY";
 /**
  * Installer ou réinstaller l'aAPK sur le casque donné sur le casque spécifié. Le premier argument est le numero du casque
  * @type {string}

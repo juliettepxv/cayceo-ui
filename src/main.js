@@ -30,12 +30,12 @@ ui.on(CMD.UPDATE_CONTENT,function(){
 ui.on(CMD.RESET_ALL,function(){
     alert("Reset !!!");
 });
-ui.on(CMD.STOP_CASQUE,function(numero){
+ui.on(CMD.CASQUE_STOP,function(numero){
     alert(`Arrêter la lecture sur le casque numéro ${numero}`);
     let c=ui.casques.getCasqueByNumero(numero);
     c.setContenu(null);
 });
-ui.on(CMD.REMOVE_CASQUE,function(numero){
+ui.on(CMD.CASQUE_REMOVE,function(numero){
     alert(`désindexer le casque numéro ${numero}`);
 });
 ui.on(CMD.CASQUE_DELETE_ALL_FILES,function(numero){
@@ -47,7 +47,7 @@ ui.on(CMD.CASQUE_INSTALL_APK,function(numero){
 ui.on(CMD.CASQUE_REBOOT,function(numero){
     alert(`Rebooter le casque numéro ${numero}`);
 });
-ui.on(CMD.PLAY_CASQUE,function(numero){
+ui.on(CMD.CASQUE_PLAY,function(numero){
     alert(`Lancer la lecture sur le casque numéro ${numero}`);
     let c=ui.casques.getCasqueByNumero(numero);
     c.setIsPlaying(true);
