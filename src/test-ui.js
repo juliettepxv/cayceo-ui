@@ -1,3 +1,4 @@
+/*
 import ScreenUi from "./ui/screens/ScreenUi";
 import Ui from "./ui/Ui";
 
@@ -5,14 +6,14 @@ window.$=document.$ = window.jQuery = require("jquery");
 window.$body=$("body");
 window.ui=new Ui();
 
-
-
+*/
+require("./CayceoUi");
 
 //Exemples de méthodes à configurer depuis electron
 
 ui.displaySplashScreen("Hello world");
 setTimeout(function(){
-    let t=10;
+    let t=3;
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
         ui.screens.home.show();

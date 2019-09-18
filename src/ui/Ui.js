@@ -17,7 +17,7 @@ import SelectDuree from "./screens/SelectDuree";
 import AskForCasqueNumero from "./popin/AskForCasqueNumero";
 import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
-require("../main.less");
+require("../CayceoUi.less");
 require("./CMD.js");
 
 import Logs from "./popin/Logs";

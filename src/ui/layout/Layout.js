@@ -1,4 +1,4 @@
-import css from '!!raw-loader!../../../dist/main.css';
+import css from '!!raw-loader!../../../dist/cayceoUi.css';
 
 export default class Layout {
     constructor(){

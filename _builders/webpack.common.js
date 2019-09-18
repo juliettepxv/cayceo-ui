@@ -85,11 +85,12 @@ var cssOptions={
 module.exports = {
     "mode": mode,
     entry: {
-        //Le point d'entrée principal
-        "main":              path.resolve("./src/main.js"),
+        //La lib
         "cayceoUi":              path.resolve("./src/CayceoUi.js"),
         //générateur de sprites svg
         "svgCollectionRequireAll":   path.resolve("./_builders/svg-collection/svg-collection-require-all.js"),
+        //pour faire des teste de l'ui
+        "test-ui":              path.resolve("./src/test-ui.js"),
     },
     output: {
         filename: '[name].js',
