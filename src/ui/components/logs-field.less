@@ -1,16 +1,19 @@
 .logs-field{
   padding: 10px;
-  font-family: monospace;
+  font-family: monospace !important;
+  *{
+    font-family: monospace !important;
+  }
   font-size: 12px;
   background-color: #fff;
-  color: var(--color-grey-dark);
+  color: var(--color-grey-light);
   border-color: var(--color-grey-light);
 
-  .string { color: green; }
+  .string { color: #62626a; }
   .number { color: darkorange; }
-  .boolean { color: blue; }
-  .null { color: magenta; }
-  .key { color: red; }
+  .boolean { color: #ff63f0; }
+  .null { color: #c1bbbe; }
+  .key { color: #63bb47; }
 
   >div{
     animation-name: kf-log-new;
@@ -23,18 +26,12 @@
 
 @keyframes kf-log-new {
   0%{
-    //background-color: #222;
-    opacity:0.4;
-    color: #ff0;
-    //transform:translateY(-20px);
-    //margin-top: -10px;
-    //margin-bottom: -10px;
+    background-color: #fff931;
   }
-  75%{
-    opacity:0.8;
-    color: #ff0;
+  10%{
+    background-color: #f0f0f0;
   }
   100%{
-    opacity:1;
+    background-color: transparent;
   }
 }
