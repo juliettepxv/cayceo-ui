@@ -32,7 +32,6 @@ export default class Layout {
     _loadAssets(){
         //css en style ou pas?
         if(!$("[this-is-the-css]").length){
-            console.log("inject css");
             let $style=$("<style>"+css+"</style>");
             $body.append($style);
         }else{

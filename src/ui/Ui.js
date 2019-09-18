@@ -132,7 +132,6 @@ export default class Ui extends EventEmitter{
 
         $body.on("click","[action]",function(){
            let a =$(this).attr("action");
-           console.log("action",a)
            switch(a){
                case "debug-toggle":
                me.debugMode.toggle();

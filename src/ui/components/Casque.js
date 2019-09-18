@@ -207,7 +207,6 @@ export default class Casque {
      * sélectionne ou désélectionne le casque
      */
     toggleSelected(){
-        console.log("toggleSelected",this);
         this.$main.attr("is-selected",this.isSelected()?"0":"1")
     }
     /**

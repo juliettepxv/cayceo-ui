@@ -22,9 +22,7 @@ export default class Logs extends PopinUi{
      * @return {LogLine}
      */
     log(str,logOnSplash=false){
-        console.log(str);
         return this._logs.log(str,logOnSplash);
-
     }
 
 }
