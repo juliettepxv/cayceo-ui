@@ -43,14 +43,6 @@ export default class Casque {
         this._infoPopIn.displayData(details);
     }
     /**
-     * Définit l'état général du casque
-     * @param {string} state disponible|en attente|en cours|hors ligne|déchargé
-     * @zzzprivate
-     */
-    _setState(state){
-        this.$main.attr("state",state);
-    }
-    /**
      * Affiche le niveau de chargement de la baterrie
      * @param {number} percent
      */
@@ -144,6 +136,7 @@ export default class Casque {
     /**
      * Définir si online ou pas
      * @param {boolean} isOnline
+     * @return {Casque}
      */
     setOnline(isOnline=true){
         this.$main.attr("is-online",isOnline?"1":"0");
@@ -151,8 +144,8 @@ export default class Casque {
             this.setContenu(null);
         }
         this._refresh();
+        return this;
     }
-
     /**
      * online ou pas ?
      * @return {boolean}
@@ -161,6 +154,26 @@ export default class Casque {
     _isOnline(){
         return this.$main.attr("is-online")==="1";
     }
+    /**
+     * Définir si les contenus sur le casque sont à jour
+     * @param {boolean} isReady
+     * @return {Casque}
+     */
+    setContenusReady(isReady=true){
+        this.$main.attr("is-contenus-ready",isReady?"1":"0");
+        this._refresh();
+        return this;
+    }
+    /**
+     * Les fichiers sont à jour ou pas ?
+     * @return {boolean}
+     * @private
+     */
+    _isContenusReady(){
+        return this.$main.attr("is-contenus-ready")==="1";
+    }
+
+
 
 
     /**
@@ -176,6 +189,8 @@ export default class Casque {
                 case me._isBatteryLow(): //batterie faible
                     return false;
                 case me.contenu && me._isPlaying: // a un contenu en cours de lecture
+                    return false;
+                case !me._isContenusReady(): // les contenus ne sont pas tous copiés
                     return false;
                 default:
                     return true;

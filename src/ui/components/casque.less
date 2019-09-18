@@ -169,6 +169,23 @@
     }
   }
 
+
+  &[is-contenus-ready="0"]{
+    --state-text:"Fichiers" !important;
+    .circle,.label{
+      background-color: var(--color-grey-light);
+    }
+    .badge{
+      display: flex;
+      .paused,.check{
+        display: none;
+      }
+      .attention{
+        display: flex;
+      }
+    }
+  }
+
   .actions{
     flex-wrap: wrap;
     //flex-direction: column;

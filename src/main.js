@@ -113,7 +113,7 @@ ui.on("READY",function(){
     ui.casques.addCasque(1).setOnline(true);
     ui.casques.addCasque(2).setOnline(true);
     ui.casques.addCasque(3).setOnline(true);
-    ui.casques.addCasque(5).setOnline(true);
+    ui.casques.addCasque(5).setOnline(true).setContenusReady(false);
     ui.casques.addCasque(4).setOnline(false);
 
     //ajoute un casque 6 puis le supprime 5 secondes plus tard
