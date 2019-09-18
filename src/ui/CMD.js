@@ -29,6 +29,21 @@ window.CMD.REMOVE_CASQUE="REMOVE_CASQUE";
  */
 window.CMD.PLAY_CASQUE="PLAY_CASQUE";
 /**
+ * Installer ou réinstaller l'aAPK sur le casque donné sur le casque spécifié. Le premier argument est le numero du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_INSTALL_APK="CASQUE_INSTALL_APK";
+/**
+ * Effacer tous les fichiers sur le casque spécifié. Le premier argument est le numero du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_DELETE_ALL_FILES="CASQUE_DELETE_ALL_FILES";
+/**
+ * Reboter le casque spécifié. Le premier argument est le numero du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_REBOOT="CASQUE_REBOOT";
+/**
  * Demande l'installation d'une nouvelle séance. Le premier argument est un objet qui contient les casques, le film et la durée
  * @type {string}
  */

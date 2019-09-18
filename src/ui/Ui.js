@@ -170,12 +170,27 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "remove-casque":
-                   me.emit(CMD.REMOVE_CASQUE,$(this).attr("numero"));
+                   me.emit(CMD.REMOVE_CASQUE,           $(this).attr("numero"));
+                   break;
+
+               case "casque-install-apk":
+                   me.emit(CMD.CASQUE_INSTALL_APK,      $(this).attr("numero"));
+                   break;
+
+               case "casque-delete-all-files":
+                   me.emit(CMD.CASQUE_DELETE_ALL_FILES, $(this).attr("numero"));
+                   break;
+
+               case "casque-reboot":
+                   me.emit(CMD.CASQUE_REBOOT,           $(this).attr("numero"));
                    break;
 
                case "play-casque":
                    me.emit(CMD.PLAY_CASQUE,$(this).closest("[casque]").attr("casque"));
                    break;
+
+
+
 
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();

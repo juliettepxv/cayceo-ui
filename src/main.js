@@ -38,6 +38,15 @@ ui.on(CMD.STOP_CASQUE,function(numero){
 ui.on(CMD.REMOVE_CASQUE,function(numero){
     alert(`désindexer le casque numéro ${numero}`);
 });
+ui.on(CMD.CASQUE_DELETE_ALL_FILES,function(numero){
+    alert(`effacer tous les fichiers sur le casque numéro ${numero}`);
+});
+ui.on(CMD.CASQUE_INSTALL_APK,function(numero){
+    alert(`installer l'APK sur le casque numéro ${numero}`);
+});
+ui.on(CMD.CASQUE_REBOOT,function(numero){
+    alert(`Rebooter le casque numéro ${numero}`);
+});
 ui.on(CMD.PLAY_CASQUE,function(numero){
     alert(`Lancer la lecture sur le casque numéro ${numero}`);
     let c=ui.casques.getCasqueByNumero(numero);

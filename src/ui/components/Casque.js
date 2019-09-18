@@ -29,8 +29,20 @@ export default class Casque {
          * @private
          */
         this._infoPopIn=new ObjectLogger(popinName);
-        let $removeBtn=$(`<button action='remove-casque' numero='${this.numero}' class='btn-tiny'>Retirer</button>`)
+        //ajoute des boutons
+        let $removeBtn=$(`<button action='remove-casque' numero='${this.numero}' class='btn-tiny'>Retirer</button>`);
         this._infoPopIn.$main.find("nav").append($removeBtn);
+
+        let $apkBtn=$(`<button action='casque-install-apk' numero='${this.numero}' class='btn-tiny'>Install APK</button>`);
+        this._infoPopIn.$main.find("nav").append($apkBtn);
+
+        let $emptyBtn=$(`<button action='casque-delete-all-files' numero='${this.numero}' class='btn-tiny'>Effacer tous les fichiers</button>`);
+        this._infoPopIn.$main.find("nav").append($emptyBtn);
+
+        let $rebootBtn=$(`<button action='casque-reboot' numero='${this.numero}' class='btn-tiny'>Reboot</button>`);
+        this._infoPopIn.$main.find("nav").append($rebootBtn);
+
+
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
         ui.popIns[popinName]=this._infoPopIn;
     }
