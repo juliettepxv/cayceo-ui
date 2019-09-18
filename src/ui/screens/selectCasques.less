@@ -33,13 +33,9 @@
         button.circle{
           pointer-events: auto !important;
         }
-        .badge{
-          display: none;
-        }
+        .badge-none();
         &[is-selected='1']{
-          .badge, .badge .check{
-            display: flex;
-          }
+          .badge-check();
         }
       }
 
