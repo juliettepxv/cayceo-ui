@@ -57,6 +57,9 @@
       }
     }
   }
+  .label.apk{
+    background-color: var(--color-pink);
+  }
 
   //niveau batterie...
   &[battery-low="0"]{
@@ -158,13 +161,36 @@
   }
 
 
+
+
   &[is-contenus-ready="0"]{
-    --state-text:"Fichiers" !important;
+    --state-text:"Copie..." !important;
     .circle,.label{
       background-color: var(--color-grey-light);
     }
     .badge-attention();
+
   }
+
+
+  &[is-apk-ok='1']{
+    .apk{
+      visibility: hidden;
+    }
+  }
+  &[is-apk-ok='0']{
+    .apk{
+      visibility: visible;
+    }
+  }
+
+  &[plugged='0']{
+    &[is-apk-ok='0'],&[is-contenus-ready="0"]{
+      --state-text:"Branchez moi" !important;
+    }
+  }
+
+
 
   .actions{
     flex-wrap: wrap;

@@ -177,12 +177,30 @@ export default class Casque {
         return this;
     }
     /**
+     * Définir si l'APK est à jour ou non'
+     * @param {boolean} isOk
+     * @return {Casque}
+     */
+    setApkIsOk(isOk=true){
+        this.$main.attr("is-apk-ok",isOk?"1":"0");
+        this._refresh();
+        return this;
+    }
+    /**
      * Les fichiers sont à jour ou pas ?
      * @return {boolean}
      * @private
      */
     _isContenusReady(){
         return this.$main.attr("is-contenus-ready")==="1";
+    }
+    /**
+     * L'APK est ok ou pas ?
+     * @return {boolean}
+     * @private
+     */
+    _isApkOk(){
+        return this.$main.attr("is-apk-ok")==="1";
     }
 
 
@@ -203,6 +221,8 @@ export default class Casque {
                 case me.contenu && me._isPlaying: // a un contenu en cours de lecture
                     return false;
                 case !me._isContenusReady(): // les contenus ne sont pas tous copiés
+                    return false;
+                case !me._isApkOk(): // apk ok ou pas?
                     return false;
                 default:
                     return true;

@@ -237,6 +237,9 @@ ui.on("READY",function(){
             if(Math.random()>0.95){
                 casque.setBatteryPlugged(Math.random()>0.5);
             }
+            if(Math.random()>0.95){
+                casque.setApkIsOk(Math.random()>0.5);
+            }
             casque.setDetails({
                 numero:casque.numero,
                 "some":{
