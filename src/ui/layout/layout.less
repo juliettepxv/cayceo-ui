@@ -10,11 +10,9 @@ body{
 [transi]{
   overflow: hidden;
 }
-
 [data-show-screen],[data-show-popin]{
   cursor: pointer;
 }
-
 
 #logo{
   background-color: transparent;
@@ -26,13 +24,23 @@ body{
     height: auto;
   }
 }
-
-#version{
+#bottom-nav{
   position: absolute;
   z-index: var(---z-nav);
   bottom:0;
   right: 0;
   margin: @space-medium;
+  display: flex;
+  align-items: center;
+
+  >svg{
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+  }
+}
+#version{
+
 }
 
 

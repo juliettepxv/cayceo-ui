@@ -1,0 +1,22 @@
+#refresh-ico{
+  visibility:hidden;
+}
+[is-syncing="1"]{
+  #refresh-ico{
+    visibility:visible;
+    animation-name: kf-turn;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+  }
+}
+
+
+@keyframes kf-turn {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}

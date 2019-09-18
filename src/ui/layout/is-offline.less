@@ -1,0 +1,21 @@
+#network-ico{
+  visibility:hidden;
+}
+[is-offline="1"]{
+  #network-ico{
+    visibility:visible;
+    animation-name: kf-offline;
+    animation-iteration-count: infinite;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+  }
+}
+@keyframes kf-offline {
+  from{
+    color:#F00;
+  }
+  to{
+    color: currentColor;
+  }
+}

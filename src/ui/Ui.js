@@ -38,9 +38,15 @@ import Splash from "./screens/Splash";
 export default class Ui extends EventEmitter{
 
 
+
+
+
     constructor(){
         super();
         let me=this;
+
+        this._isSyncing=false;
+        this._isOffline=false;
 
         /**
          * La version de cayceo UI
@@ -116,10 +122,28 @@ export default class Ui extends EventEmitter{
             }
         };
 
+
+
         //----------------go---------------
         me._initStuff();
     }
+    /**
+     * Si true (et qu'on est en mode debug) affiche qu'on synchronise du contenu
+     * @param value
+     */
+    set isSyncing(value) {
+        $body.find("[is-syncing]").attr("is-syncing",value?"1":"0");
+        this._isSyncing = value;
+    }
 
+    /**
+     * Si true (et qu'on est en mode debug) affiche qu'on est offline
+     * @param value
+     */
+    set isOffline(value) {
+        $body.find("[is-offline]").attr("is-offline",value?"1":"0");
+        this._isOffline = value;
+    }
 
 
 

@@ -93,6 +93,8 @@ ui.on("READY",function(){
     //Layout------------------------------------
     ui.layout.setVersion("1.17.3");
     ui.layout.setLogo("./medias/logo-cayceo.png");
+    ui.isOffline=true;
+    ui.isSyncing=true;
     let logLine=ui.log("hello",true);
     //toutes les 5 secondes dit hello
     setInterval(function(){
