@@ -18,10 +18,11 @@ export default class CasqueList{
     /**
      * Crée et ajoute un casque à la liste et renvoie le Casque créé
      * @param {string} numero Numero affiché du casque
+     * @param {string} fullIp
      * @return {Casque}
      */
-    addCasque(numero){
-        let c=new Casque(numero);
+    addCasque(numero,fullIp){
+        let c=new Casque(numero,fullIp);
         this.list[numero]=c;
         this.$main.append(c.$main);
         return c;

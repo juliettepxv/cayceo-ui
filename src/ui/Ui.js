@@ -182,6 +182,10 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_REBOOT,           $(this).attr("numero"));
                    break;
 
+               case "casque-wake-up":
+                   me.emit(CMD.CASQUE_WAKE_UP,           $(this).attr("numero"));
+                   break;
+
                case "casque-play":
                    me.emit(CMD.CASQUE_PLAY,$(this).closest("[casque]").attr("casque"));
                    break;
@@ -275,6 +279,11 @@ export default class Ui extends EventEmitter{
     }
 
 
+    /**
+     *Permet de choisir un numéro de casque
+     * @deprecated cette methode n'est à priori plus utilisée car on détecte l'ip automatiquement
+     * @param cb
+     */
     askForCasqueNumero(cb){
         this.showPopin(this.popIns.askForCasqueNumero);
         this.popIns.askForCasqueNumero.$main.find("[numero]").off("click").on("click",function(){

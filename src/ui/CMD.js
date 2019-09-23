@@ -9,7 +9,7 @@ window.CMD={};
  */
 window.CMD.OPEN_CONSOLE="OPEN_CONSOLE";
 /**
- * Il faut reveiller les casques
+ * Il faut reveiller les casques (tous les casque)
  * @type {string}
  */
 window.CMD.WAKE_UP_CASQUES="WAKE_UP_CASQUES";
@@ -44,6 +44,11 @@ window.CMD.CASQUE_DELETE_ALL_FILES="CASQUE_DELETE_ALL_FILES";
  */
 window.CMD.CASQUE_REBOOT="CASQUE_REBOOT";
 /**
+ * Réveiller le casque spécifié. Le premier argument est le numero du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_WAKE_UP="CASQUE_WAKE_UP";
+/**
  * Demande l'installation d'une nouvelle séance. Le premier argument est un objet qui contient les casques, le film et la durée
  * @type {string}
  */
@@ -53,6 +58,16 @@ window.CMD.NEW_SEANCE="NEW_SEANCE";
  * @type {string}
  */
 window.CMD.QUIT="QUIT";
+/**
+ * Redémarrer l'application
+ * @type {string}
+ */
+window.CMD.REBOOT="REBOOT";
+/**
+ * Entrer/sortir du full screen
+ * @type {string}
+ */
+window.CMD.FULLSCREEN_TOGGLE="FULLSCREEN_TOGGLE";
 /**
  * Mettre à jour les contenus
  * @type {string}

@@ -122,15 +122,15 @@ ui.on("READY",function(){
      */
     //casques----------------------------------
 
-    ui.casques.addCasque(1).setOnline(true);
-    ui.casques.addCasque(2).setOnline(true);
-    ui.casques.addCasque(3).setOnline(true);
-    ui.casques.addCasque(5).setOnline(true).setContenusReady(false);
-    ui.casques.addCasque(4).setOnline(false);
+    ui.casques.addCasque("1","192.18.0.1").setOnline(true);
+    ui.casques.addCasque("012","192.18.0.12").setOnline(true);
+    ui.casques.addCasque("003","192.18.0.3").setOnline(true);
+    ui.casques.addCasque("005","192.18.0.5").setOnline(true).setContenusReady(false);
+    ui.casques.addCasque("004","192.18.0.4").setOnline(false);
 
     //ajoute un casque 6 puis le supprime 5 secondes plus tard
     setTimeout(function(){
-        ui.casques.addCasque(6);
+        ui.casques.addCasque(6,"192.168.0.6");
         setTimeout(function(){
             ui.casques.removeCasque(6);
         },1000*5);
