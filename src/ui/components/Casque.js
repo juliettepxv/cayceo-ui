@@ -62,6 +62,7 @@ export default class Casque {
     /**
      * Affiche le niveau de chargement de la baterrie
      * @param {number} percent
+     * @return {Casque}
      */
     setBattery(percent=50){
         percent=Math.floor(percent);
@@ -78,6 +79,7 @@ export default class Casque {
             this.$main.attr("battery-low","0");
         }
         this._refresh();
+        return this;
     }
 
     /**
@@ -92,9 +94,12 @@ export default class Casque {
     /**
      * Affiche si la batterie est en charge ou non
      * @param {boolean} plugged true pour branché
+     * @returns {Casque}
      */
     setBatteryPlugged(plugged=false){
         this.$main.attr("plugged",plugged?"1":"0");
+        this._refresh();
+        return this;
     }
 
     /**
@@ -135,9 +140,12 @@ export default class Casque {
     /**
      * Définir si en cours de lecture ou pas
      * @param {boolean} isPlaying
+     * @return Casque
      */
     setIsPlaying(isPlaying=true){
         this.$main.attr("is-playing",isPlaying?"1":"0");
+        this._refresh();
+        return this;
     }
 
     /**
@@ -221,7 +229,7 @@ export default class Casque {
             switch (true) {
                 case !me._isOnline(): //pas online
                     return false;
-                case !me._isPlaying(): //pas en cours de lecture
+                case me._isPlaying(): //en cours de lecture
                     return false;
                 case me._isBatteryLow(): //batterie faible
                     return false;
