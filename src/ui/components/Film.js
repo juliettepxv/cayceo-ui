@@ -6,12 +6,18 @@ export default class Film {
      * @param {string} filmId identifiant du film
      * @param {string} title titre du film
      * @param {string} imgUrl url de l'image du film
+     * @param {string} filePath url du fichier
      */
-    constructor(filmId,title,imgUrl){
+    constructor(filmId,title,imgUrl,filePath){
         /**
          * @type {string} identifiant du film
          */
         this.filmId=filmId;
+        /**
+         *
+         * @type {string} url du fichier
+         */
+        this.filePath=filePath;
         /**
          * @type {string} titre du film
          */

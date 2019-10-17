@@ -46,6 +46,20 @@ export default class Films extends ScreenUi{
         }
         return null;
     }
+    /**
+     * Renvoie un film par son filePath
+     * @param {string} filePath fichier du film à trouver
+     * @returns {Film|null}
+     */
+    getFilmByFilePath(filePath){
+        for(let i=0;i<this.list.length;i++) {
+            let f = this.list[i];
+            if(filePath===f.filePath){
+                return  f;
+            }
+        }
+        return null;
+    }
 
     /**
      * Crée et ajoute un film à la liste et renvoie le Film créé.
@@ -54,10 +68,11 @@ export default class Films extends ScreenUi{
      * @param {string} filmId identifiant du film
      * @param {string} title titre du film
      * @param {string} imgUrl url de l'image du film
+     * @param {string} filePath url du fichier
      * @return {Film}
      */
-    addFilm(filmId,title,imgUrl){
-        let f=new Film(filmId,title,imgUrl);
+    addFilm(filmId,title,imgUrl,filePath){
+        let f=new Film(filmId,title,imgUrl,filePath);
         let existing=this.getFilmById(filmId);
         if(existing){
             console.warn(`Le film ayant pour id ${{filmId}} était déjà dans la liste`);

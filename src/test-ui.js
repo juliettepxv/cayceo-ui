@@ -155,7 +155,8 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id2",
         "La forêt",
-        "medias/foret.jpg"
+        "medias/foret.jpg",
+        ""
         )
         .addTag("Stress")
         .setDetails(
