@@ -121,8 +121,11 @@ ui.on("READY",function(){
      * @type {ScreenUi[]}
      */
     //casques----------------------------------
-
-    ui.casques.addCasque("1","192.18.0.1").setOnline(true);
+    /**
+     *
+     * @type {Casque}
+     */
+    let casqueTest=ui.casques.addCasque("1","192.18.0.1").setOnline(true).setContenusReady(true);
     ui.casques.addCasque("012","192.18.0.12").setOnline(true);
     ui.casques.addCasque("003","192.18.0.3").setOnline(true);
     ui.casques.addCasque("005","192.18.0.5").setOnline(true).setContenusReady(false);
@@ -152,9 +155,9 @@ ui.on("READY",function(){
         }
     );
 
-    ui.films.addFilm(
+    let filmTest=ui.films.addFilm(
         "id2",
-        "La forêt",
+        "La forêt long long text fin",
         "medias/foret.jpg",
         ""
         )
@@ -165,6 +168,16 @@ ui.on("READY",function(){
             "id":"id2"
         }
     );
+
+    casqueTest.setOnline(true);
+
+    casqueTest.setBatteryPlugged(true);
+    casqueTest.setApkIsOk(true);
+    casqueTest.setBattery(85);
+    casqueTest.setContenu(filmTest);
+    casqueTest.setIsPlaying(true);
+    casqueTest.displayTime(120);
+
 
     ui.films.addFilm(
         "id3",
@@ -225,7 +238,7 @@ ui.on("READY",function(){
     //fake datas en boucle...
 
     setInterval(function(){
-
+        return;
         //random sur les casques
         for(let c in ui.casques.list){
             let casque=ui.casques.list[c];

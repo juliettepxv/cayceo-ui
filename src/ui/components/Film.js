@@ -54,6 +54,7 @@ export default class Film {
      */
     setDetails(details){
         this._infoPopIn.displayData(details);
+        return this;
     }
 
     /**
