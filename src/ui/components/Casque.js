@@ -221,6 +221,8 @@ export default class Casque {
             switch (true) {
                 case !me._isOnline(): //pas online
                     return false;
+                case !me._isPlaying(): //pas en cours de lecture
+                    return false;
                 case me._isBatteryLow(): //batterie faible
                     return false;
                 case me.contenu && me._isPlaying: // a un contenu en cours de lecture
