@@ -4,12 +4,18 @@ import Ui from "../Ui";
 export default class Validation extends ScreenUi{
     constructor(){
         super();
+        let me =this;
         this.$main=$(require("./validation.html"));
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,false);
             ui.nav.displayBack(true,"selectDuree");
             ui.nav.displayDashboard(true);
+            me.displayLoading(false);
         });
+    }
+
+    displayLoading(displayLoading){
+        this.$main.attr("is-loading",displayLoading?"1":"0");
     }
 
     /**

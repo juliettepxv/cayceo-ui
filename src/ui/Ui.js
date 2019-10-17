@@ -214,7 +214,6 @@ export default class Ui extends EventEmitter{
 
                case "valid-seance":
                    let casquesNumeros=[];
-
                    for(let i=0;i<me.screens.validation.casques.length;i++){
                        casquesNumeros.push(me.screens.validation.casques[i].numero);
                    }
@@ -223,6 +222,7 @@ export default class Ui extends EventEmitter{
                        "duree":me.screens.validation.duree,
                        "casques":casquesNumeros
                    });
+                   me.screens.validation.displayLoading(true);
                    me.screens.selectCasques.unSelectAll();
                    break;
 
@@ -312,6 +312,8 @@ export default class Ui extends EventEmitter{
             numerosCasquesError
         )
     }
+
+
 
     /**
      * Affiche l'écran demandé

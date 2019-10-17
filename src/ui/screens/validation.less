@@ -31,5 +31,30 @@
     }
   }
 
+  .loading{
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg{
+      margin-top: 15px;
+      display: block;
+      animation-name: kf-turn;
+      animation-duration: 1s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+  }
+
+
+  &[is-loading='1']{
+    button{
+      display: none !important;
+    }
+    .loading {
+      display: flex;
+    }
+  }
+
 
 }
