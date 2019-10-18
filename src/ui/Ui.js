@@ -306,7 +306,13 @@ export default class Ui extends EventEmitter{
         this.screens.explication.displayInstallationFeedback(
             ipsCasquesSuccess,
             ipsCasquesError
-        )
+        );
+        //retourne sur la home au bout de 30 secondes
+        setTimeout(function () {
+            if(ui.screens.validation.isActive()){
+                ui.screens.home.show();
+            }
+        },30*1000)
     }
 
 

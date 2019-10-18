@@ -10,5 +10,13 @@ export default class ScreenUi extends EventEmitter{
         window.ui.showScreen(this,transi);
     }
 
+    /**
+     * Retourne true si l'écran est visible
+     * @returns {boolean}
+     */
+    isActive(){
+        return this.$main.closest("body").length>=0;
+    }
+
 
 }
