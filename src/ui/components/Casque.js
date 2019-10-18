@@ -127,6 +127,18 @@ export default class Casque {
      * @return Casque
      */
     setContenu(contenu){
+
+        //si ça a pas changé, on gagne du temps...
+        if(!this.contenu && !contenu){
+            return this;
+        }
+        if(this.contenu && contenu){
+            if(this.contenu.filePath===contenu.filePath){
+                return this;
+            }
+        }
+
+        //donc c'est différent...
         this.contenu=contenu;
         let $film=this.$main.find(".preview-film");
         let $filmTitle=$film.find(".title");
@@ -149,11 +161,15 @@ export default class Casque {
      * @param filePath
      */
     setContenuPath(filePath){
-        let contenu=ui.films.getFilmByFilePath(filePath);
-        if(contenu){
-            this.setContenu(contenu);
+        if(!filePath){
+            this.setContenu(null);
         }else{
-            console.error(`contenu introuvable ${filePath}`);
+            let contenu=ui.films.getFilmByFilePath(filePath);
+            if(contenu){
+                this.setContenu(contenu);
+            }else{
+                console.error(`contenu introuvable ${filePath}`);
+            }
         }
     }
 
