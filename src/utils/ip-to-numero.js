@@ -5,5 +5,7 @@
  */
 window.ipToNumero=function(ip){
     ip=ip.split(".");
-    return ip[ip.length-1];
+    let numero=ip[ip.length-1];
+    numero=numero.split("");
+    return numero[numero.length-1];
 };
