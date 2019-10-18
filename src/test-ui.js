@@ -128,7 +128,7 @@ ui.on("READY",function(){
     let casqueTest=ui.casques.addCasque("192.18.0.1").setOnline(true).setContenusReady(true);
     ui.casques.addCasque("192.18.0.12").setOnline(true);
     ui.casques.addCasque("192.18.0.3").setOnline(true);
-    ui.casques.addCasque("192.18.0.5").setOnline(true).setContenusReady(false);
+    ui.casques.addCasque("192.18.0.5").setOnline(true).setBatteryPlugged(true).setContenusReady(false).setCopyProgress("50");
     ui.casques.addCasque("192.18.0.4").setOnline(false);
 
     //ajoute un casque 6 puis le supprime 5 secondes plus tard

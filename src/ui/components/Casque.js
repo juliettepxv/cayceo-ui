@@ -225,6 +225,18 @@ export default class Casque {
         this._refresh();
         return this;
     }
+
+    /**
+     * Féfinit un pourcentage de copie
+     * @param percent
+     * @returns {Casque}
+     */
+    setCopyProgress(percent){
+        percent=Math.floor(percent);
+        this.$main.css("--state-copy",`'Copie ${percent}%'`)
+        this._refresh();
+        return this;
+    }
     /**
      * Définir si l'APK est à jour ou non'
      * @param {boolean} isOk
