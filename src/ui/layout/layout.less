@@ -42,6 +42,18 @@ body{
 #version{
 
 }
+#version-update{
+  >div{
+    margin-left: 10px;
+    &:empty{
+      display: none;
+    }
+    &[action='emit']{
+      cursor: pointer;
+      color: var(--color-pink);
+    }
+  }
+}
 
 
 #main{

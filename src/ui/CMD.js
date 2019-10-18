@@ -64,6 +64,11 @@ window.CMD.QUIT="QUIT";
  */
 window.CMD.REBOOT="REBOOT";
 /**
+ * Demande d'installer la mise à jour et redemarrer
+ * @type {string}
+ */
+window.CMD.INSTALL_AND_REBOOT="INSTALL_AND_REBOOT";
+/**
  * Entrer/sortir du full screen
  * @type {string}
  */

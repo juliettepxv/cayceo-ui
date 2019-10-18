@@ -17,6 +17,20 @@ export default class Layout {
     setVersion(version){
         this.$main.find("#version>div").text(`Version ${version} / ui-${VERSION}`)
     }
+
+    /**
+     * Permet de définir un message à afficher concernant les MAJ de l'app electron
+     * @param {string} string message à afficher
+     * @param {boolean} shouldRestart si true, au click installera et redemarera l'application
+     */
+    setVersionUpdateMessage(string,shouldRestart=false){
+        let $el=this.$main.find("#version-update>div");
+        $el.text(string);
+        if(shouldRestart){
+            $el.attr("action","emit");
+            $el.attr("emit-name",CMD.INSTALL_AND_REBOOT);
+        }
+    }
     /**
      * Permet de définir le logo
      * @param imgUrl
