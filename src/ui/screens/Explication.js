@@ -14,37 +14,38 @@ export default class Explication extends ScreenUi{
     }
     /**
      * Affiche l'écran Explication et donne un feedback sur les (non)installations
-     * @param {string[]} numerosCasquesSuccess Les numéros de casques où l'installation a pu se faire
-     * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
+     * @param {string[]} ipsCasquesSuccess Les ips de casques où l'installation a pu se faire
+     * @param {string[]} ipsCasquesError Les ips de casques où l'installation n'a pas pu se faire
      */
-    displayInstallationFeedback(numerosCasquesSuccess=[],numerosCasquesError=[]){
+    displayInstallationFeedback(ipsCasquesSuccess=[],ipsCasquesError=[]){
         //fais des copies
-        numerosCasquesSuccess=numerosCasquesSuccess.slice(0);
-        numerosCasquesError=numerosCasquesError.slice(0);
+        ipsCasquesSuccess=ipsCasquesSuccess.slice(0);
+        ipsCasquesError=ipsCasquesError.slice(0);
         let recap="";
         let help="";
         let i;
-        for(i=0;i<numerosCasquesSuccess.length;i++){
-            numerosCasquesSuccess[i]=`<b>${numerosCasquesSuccess[i]}</b>`;
+        //formate les ips en numeros avec du bold
+        for(i=0;i<ipsCasquesSuccess.length;i++){
+            ipsCasquesSuccess[i]=`<b>${ipToNumero(ipsCasquesSuccess[i])}</b>`;
         }
-        for(i=0;i<numerosCasquesError.length;i++){
-            numerosCasquesError[i]=`<b>${numerosCasquesError[i]}</b>`;
+        for(i=0;i<ipsCasquesError.length;i++){
+            ipsCasquesError[i]=`<b>${ipToNumero(ipsCasquesError[i])}</b>`;
         }
 
-        if(numerosCasquesSuccess.length){
+        if(ipsCasquesSuccess.length){
             recap="La séance est prête ";
             help="Pour la lancer, appuyez sur le long bouton à droite.";
-            if(numerosCasquesSuccess.length===1){
-                recap+=`sur le casque ${numerosCasquesSuccess[0]}.`;
+            if(ipsCasquesSuccess.length===1){
+                recap+=`sur le casque ${ipsCasquesSuccess[0]}.`;
             }else{
-                recap+=`sur les casques ${numerosCasquesSuccess.join(" et ")}.`;
+                recap+=`sur les casques ${ipsCasquesSuccess.join(" et ")}.`;
             }
-            if(numerosCasquesError.length){
+            if(ipsCasquesError.length){
                 recap+="<br>En revanche, elle n'a pu être installée ";
-                if(numerosCasquesError.length===1){
-                    recap+=`sur le casque ${numerosCasquesError.join(" et ")}.`;
+                if(ipsCasquesError.length===1){
+                    recap+=`sur le casque ${ipsCasquesError.join(" et ")}.`;
                 }else{
-                    recap+=`sur les casques ${numerosCasquesError.join(" et ")}.`;
+                    recap+=`sur les casques ${ipsCasquesError.join(" et ")}.`;
                 }
             }
         }else{

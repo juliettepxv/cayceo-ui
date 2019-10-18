@@ -3,28 +3,36 @@ import ObjectLogger from "../popin/ObjectLogger";
 export default class Casque {
     /**
      *
-     * @param {string} numero Numéro affiché du casque
-     * @param {string} fullIp adresse ip complete
+     * @param {string} ip Adresse ip complète
      */
-    constructor(numero,fullIp){
+    constructor(ip){
+        let me=this;
         this.$main=$(require("./casque.html"));
+
+        /**
+         * Adresse ip complète
+         * @type {string}
+         */
+        this.ip=ip;
         /**
          * @type {string} numero Numéro affiché du casque
          */
-        this.numero=numero;
+        this.numero=ipToNumero(ip);
+
         /**
          *
          * @type {Film|null}
          */
         this.contenu=null;
 
-        //affiche le numero du casque
-        this.$main.find("[numero]").text(numero);
-        this.$main.find("[full-ip]").text(fullIp);
-        this.$main.attr("casque",numero);
+        //html
+        me.$main.css("order",me.numero);
+        me.$main.find("[numero]").text(me.numero);
+        me.$main.find("[full-ip]").text(me.ip);
+        me.$main.attr("casque",me.ip);
 
         //popin...
-        let popinName=`Casque ${this.numero}`;
+        let popinName=`Casque ${me.ip}`;
         /**
          * La popin où on affichera les infos du casque
          * @type {ObjectLogger}
@@ -32,19 +40,19 @@ export default class Casque {
          */
         this._infoPopIn=new ObjectLogger(popinName);
         //ajoute des boutons
-        let $removeBtn=$(`<button action='casque-remove' numero='${this.numero}' class='btn-tiny'>Remove</button>`);
+        let $removeBtn=$(`<button action='casque-remove' ip='${this.ip}' class='btn-tiny'>Remove</button>`);
         this._infoPopIn.$main.find("nav").append($removeBtn);
 
-        let $apkBtn=$(`<button action='casque-install-apk' numero='${this.numero}' class='btn-tiny'>Install APK</button>`);
+        let $apkBtn=$(`<button action='casque-install-apk' ip='${this.ip}' class='btn-tiny'>Install APK</button>`);
         this._infoPopIn.$main.find("nav").append($apkBtn);
 
-        let $emptyBtn=$(`<button action='casque-delete-all-files' numero='${this.numero}' class='btn-tiny'>Delete files</button>`);
+        let $emptyBtn=$(`<button action='casque-delete-all-files' ip='${this.ip}' class='btn-tiny'>Delete files</button>`);
         this._infoPopIn.$main.find("nav").append($emptyBtn);
 
-        let $rebootBtn=$(`<button action='casque-reboot' numero='${this.numero}' class='btn-tiny'>Reboot</button>`);
+        let $rebootBtn=$(`<button action='casque-reboot' ip='${this.ip}' class='btn-tiny'>Reboot</button>`);
         this._infoPopIn.$main.find("nav").append($rebootBtn);
 
-        let $reveilBtn=$(`<button action='casque-wake-up' numero='${this.numero}' class='btn-tiny'>Wake up</button>`);
+        let $reveilBtn=$(`<button action='casque-wake-up' ip='${this.ip}' class='btn-tiny'>Wake up</button>`);
         this._infoPopIn.$main.find("nav").append($reveilBtn);
 
 

@@ -31,26 +31,26 @@ ui.on(CMD.UPDATE_CONTENT,function(){
 ui.on(CMD.RESET_ALL,function(){
     alert("Reset !!!");
 });
-ui.on(CMD.CASQUE_STOP,function(numero){
-    alert(`Arrêter la lecture sur le casque numéro ${numero}`);
-    let c=ui.casques.getCasqueByNumero(numero);
+ui.on(CMD.CASQUE_STOP,function(ip){
+    alert(`Arrêter la lecture sur le casque ${ip}`);
+    let c=ui.casques.getCasqueByIp(ip);
     c.setContenu(null);
 });
-ui.on(CMD.CASQUE_REMOVE,function(numero){
-    alert(`désindexer le casque numéro ${numero}`);
+ui.on(CMD.CASQUE_REMOVE,function(ip){
+    alert(`désindexer le casque ${ip}`);
 });
-ui.on(CMD.CASQUE_DELETE_ALL_FILES,function(numero){
-    alert(`effacer tous les fichiers sur le casque numéro ${numero}`);
+ui.on(CMD.CASQUE_DELETE_ALL_FILES,function(ip){
+    alert(`effacer tous les fichiers sur le casque ${ip}`);
 });
-ui.on(CMD.CASQUE_INSTALL_APK,function(numero){
-    alert(`installer l'APK sur le casque numéro ${numero}`);
+ui.on(CMD.CASQUE_INSTALL_APK,function(ip){
+    alert(`installer l'APK sur le casque ${ip}`);
 });
-ui.on(CMD.CASQUE_REBOOT,function(numero){
-    alert(`Rebooter le casque numéro ${numero}`);
+ui.on(CMD.CASQUE_REBOOT,function(ip){
+    alert(`Rebooter le casque ${ip}`);
 });
-ui.on(CMD.CASQUE_PLAY,function(numero){
-    alert(`Lancer la lecture sur le casque numéro ${numero}`);
-    let c=ui.casques.getCasqueByNumero(numero);
+ui.on(CMD.CASQUE_PLAY,function(ip){
+    alert(`Lancer la lecture sur le casque ${ip}`);
+    let c=ui.casques.getCasqueByIp(ip);
     c.setIsPlaying(true);
     let s=Math.random()*60*15;
     let i=setInterval(function(){
@@ -61,10 +61,10 @@ ui.on(CMD.CASQUE_PLAY,function(numero){
         }
     },1000)
 });
-ui.on(CMD.WAKE_UP_CASQUES,function(numero){
+ui.on(CMD.WAKE_UP_CASQUES,function(){
     alert(`il faut réveiller les casques`);
 });
-ui.on(CMD.OPEN_CONSOLE,function(numero){
+ui.on(CMD.OPEN_CONSOLE,function(){
     alert(`il faut ouvrir la console dans electron`);
 });
 ui.on("NEW_SEANCE",function(seance){
@@ -88,7 +88,7 @@ ui.on("NEW_SEANCE",function(seance){
         );
 
         for(let i = 0;i<casquesOk.length;i++){
-            ui.casques.getCasqueByNumero(casquesOk[i])
+            ui.casques.getCasqueByIp(casquesOk[i])
                 .setContenu(
                     ui.films.getFilmById(seance.film)
                 )
@@ -125,15 +125,15 @@ ui.on("READY",function(){
      *
      * @type {Casque}
      */
-    let casqueTest=ui.casques.addCasque("1","192.18.0.1").setOnline(true).setContenusReady(true);
-    ui.casques.addCasque("012","192.18.0.12").setOnline(true);
-    ui.casques.addCasque("003","192.18.0.3").setOnline(true);
-    ui.casques.addCasque("005","192.18.0.5").setOnline(true).setContenusReady(false);
-    ui.casques.addCasque("004","192.18.0.4").setOnline(false);
+    let casqueTest=ui.casques.addCasque("192.18.0.1").setOnline(true).setContenusReady(true);
+    ui.casques.addCasque("192.18.0.12").setOnline(true);
+    ui.casques.addCasque("192.18.0.3").setOnline(true);
+    ui.casques.addCasque("192.18.0.5").setOnline(true).setContenusReady(false);
+    ui.casques.addCasque("192.18.0.4").setOnline(false);
 
     //ajoute un casque 6 puis le supprime 5 secondes plus tard
     setTimeout(function(){
-        ui.casques.addCasque(6,"192.168.0.6");
+        ui.casques.addCasque("192.168.0.6");
         setTimeout(function(){
             ui.casques.removeCasque(6);
         },1000*5);
@@ -170,7 +170,6 @@ ui.on("READY",function(){
     );
 
     casqueTest.setOnline(true);
-
     casqueTest.setBatteryPlugged(true);
     casqueTest.setApkIsOk(true);
     casqueTest.setBattery(85);
@@ -239,7 +238,6 @@ ui.on("READY",function(){
     //fake datas en boucle...
 
     setInterval(function(){
-        return;
         //random sur les casques
         for(let c in ui.casques.list){
             let casque=ui.casques.list[c];
@@ -256,7 +254,7 @@ ui.on("READY",function(){
                 casque.setApkIsOk(Math.random()>0.5);
             }
             casque.setDetails({
-                numero:casque.numero,
+                ip:casque.ip,
                 "some":{
                     random:Math.random(),
                     datas:Math.random()

@@ -14,18 +14,15 @@ import PopInWindow from "./popin/PopInWindow";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
-import AskForCasqueNumero from "./popin/AskForCasqueNumero";
 import Nav from "./layout/Nav";
 const EventEmitter = require('event-emitter-es6');
 require("../CayceoUi.less");
 require("./CMD.js");
+require("../utils/ip-to-numero");
 
 import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
-
-
-
 
 //todo debug mode online / offline
 //todo debug mode downloading + progress
@@ -167,23 +164,23 @@ export default class Ui extends EventEmitter{
 
 
                case "casque-remove":
-                   me.emit(CMD.CASQUE_REMOVE,           $(this).attr("numero"));
+                   me.emit(CMD.CASQUE_REMOVE,           $(this).attr("ip"));
                    break;
 
                case "casque-install-apk":
-                   me.emit(CMD.CASQUE_INSTALL_APK,      $(this).attr("numero"));
+                   me.emit(CMD.CASQUE_INSTALL_APK,      $(this).attr("ip"));
                    break;
 
                case "casque-delete-all-files":
-                   me.emit(CMD.CASQUE_DELETE_ALL_FILES, $(this).attr("numero"));
+                   me.emit(CMD.CASQUE_DELETE_ALL_FILES, $(this).attr("ip"));
                    break;
 
                case "casque-reboot":
-                   me.emit(CMD.CASQUE_REBOOT,           $(this).attr("numero"));
+                   me.emit(CMD.CASQUE_REBOOT,           $(this).attr("ip"));
                    break;
 
                case "casque-wake-up":
-                   me.emit(CMD.CASQUE_WAKE_UP,           $(this).attr("numero"));
+                   me.emit(CMD.CASQUE_WAKE_UP,           $(this).attr("ip"));
                    break;
 
                case "casque-play":
@@ -213,14 +210,14 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "valid-seance":
-                   let casquesNumeros=[];
+                   let casquesIps=[];
                    for(let i=0;i<me.screens.validation.casques.length;i++){
-                       casquesNumeros.push(me.screens.validation.casques[i].numero);
+                       casquesIps.push(me.screens.validation.casques[i].ip);
                    }
                    me.emit(CMD.NEW_SEANCE,{
                        "film":me.screens.validation.film.filmId,
                        "duree":me.screens.validation.duree,
-                       "casques":casquesNumeros
+                       "casques":casquesIps
                    });
                    me.screens.validation.displayLoading(true);
                    me.screens.selectCasques.unSelectAll();
@@ -266,8 +263,7 @@ export default class Ui extends EventEmitter{
             "controlsMenu":new ControlsMenu(),
             "logs":new Logs(),
             "debug":null,
-            "webApiData":new ObjectLogger("Web Api data"),
-            "askForCasqueNumero":new AskForCasqueNumero()
+            "webApiData":new ObjectLogger("Web Api data")
         };
 
 
@@ -286,8 +282,8 @@ export default class Ui extends EventEmitter{
      */
     askForCasqueNumero(cb){
         this.showPopin(this.popIns.askForCasqueNumero);
-        this.popIns.askForCasqueNumero.$main.find("[numero]").off("click").on("click",function(){
-            cb($(this).attr("numero"));
+        this.popIns.askForCasqueNumero.$main.find("[ip]").off("click").on("click",function(){
+            cb($(this).attr("ip"));
         })
     }
 
@@ -302,14 +298,14 @@ export default class Ui extends EventEmitter{
 
     /**
      * Affiche l'écran Explication et donne un feedback sur les éventuelles non installations
-     * @param {string[]} numerosCasquesSuccess Les numéros de casques où l'installation a pu se faire
-     * @param {string[]} numerosCasquesError Les numéros de casques où l'installation n'a pas pu se faire
+     * @param {string[]} ipsCasquesSuccess Les ips de casques où l'installation a pu se faire
+     * @param {string[]} ipsCasquesError Les ips de casques où l'installation n'a pas pu se faire
      */
-    seanceReady(numerosCasquesSuccess=[],numerosCasquesError=[]){
+    seanceReady(ipsCasquesSuccess=[],ipsCasquesError=[]){
         this.screens.explication.show("from-right");
         this.screens.explication.displayInstallationFeedback(
-            numerosCasquesSuccess,
-            numerosCasquesError
+            ipsCasquesSuccess,
+            ipsCasquesError
         )
     }
 

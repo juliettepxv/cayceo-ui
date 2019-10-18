@@ -1,24 +1,6 @@
-.order-loop(0){}
-.order-loop (@i) when (@i > 0) {
-  [casque='@{i}']{
-    order:@i;
-  }
-  .order-loop( (@i - 1) );
-}
-
 .casque-list{
   display: flex;
   flex-direction: row;
-  /*
-  [casque='1']{
-    order:1;
-  }
-  [casque='2']{
-    order:2;
-  }
-  etc...
-  */
-  .order-loop (255);
 }
 
 

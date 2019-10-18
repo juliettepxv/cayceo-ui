@@ -17,36 +17,35 @@ export default class CasqueList{
 
     /**
      * Crée et ajoute un casque à la liste et renvoie le Casque créé
-     * @param {string} numero Numero affiché du casque
      * @param {string} fullIp
      * @return {Casque}
      */
-    addCasque(numero,fullIp){
-        let c=new Casque(numero,fullIp);
-        this.list[numero]=c;
+    addCasque(fullIp){
+        let c=new Casque(fullIp);
+        this.list[fullIp]=c;
         this.$main.append(c.$main);
         return c;
     }
 
     /**
      * Supprime un casque de la liste
-     * @param  {string} numero Numero affiché du casque
+     * @param  {string} ip adresse ip du casque
      */
-    removeCasque(numero){
-        let c=this.getCasqueByNumero(numero);
+    removeCasque(ip){
+        let c=this.getCasqueByIp(ip);
         if(c){
             c.$main.remove();
-            this.list[numero]=null;
-            delete this.list[numero];
+            this.list[ip]=null;
+            delete this.list[ip];
         }
     }
     /**
-     * Renvoie un casque par son numéro
-     * @param numero
+     * Renvoie un casque par son ip
+     * @param {string} ip
      * @returns {Casque}
      */
-    getCasqueByNumero(numero){
-        return this.list[numero];
+    getCasqueByIp(ip){
+        return this.list[ip];
     }
 
     /**
