@@ -140,9 +140,21 @@ export default class Casque {
             $filmTitle.text("...");
             $filmImg.attr("src","");
         }
-        this.setIsPlaying(false);
         this._refresh();
         return this;
+    }
+
+    /**
+     * Définit le contenu à afficher à partir de son filePath
+     * @param filePath
+     */
+    setContenuPath(filePath){
+        let contenu=ui.films.getFilmByFilePath(filePath);
+        if(contenu){
+            this.setContenu(contenu);
+        }else{
+            console.error(`contenu introuvable ${filePath}`);
+        }
     }
 
     /**
