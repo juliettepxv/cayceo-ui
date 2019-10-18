@@ -5,9 +5,10 @@ export default class ScreenUi extends EventEmitter{
         super();
         let me=this;
         this.$main=$("<div></div>");
+        this.randomUid=Math.random();
     }
-    show(transi=""){
-        window.ui.showScreen(this,transi);
+    show(transi="",hidePopin=true){
+        window.ui.showScreen(this,transi,hidePopin);
     }
 
     /**
@@ -15,7 +16,7 @@ export default class ScreenUi extends EventEmitter{
      * @returns {boolean}
      */
     isActive(){
-        return this.$main.closest("body").length>=0;
+        return ui.currentScreen.randomUid===this.randomUid;
     }
 
 

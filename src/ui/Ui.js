@@ -274,19 +274,6 @@ export default class Ui extends EventEmitter{
 
     }
 
-
-    /**
-     *Permet de choisir un numéro de casque
-     * @deprecated cette methode n'est à priori plus utilisée car on détecte l'ip automatiquement
-     * @param cb
-     */
-    askForCasqueNumero(cb){
-        this.showPopin(this.popIns.askForCasqueNumero);
-        this.popIns.askForCasqueNumero.$main.find("[ip]").off("click").on("click",function(){
-            cb($(this).attr("ip"));
-        })
-    }
-
     /**
      * Affiche l'écran de log et y ajoute le message fourni.
      * @param message
@@ -309,22 +296,24 @@ export default class Ui extends EventEmitter{
         );
         //retourne sur la home au bout de 30 secondes
         setTimeout(function () {
-            if(ui.screens.validation.isActive()){
-                ui.screens.home.show();
+            if(ui.screens.explication.isActive()){
+                ui.screens.home.show(null,false);
             }
         },30*1000)
     }
-
 
 
     /**
      * Affiche l'écran demandé
      * @param {ScreenUi} screen
      * @param {string} transi La transition à utiliser
+     * @param {boolean} hidePopin si
      */
-    showScreen(screen,transi=""){
+    showScreen(screen,transi="",hidePopin=true){
         let me=this;
-        this.hidePopin();
+        if(hidePopin){
+            this.hidePopin();
+        }
         setTimeout(function(){
             $("[transi]").attr("transi",transi);
             $("#main").empty().append(screen.$main);
