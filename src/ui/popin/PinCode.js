@@ -28,8 +28,6 @@ export default class PinCode extends PopinUi{
                     break;
             }
         });
-
-
     }
 
     _back(){
