@@ -23,6 +23,7 @@ require("../utils/ip-to-numero");
 import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
+import PinCode from "./popin/PinCode";
 
 //todo debug mode online / offline
 //todo debug mode downloading + progress
@@ -50,6 +51,12 @@ export default class Ui extends EventEmitter{
          */
         this.version=VERSION;
         console.log("cayceo-ui version",this.version);
+
+        /**
+         * Le code pin à tapper pour activer le mode developpeur
+         * @type {string}
+         */
+        this.pinCode="0000";
 
         /**
          * La popin en cours
@@ -106,6 +113,7 @@ export default class Ui extends EventEmitter{
             },
             disable:function(){
                 $body.find("[debug-is-enabled]").attr("debug-is-enabled","0");
+                me.hidePopin();
             },
             toggle:function(){
                 if(this.isEnabled()){
@@ -141,9 +149,6 @@ export default class Ui extends EventEmitter{
         $body.find("[is-offline]").attr("is-offline",value?"1":"0");
         this._isOffline = value;
     }
-
-
-
     /**
      *
      * @private
@@ -235,7 +240,8 @@ export default class Ui extends EventEmitter{
             );
         });
         $body.on("click","[data-show-popin]",function(){
-            me._showPopinByName($(this).attr("data-show-popin"));
+            let popName=$(this).attr("data-show-popin");
+            me._showPopinByName(popName);
         });
         /**
          * La liste exhaustive des écrans
@@ -263,8 +269,14 @@ export default class Ui extends EventEmitter{
             "controlsMenu":new ControlsMenu(),
             "logs":new Logs(),
             "debug":null,
-            "webApiData":new ObjectLogger("Web Api data")
+            "webApiData":new ObjectLogger("Web Api data"),
+            "pinCode":new PinCode()
         };
+
+
+        this.popIns.pinCode.on("SUCCESS",function(){
+            me.debugMode.enable();
+        });
 
 
 

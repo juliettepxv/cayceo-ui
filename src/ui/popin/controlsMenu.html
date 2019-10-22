@@ -1,8 +1,7 @@
 <div popin="controlsMenu" class="">
 
     <div>
-        <div class="row">
-
+        <div class="row" debug-enabled='flex'>
 
             <div class="col-sm-6">
                 <button action="emit" emit-name="UPDATE_CONTENT">
@@ -33,13 +32,13 @@
                 </span>
                 </button>
 
-                <button debug-enabled='flex' action="emit" emit-name="OPEN_CONSOLE">
+                <button  action="emit" emit-name="OPEN_CONSOLE">
                     Ouvrir la console
                 </button>
-                <button debug-enabled='flex' data-show-popin="logs">
+                <button data-show-popin="logs">
                     Logs générales
                 </button>
-                <button debug-enabled='flex' data-show-popin="webApiData">
+                <button data-show-popin="webApiData">
                     Web Api data
                 </button>
             </div>
