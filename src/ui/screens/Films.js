@@ -75,7 +75,7 @@ export default class Films extends ScreenUi{
         let f=new Film(filmId,title,imgUrl,filePath);
         let existing=this.getFilmById(filmId);
         if(existing){
-            console.warn(`Le film ayant pour id ${{filmId}} était déjà dans la liste`);
+            console.warn(`Le film ${filePath} était déjà dans la liste`);
         }else{
             this.list.push(f);
             this.$main.find("#films").append(f.$main);
