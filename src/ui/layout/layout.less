@@ -29,12 +29,12 @@ body{
   z-index: var(---z-nav);
   bottom:0;
   right: 0;
-  margin: @space-medium;
+  margin: calc(@space-medium - 10px); //enlève le padding
   display: flex;
   align-items: center;
   >*{
     //outline: 1px solid red;
-    padding: 5px 10px;
+    padding: 10px 5px;
 
   }
   >svg{
