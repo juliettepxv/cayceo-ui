@@ -1,12 +1,11 @@
 @import "../fonts/proxima-nova/style.css";
 
-
 body{
   font-size: 14px;
   line-height: 1.3;
   font-weight: bold;
   color: @color-grey;
-
+  --font-mono: monospace;
 }
 
 
@@ -35,7 +34,10 @@ h3, .h3{
 }
 
 
-.tag,.indication{
+.tag,.indication,.indication-mono{
   font-size: 12px;
   color:@color-grey-light ;
+}
+.indication-mono{
+  font-family: var(--font-mono);
 }
