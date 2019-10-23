@@ -102,6 +102,10 @@ ui.on("NEW_SEANCE",function(seance){
 ui.on("READY",function(){
     //Layout------------------------------------
     ui.layout.setVersion("1.17.3");
+    ui.layout.setContenuUpdate("contenu Truc 18%");
+    setTimeout(function(){
+        ui.layout.setContenuUpdate(null);
+    },5000)
     ui.layout.setVersionUpdateMessage("installer la mise à jour",true);
     ui.layout.setLogo("./medias/logo-cayceo.png");
     ui.isOffline=true;

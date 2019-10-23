@@ -33,18 +33,25 @@ body{
   display: flex;
   align-items: center;
 
+
+
+  >*{
+    //outline: 1px solid red;
+    padding: 5px 10px;
+  }
   >svg{
     width: 16px;
     height: 16px;
-    margin-right: 10px;
+    padding: 0;
+    margin: 5px;
   }
+
 }
 #version{
 
 }
-#version-update{
+#version-update,#contenu-update{
   >div{
-    margin-left: 10px;
     &:empty{
       display: none;
     }

@@ -8,7 +8,9 @@ export default class Layout {
          */
         this.$main=$(require("./layout.html"));
         this._$logo=this.$main.find("#logo");
+        this._$contenuUpdate=this.$main.find("#contenu-update");
         this._loadAssets();
+        this.setContenuUpdate(null);
     }
     /**
      * Permet de d'afficher un numéro de version'
@@ -16,6 +18,19 @@ export default class Layout {
      */
     setVersion(version){
         this.$main.find("#version>div").text(`Version ${version} / ui-${VERSION}`)
+    }
+
+    /**
+     * Affiche une info relative aux mises à jour de contenus
+     * @param message
+     */
+    setContenuUpdate(message){
+        if(!message){
+            this._$contenuUpdate.css("display","none");
+        }else{
+            this._$contenuUpdate.css("display","");
+        }
+        this._$contenuUpdate.find(">div").text(message);
     }
 
     /**
