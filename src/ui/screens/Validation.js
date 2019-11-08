@@ -28,11 +28,18 @@ export default class Validation extends ScreenUi{
          * @type {Casque[]}
          */
         this.casques=casques;
+        let nums=[];
         let str="";
+        for(let casque of casques){
+            nums.push(casque.numero)
+        }
         if(casques.length>1){
-            str=`${casques.length} casques`;
+            str=`casques`;
+            let last=nums.pop();
+            str+=" "+nums.join(", ")+" et "+last;
         }else{
-            str=`${casques.length} casque`;
+            str=`casque`;
+            str+=" "+nums.join(",");
         }
         this.$main.find("[casques]").text(str);
     }

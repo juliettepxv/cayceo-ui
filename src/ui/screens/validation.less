@@ -6,12 +6,14 @@
     background-color: @color-green;
     //opacity: 0.60;
     padding: @space-big;
-    border-radius: 90px;
+    border-radius: 900px;
     display: flex;
-    align-items: flex-end;
+    align-items: stretch;
     margin-bottom: @space-medium;
 
     *[class^="element-"]{
+      min-width: 230px;
+      max-width: 230px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -27,6 +29,10 @@
         width: 60px;
         height: 60px;
         margin-bottom: @space-tiny;
+      }
+      h2{
+        max-width: 250px;
+        text-align: center;
       }
     }
   }
