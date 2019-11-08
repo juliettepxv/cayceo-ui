@@ -1,0 +1,100 @@
+@keyframes dialog-fade-in{
+  from{
+    opacity: 0;
+  }
+}
+@keyframes dialog-entrance{
+  from{
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+}
+[dialog='wrap']{
+  z-index: var(--dialog-z-index,10000);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button{
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    &:active,&:focus{
+      background-color: var(--dialog-btn-active-background,#C0C0C0) !important;
+      color: var(--dialog-btn-active-color,#fff) !important;
+    }
+  }
+
+
+  [dialog='disabler']{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--dialog-diabler-color, rgba(0, 0, 0, 0.30));
+
+    animation-name: dialog-fade-in;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+
+
+
+  }
+  [dialog='box']{
+    padding: 50px 30px 30px 30px;
+    >*{
+      margin-bottom: 30px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+
+    animation-name: dialog-entrance;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    box-shadow: 10px 15px 20px rgba(123, 79, 102, 0.5);
+
+    z-index: 2;
+    max-width: 90%;
+    max-height: 90%;
+    background-color:  var(--dialog-box-color, #FFF);
+
+    border-radius: 8px;
+
+    text-align: center;
+    position: relative;
+
+  }
+  [dialog='oui'],[dialog='non']{
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--dialog-btn-background,#F0F0F0);
+  }
+  [dialog='cancel']{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 20px;
+    font-family: serif;
+    line-height: 1;
+    font-weight: lighter;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    //background-color: var(--dialog-btn-background,#F0F0F0);
+  }
+
+}
