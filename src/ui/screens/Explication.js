@@ -34,7 +34,8 @@ export default class Explication extends ScreenUi{
 
         if(ipsCasquesSuccess.length){
             recap="La séance est prête ";
-            help="Pour la lancer, appuyez sur le long bouton à droite.";
+            help="Une fois le casque installé confortablement, appuyer une fois sur le long bouton de droite pour calibrer et lancer automatiquement la séance.";
+            //help="Pour la lancer, appuyez sur le long bouton à droite.";
             if(ipsCasquesSuccess.length===1){
                 recap+=`sur le casque ${ipsCasquesSuccess[0]}.`;
             }else{
