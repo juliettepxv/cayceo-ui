@@ -25,6 +25,9 @@ setTimeout(function(){
 ui.on(CMD.QUIT,function(){
     alert("quitter l'application");
 });
+ui.on(CMD.SHUT_DOWN_ALL,function(){
+    alert("eteindre les casques puis le système");
+});
 ui.on(CMD.UPDATE_CONTENT,function(){
     alert("Mettre à jour le contenu");
 });

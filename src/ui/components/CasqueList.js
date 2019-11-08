@@ -13,6 +13,19 @@ export default class CasqueList{
          * @type {Casque[]}
          */
         this.list={};
+
+    }
+
+    /**
+     * La liste des casques sous forme de tableau
+     * @returns {Casque[]}
+     */
+    arrayList(){
+        let a=[];
+        for(let c in this.list){
+            a.push(this.list[c])
+        }
+        return a;
     }
 
     /**

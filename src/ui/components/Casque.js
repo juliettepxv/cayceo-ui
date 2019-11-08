@@ -111,6 +111,14 @@ export default class Casque {
     }
 
     /**
+     *
+     * @returns {boolean}
+     */
+    isPlugged(){
+        return this.$main.is("[plugged='1']");
+    }
+
+    /**
      * Affiche le temps de lecture restant
      * @param {number} remainingSeconds
      */

@@ -54,6 +54,11 @@ window.CMD.CASQUE_WAKE_UP="CASQUE_WAKE_UP";
  */
 window.CMD.NEW_SEANCE="NEW_SEANCE";
 /**
+ * Eteindre tous les casques et ensuite l'ordinateur
+ * @type {string}
+ */
+window.CMD.SHUT_DOWN_ALL="SHUT_DOWN_ALL";
+/**
  * Quitter l'application
  * @type {string}
  */

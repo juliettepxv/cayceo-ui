@@ -24,6 +24,7 @@ import Logs from "./popin/Logs";
 import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
 import PinCode from "./popin/PinCode";
+import Dialog from "./components/Dialog/Dialog";
 
 //todo debug mode online / offline
 //todo debug mode downloading + progress
@@ -91,6 +92,7 @@ export default class Ui extends EventEmitter{
         this.nav=new Nav();
         this.layout.$main.append(this.nav.$main);
 
+        this.dialog=new Dialog();
         /**
          * La liste des casques
          * @type {CasqueList}
@@ -196,6 +198,11 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_STOP,$(this).closest("[casque]").attr("casque"));
                    break;
 
+
+               case "shut-down-all":
+                   me.shutDownAll();
+                   break;
+
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
@@ -214,6 +221,7 @@ export default class Ui extends EventEmitter{
                    me.screens.validation.setDuree(duree);
                    me.screens.validation.show("from-right");
                    break;
+
 
                case "valid-seance":
                    let casquesIps=[];
@@ -286,6 +294,62 @@ export default class Ui extends EventEmitter{
         this.emit("READY");
 
     }
+
+    /**
+     * Demande à arrêter les casque et le système en pasant par quelques confirmations
+     */
+    shutDownAll(){
+        let me=this;
+        /**
+         * Renvoie les numeros de casque pas branchés
+         * @returns {[]}
+         */
+        let unpluggeds=function(){
+            let toPlug=[];
+            for(let c of me.casques.arrayList()){
+                if(!c.isPlugged()){
+                    toPlug.push(c.numero);
+                }
+            }
+            return toPlug;
+        };
+
+        let testAndShutDown=function(){
+            let toPlug=unpluggeds();
+            if(toPlug.length){
+                let text=`Merci de brancher `;
+                if(toPlug.length===1){
+                    text+=`le casque ${toPlug.join(", ")}`
+                }else{
+                    let last=toPlug.pop();
+                    text+=`les casques ${toPlug.join(", ")}`;
+                    text+=" et "+last;
+                }
+                me.dialog
+                    .display()
+                    .setText(text)
+                    .oui("C'est fait",
+                        function(){
+                            testAndShutDown();
+                        }
+                    ).non("Arrêter quand même",
+                    function(){
+                        me.emit(CMD.SHUT_DOWN_ALL);
+                    }
+                );
+            }else{
+                me.emit(CMD.SHUT_DOWN_ALL);
+            }
+        };
+
+        me.dialog
+            .display()
+            .setText("Voulez-vous arrêter la régie ?")
+            .oui("oui",function(){
+               testAndShutDown();
+            });
+    }
+
 
     /**
      * Affiche l'écran de log et y ajoute le message fourni.
