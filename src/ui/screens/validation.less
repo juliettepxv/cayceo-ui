@@ -19,9 +19,12 @@
       justify-content: center;
       align-items: center;
       padding: 0 @space-medium;
-      border-right: 3px solid @color-white-opacity;
-      &:last-child{
+      border-left: 3px solid @color-white-opacity;
+      &:first-child{
         border: none;
+      }
+      &.hidden{
+        display: none;
       }
       img{
         border: 2px solid white;

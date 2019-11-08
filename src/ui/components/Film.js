@@ -1,14 +1,17 @@
 import ObjectLogger from "../popin/ObjectLogger";
 
 export default class Film {
+
     /**
      *
      * @param {string} filmId identifiant du film
      * @param {string} title titre du film
      * @param {string} imgUrl url de l'image du film
      * @param {string} filePath url du fichier
+     * @param minutes
+     * @param text
      */
-    constructor(filmId,title,imgUrl,filePath){
+    constructor(filmId,title,imgUrl,filePath,minutes,text){
         /**
          * @type {string} identifiant du film
          */
@@ -18,6 +21,15 @@ export default class Film {
          * @type {string} url du fichier
          */
         this.filePath=filePath;
+        /**
+         * @type {number} duréée en minutes du film
+         */
+        this.minutes = minutes;
+        /**
+         *
+         * @type {string} texte à afficher dessous
+         */
+        this.text = text;
         /**
          * @type {string} titre du film
          */
@@ -35,6 +47,16 @@ export default class Film {
         //applique les propriétés
         this._setImage(imgUrl)
             ._setTitle(title);
+
+        if(minutes){
+            minutes=minutes*1;
+        }
+        if(minutes && !isNaN(minutes) && minutes > 0){
+            this.addTag(`${minutes}:00`);
+        }
+        if(text){
+            this.addTag(text);
+        }
 
         //popin...
         let popinName=`Film ${this.filmId}`;

@@ -205,7 +205,8 @@ export default class Ui extends EventEmitter{
                case "select-film":
                    let film=me.screens.films.getFilmById($(this).closest("[film]").attr("film"));
                    me.screens.validation.setFilm(film);
-                   me.screens.selectDuree.show("from-right");
+                   me.screens.validation.setDuree(film.minutes);
+                   me.screens.validation.show("from-right");
                    break;
 
                case "select-duree":

@@ -1,6 +1,7 @@
 import Film from "../components/Film";
 import ScreenUi from "./ScreenUi";
 import Ui from "../Ui";
+import string from "less/lib/less/functions/string";
 
 export default class Films extends ScreenUi{
     constructor(){
@@ -69,10 +70,12 @@ export default class Films extends ScreenUi{
      * @param {string} title titre du film
      * @param {string} imgUrl url de l'image du film
      * @param {string} filePath url du fichier
+     * @param {number} minutes Nombre de minutes que ça dure
+     * @param {string} text texte à afficher sous le film
      * @return {Film}
      */
-    addFilm(filmId,title,imgUrl,filePath){
-        let f=new Film(filmId,title,imgUrl,filePath);
+    addFilm(filmId,title,imgUrl,filePath,minutes,text){
+        let f=new Film(filmId,title,imgUrl,filePath,minutes,text);
         let existing=this.getFilmById(filmId);
         if(existing){
             console.warn(`Le film ${filePath} était déjà dans la liste`);
@@ -80,6 +83,7 @@ export default class Films extends ScreenUi{
             this.list.push(f);
             this.$main.find("#films").append(f.$main);
         }
+
         return f;
     }
 

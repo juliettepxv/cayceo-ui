@@ -8,10 +8,11 @@ export default class Validation extends ScreenUi{
         this.$main=$(require("./validation.html"));
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,false);
-            ui.nav.displayBack(true,"selectDuree");
+            ui.nav.displayBack(true,"films");
             ui.nav.displayDashboard(true);
             me.displayLoading(false);
         });
+        this.$caseDuree=this.$main.find(".element-duree");
     }
 
     displayLoading(displayLoading){
@@ -76,5 +77,10 @@ export default class Validation extends ScreenUi{
          */
         this.duree=minutes;
         this.$main.find("[minutes]").text(minutes);
+        if(!this.duree){
+            this.$caseDuree.addClass("hidden");
+        }else{
+            this.$caseDuree.removeClass("hidden");
+        }
     }
 }

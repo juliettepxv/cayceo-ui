@@ -149,10 +149,11 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id1",
         "La plage",
-        "medias/plage.jpg"
+        "medias/plage.jpg",
+        "",
+        5,
+        "Hello world"
         )
-        .addTag("Pédiatrie")
-        .addTag("Stress")
         .setDetails(
         {
             "test":Math.random(),
@@ -164,9 +165,9 @@ ui.on("READY",function(){
         "id2",
         "La forêt long long text fin",
         "medias/foret.jpg",
-        ""
+        "",
+        12
         )
-        .addTag("Stress")
         .setDetails(
         {
             "test":Math.random(),
@@ -187,10 +188,11 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id3",
         "Le machin",
-        "medias/plage.jpg"
+        "medias/plage.jpg",
+        "",
+        "",
+        "Rose\nBleu"
         )
-        .addTag("Violence")
-        .addTag("Drogue")
         .setDetails(
         {
             "test":Math.random(),
@@ -201,10 +203,11 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id4",
         "Le bidule",
-        "medias/plage.jpg"
+        "medias/plage.jpg",
+        "",
+        60,
+        "Machin\nToto\nchose"
         )
-        .addTag("Sexe")
-        .addTag("Licornes")
         .setDetails(
         {
             "test":Math.random(),
@@ -215,10 +218,11 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id5",
         "Le chose",
-        "medias/plage.jpg"
+        "medias/plage.jpg",
+        "",
+        20,
+        "Per-opératoire"
         )
-        .addTag("Poneys")
-        .addTag("Arc en ciel")
         .setDetails(
         {
             "test":Math.random(),
@@ -230,9 +234,10 @@ ui.on("READY",function(){
     ui.films.addFilm(
         "id2",
         "Ne doit pas s'afficher",
-        "medias/foret.jpg"
+        "medias/foret.jpg",
+        "",
+        35
         )
-        .addTag("Stress")
         ._infoPopIn.displayData(
         {
             "test":Math.random(),
