@@ -126,7 +126,7 @@ export default class Casque {
         let d=new Date();
         d.setTime(0);
         d.setSeconds(remainingSeconds);
-        this.$main.find(".timer").text(`-${d.toLocaleTimeString().substr(3,5)}`)
+        this.$main.find(".timer").text(`${d.toLocaleTimeString("en-US", {hour12: false}).substr(3,5)}`)
     }
 
     /**
