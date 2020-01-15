@@ -81,7 +81,7 @@ export default class Films extends ScreenUi{
             console.warn(`Le film ${filePath} était déjà dans la liste`);
         }else{
             this.list.push(f);
-            this.$main.find("#films").append(f.$main);
+            this.$main.find(".films-list").append(f.$main);
         }
 
         return f;

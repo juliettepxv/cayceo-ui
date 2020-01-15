@@ -1,0 +1,33 @@
+.medias-scroll{ //le truc qui va scroller
+  //outline: 1px solid red;
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 1px;
+    background: rgb(256, 256, 256);
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgb(250, 250, 250);
+    width: 50px;
+    height: 50px;
+  }
+
+
+  max-width: calc( 100% - 2px);
+  padding-top: 130px;
+  padding-bottom: 180px;
+  display: flex;
+
+  .medias-scroll-container{ //la liste
+    //outline: 1px solid blue;
+    flex-shrink: 0;
+    flex-grow: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+    // >*les items sont ici...
+    >*{ //item
+      //outline: 1px solid green;
+    }
+  }
+}
