@@ -104,7 +104,8 @@ ui.on("NEW_SEANCE",function(seance){
 
 ui.on("READY",function(){
     //Layout------------------------------------
-    ui.layout.setVersion("1.17.3","machine test");
+    ui.layout.setVersion("9.99.9");
+    ui.layout.setMachineName("machine test");
     ui.layout.setContenuUpdate("contenu Truc 18%");
     setTimeout(function(){
         ui.layout.setContenuUpdate(null);

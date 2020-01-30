@@ -11,14 +11,20 @@ export default class Layout {
         this._$contenuUpdate=this.$main.find("#contenu-update");
         this._loadAssets();
         this.setContenuUpdate(null);
+        this.version="";
+        this.machineName="";
     }
     /**
      * Permet de d'afficher un numéro de version'
      * @param version
-     * @param machineName
      */
-    setVersion(version,machineName=""){
-        this.$main.find("#version>div").text(`Version ${version} / ${machineName}`)
+    setVersion(version){
+        this.version=version;
+        this.$main.find("#version>div").text(`Version ${this.version} / ${this.machineName}`)
+    }
+    setMachineName(machineName){
+        this.machineName=machineName;
+        this.$main.find("#version>div").text(`Version ${this.version} / ${this.machineName}`)
     }
 
     /**
