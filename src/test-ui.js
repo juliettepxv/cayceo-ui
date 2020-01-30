@@ -104,7 +104,7 @@ ui.on("NEW_SEANCE",function(seance){
 
 ui.on("READY",function(){
     //Layout------------------------------------
-    ui.layout.setVersion("1.17.3");
+    ui.layout.setVersion("1.17.3","machine test");
     ui.layout.setContenuUpdate("contenu Truc 18%");
     setTimeout(function(){
         ui.layout.setContenuUpdate(null);
@@ -203,7 +203,7 @@ ui.on("READY",function(){
         }
     );
 
-    ui.films.addFilm(
+    let testFilm=ui.films.addFilm(
         "id4",
         "Le bidule",
         "medias/plage.jpg",
@@ -217,6 +217,13 @@ ui.on("READY",function(){
             "id":"id4"
         }
     );
+    //acche et réaffiche un film
+    setTimeout(function(){
+        testFilm.disabled=true;
+        setTimeout(function(){
+            testFilm.disabled=false;
+        },5*1000);
+    },20*1000);
 
     ui.films.addFilm(
         "id5",
@@ -248,9 +255,12 @@ ui.on("READY",function(){
             }
         );
 
+
+
     //fake datas en boucle...
 
     setInterval(function(){
+        ui.log("Hello "+new Date().getTime().toString())
         //random sur les casques
         for(let c in ui.casques.list){
             let casque=ui.casques.list[c];

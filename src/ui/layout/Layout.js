@@ -15,9 +15,10 @@ export default class Layout {
     /**
      * Permet de d'afficher un numéro de version'
      * @param version
+     * @param machineName
      */
-    setVersion(version){
-        this.$main.find("#version>div").text(`Version ${version} / ui-${VERSION}`)
+    setVersion(version,machineName=""){
+        this.$main.find("#version>div").text(`Version ${version} / ${machineName}`)
     }
 
     /**

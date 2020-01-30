@@ -72,10 +72,10 @@ export default class Films extends ScreenUi{
      * @param {string} filePath url du fichier
      * @param {number} minutes Nombre de minutes que ça dure
      * @param {string} text texte à afficher sous le film
-     * @return {Film}
+     * @return {Film} Le film rajouté
      */
     addFilm(filmId,title,imgUrl,filePath,minutes,text){
-        let f=new Film(filmId,title,imgUrl,filePath,minutes,text);
+        let f=new Film(filmId,title,imgUrl,filePath,minutes,text="");
         let existing=this.getFilmById(filmId);
         if(existing){
             console.warn(`Le film ${filePath} était déjà dans la liste`);
@@ -83,7 +83,6 @@ export default class Films extends ScreenUi{
             this.list.push(f);
             this.$main.find(".films-list").append(f.$main);
         }
-
         return f;
     }
 

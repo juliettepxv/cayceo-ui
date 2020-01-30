@@ -2,6 +2,8 @@ import ObjectLogger from "../popin/ObjectLogger";
 
 export default class Film {
 
+
+
     /**
      *
      * @param {string} filmId identifiant du film
@@ -12,6 +14,11 @@ export default class Film {
      * @param text
      */
     constructor(filmId,title,imgUrl,filePath,minutes,text){
+        /**
+         * Affiche ou pas le film
+         * @type {boolean}
+         */
+        this._disabled=false;
         /**
          * @type {string} identifiant du film
          */
@@ -77,6 +84,19 @@ export default class Film {
     setDetails(details){
         this._infoPopIn.displayData(details);
         return this;
+    }
+
+    /**
+     * Définit si on affiche ou non ce contenu
+     * @param value
+     */
+    set disabled(value) {
+        this._disabled = value;
+        if(this._disabled){
+            this.$main.addClass("disabled")
+        }else{
+            this.$main.removeClass("disabled");
+        }
     }
 
     /**
