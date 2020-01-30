@@ -8,7 +8,7 @@ export default class LogsField {
         this.$main=$main;
         /**
          * La liste des logs
-         * @type {Array}
+         * @type {LogLine[]}
          */
         this.logs=[];
         /**
@@ -35,8 +35,22 @@ export default class LogsField {
      * @returns {LogLine} Renvoie la ligne de log insérée de manière à pouvoir la modifier à postériori
      */
     log(stuff,logOnSplash=false){
-        this.logs.push(stuff);
+
+
         let line=new LogLine(stuff,this.displayTime,this);
+        this.logs.unshift(line);
+
+        //limite le nombre de logs
+        let maxLogs=1000;
+        let deleteCount=500;
+        if(this.logs.length>maxLogs){
+            let toRemove=this.logs.slice(deleteCount);
+            for(let r of toRemove){
+                r.$main.remove();
+            }
+            this.logs.splice(deleteCount,maxLogs);
+        }
+
         /**
          *
          * @type {LogLine}
