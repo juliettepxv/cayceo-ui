@@ -75,6 +75,12 @@ export default class Film {
         this._infoPopIn=new ObjectLogger(popinName);
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
         ui.popIns[popinName]=this._infoPopIn;
+
+        /**
+         *
+         * @type {String[]}
+         */
+        this.categories=[];
     }
 
     /**
@@ -130,6 +136,20 @@ export default class Film {
      */
     addTag(tag){
         this.$main.find(".tags").append($(`<div class='tag'>${tag}</div>`));
+        return this;
+    }
+    /**
+     * Ajoute une Categorie
+     * @param {string} category
+     * @returns {Film}
+     */
+    addCategory(category){
+        if(this.categories.indexOf(category) === -1){
+            this.categories.push(category);
+            ui.screens.filters.addCategory(category);
+            this.addTag("test "+category);
+        }
+
         return this;
     }
 }

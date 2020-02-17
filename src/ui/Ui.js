@@ -26,15 +26,17 @@ import Splash from "./screens/Splash";
 import PinCode from "./popin/PinCode";
 import Dialog from "./components/Dialog/Dialog";
 
-//todo debug mode online / offline
-//todo debug mode downloading + progress
-//todo debug mode film / info
-//todo debug mode film / afficher identifiant
-
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */
 export default class Ui extends EventEmitter{
+    get categoriesEnabled() {
+        return this._categoriesEnabled;
+    }
+
+    set categoriesEnabled(value) {
+        this._categoriesEnabled = value;
+    }
 
 
 
@@ -103,6 +105,11 @@ export default class Ui extends EventEmitter{
          * @type {Films}
          */
         this.films=new Films();
+        /**
+         * Définit si l'affichage des contenus via catégories est activé ou non
+         * @type {boolean}
+         */
+        this._categoriesEnabled=false;
 
 
         /**
@@ -206,7 +213,12 @@ export default class Ui extends EventEmitter{
                case "select-casques":
                    let casques=me.screens.selectCasques.getSelecteds();
                    me.screens.validation.setCasques(casques);
-                   me.screens.films.show("from-right");
+                   if(ui.categoriesEnabled){
+                       me.screens.filters.show("from-right");
+                   }else{
+                       me.screens.films.show("from-right");
+                   }
+
                    break;
 
                case "select-film":

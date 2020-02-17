@@ -120,6 +120,8 @@ ui.on("READY",function(){
         logLine.setContent("hello on log and splash")
     },5*1000);
 
+    ui.categoriesEnabled=true;
+
     //toutes les secondes dit l'heure sur la même ligne de log
     let logTime=ui.log(new Date().toLocaleTimeString());
     setInterval(function(){
@@ -163,7 +165,8 @@ ui.on("READY",function(){
             "test":Math.random(),
             "id":"id1"
         }
-    );
+    ).addCategory("toto")
+        .addCategory("plage");
 
     let filmTest=ui.films.addFilm(
         "id2",
@@ -177,7 +180,9 @@ ui.on("READY",function(){
             "test":Math.random(),
             "id":"id2"
         }
-    );
+    ).addCategory("toto")
+        .addCategory("forêt");
+
 
     casqueTest.setOnline(true);
     casqueTest.setBatteryPlugged(true);
@@ -202,7 +207,9 @@ ui.on("READY",function(){
             "test":Math.random(),
             "id":"id3"
         }
-    );
+    ).addCategory("machin")
+        .addCategory("titi")
+        .addCategory("toto");
 
     let testFilm=ui.films.addFilm(
         "id4",
@@ -217,7 +224,8 @@ ui.on("READY",function(){
             "test":Math.random(),
             "id":"id4"
         }
-    );
+    ).addCategory("bidule")
+        .addCategory("toto");
     //acche et réaffiche un film
     setTimeout(function(){
         testFilm.disabled=true;

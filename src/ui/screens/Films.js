@@ -4,8 +4,23 @@ import Ui from "../Ui";
 import string from "less/lib/less/functions/string";
 
 export default class Films extends ScreenUi{
+    get category() {
+        return this._category;
+    }
+    set category(value) {
+        this._category = value;
+        for(let f of this.list){
+            if(value && f.categories.indexOf(value) === -1){
+                f.$main.css("display","none");
+            }else{
+                f.$main.css("display","");
+            }
+        }
+
+    }
     constructor(){
         super();
+
         this.$main=$(require("./films.html"));
         /**
          * La liste des films
@@ -17,6 +32,12 @@ export default class Films extends ScreenUi{
             ui.nav.displayBack(true,"selectCasques");
             ui.nav.displayDashboard(true);
         });
+
+        /**
+         * La categorie à afficher
+         * @type {string}
+         */
+        this._category="";
     }
 
     /**

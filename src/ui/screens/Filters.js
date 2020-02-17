@@ -12,5 +12,30 @@ export default class Filters extends ScreenUi{
             ui.nav.displayBack(true,"selectCasques");
             ui.nav.displayDashboard(true);
         });
+
+        $body.on("click","[category]",function(){
+            ui.screens.films.category=$(this).attr("category");
+            ui.screens.films.show("from-right");
+        });
+
+        /**
+         * @private
+         * @type {*[]}
+         */
+        this.categories=[];
+        //this.addCategory("autres");
     }
+
+    addCategory(category){
+        if(this.categories.indexOf(category) === -1){
+            this.categories.push(category);
+            let $cat=$(require("../components/category-btn.html"));
+            $cat.find("span").text(category);
+            $cat.attr("category",category);
+            this.$main.find("[categories]").append($cat);
+        }
+
+
+    }
+
 }
