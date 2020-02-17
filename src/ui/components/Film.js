@@ -147,7 +147,7 @@ export default class Film {
         if(this.categories.indexOf(category) === -1){
             this.categories.push(category);
             ui.screens.filters.addCategory(category);
-            this.addTag("test "+category);
+            this.addTag(category);
         }
 
         return this;
