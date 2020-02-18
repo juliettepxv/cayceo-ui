@@ -25,22 +25,20 @@ export default class SelectCasques extends ScreenUi{
                 //check/uncheck
                 ui.casques.list[c].$main.find("button.circle").off("click").on("click",function(){
                     ui.casques.list[c].toggleSelected();
-                    me._refresh();
+                    me.refresh();
                 });
             }
 
 
         });
 
-
     }
 
 
     /**
      * Affiche ou pas le bouton ok en fonction des casques selectionnés ou non
-     * @private
      */
-    _refresh(){
+    refresh(){
         let me=this;
         let $ok=me.$main.find("[ok]");
         if(me.getSelecteds().length){
@@ -68,6 +66,6 @@ export default class SelectCasques extends ScreenUi{
      */
     unSelectAll(){
         this.$main.find("#casques [casque]").attr("is-selected","0");
-        this._refresh();
+        this.refresh();
     }
 }

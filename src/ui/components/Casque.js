@@ -300,6 +300,7 @@ export default class Casque {
             }
         };
         this.$main.attr("is-selectable",isSelectable()?"1":"0");
+        ui.screens.selectCasques.refresh();
     }
 
 
