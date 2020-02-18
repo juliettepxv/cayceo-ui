@@ -7,7 +7,7 @@ button{
     filter: brightness(0.9) contrast(1.5);
   }
 
-  &.btn,&.big-btn,&.btn-small,&.btn-tiny {
+  &.btn,&.big-btn,&.btn-small,&.btn-medium,&.btn-tiny {
     display: inline-flex;
     flex-shrink: 0;
     justify-content: center;
@@ -37,6 +37,13 @@ button{
     svg {
       margin-left: @space-small;
     }
+  }
+  &.btn-medium {
+    min-height: var(--h);
+    height: auto;
+    padding: @space-small calc(@space-medium);
+    font-size: 16px;
+    line-height: 1;
   }
   &.btn-small {
     --h:40px;
