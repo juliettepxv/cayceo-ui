@@ -1,4 +1,7 @@
 #popin-window{
+
+  --close-btn-size:90px;
+
   &.hidden{
     display: none;
   }
@@ -26,11 +29,18 @@
 
   .close{
     position: absolute;
-    top:0;
-    right: 0;
-    background-color: @color-green;
+    top:20px;
+    right: 20px;
+    background-color: @color-grey-light;
     color: white;
-    padding: @space-medium;
+    //padding: @space-medium;
+    width: calc( var(--close-btn-size) - 40px);
+    height: calc( var(--close-btn-size) - 40px);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
   }
 
   #popin-content{
@@ -45,6 +55,21 @@
     >*{
       max-width: 100%;
     }
+
+    //scroll custom
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 1px;
+      background: #fff;
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-grey-light);
+      width: 50px;
+      height: 50px;
+      border: 2px solid #fff;
+    }
+
   }
 
 
