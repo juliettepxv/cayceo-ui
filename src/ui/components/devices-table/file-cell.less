@@ -1,0 +1,133 @@
+.device-col{
+  .file-cell{
+
+    --error:red;
+    --success: #d8ffdd;
+
+    position: relative;
+
+    .copyPercent{
+      border-radius: 0;
+      background-color: #fff;
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      text-align: left;
+      &:after{
+        content: '%';
+      }
+    }
+
+    >div{
+      border-radius: 4px;
+      overflow: hidden;
+      font-family: var(--font-mono);
+      font-weight: normal;
+      font-size: 8px;
+      display: flex;
+      >*{
+        width: 25%;
+        text-align: center;
+      }
+    }
+
+    .exists,.shouldExists,.toDo,.doing{
+      background-color: var(--color-grey-light);
+      color: #fff;
+      --success: #00FF00;
+      --error: #DD0000;
+      display: flex;
+      padding: 4px;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1px;
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+
+    &[toDo='1']{
+      .toDo{
+        background-color: var(--success);
+      }
+    }
+    &[toDo='-1']{
+      .toDo{
+        background-color: var(--warning);
+      }
+    }
+    &[doing='1'],&[doing='-1']{
+      animation-name: blink;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+    &[doing='1']{
+      .doing{
+        background-color: var(--success);
+      }
+    }
+    &[doing='-1']{
+      .doing{
+        background-color: var(--warning);
+      }
+    }
+    &[doing='-2']{
+      .doing{
+        background-color: var(--error);
+      }
+    }
+
+
+    &[exists='1']{
+      .exists{
+        background-color: var(--success);
+      }
+    }
+    &[exists='-1']{
+      .exists{
+        background-color: var(--warning);
+      }
+    }
+    &[shouldExists='1']{
+      .shouldExists{
+        background-color: var(--success);
+      }
+    }
+    &[shouldExists='-1']{
+      .shouldExists{
+        background-color: var(--warning);
+      }
+    }
+
+
+    &[exists='1'][shouldExists='1']{
+      background-color: var(--success);
+    }
+    &[exists='-1'][shouldExists='1']{
+      background-color: var(--error);
+    }
+    &[exists='1'][shouldExists='-1']{
+      background-color: var(--error);
+    }
+    &[exists='-1'][shouldExists='-1']{
+      //background-color: var(--color-grey-light);
+      opacity: 0.2;
+    }
+
+
+  }
+
+  @keyframes blink{
+    from{
+      opacity: 0.5;
+    }
+    to{
+      opacity: 1;
+    }
+  }
+
+}

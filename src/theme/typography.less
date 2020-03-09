@@ -6,6 +6,8 @@ body{
   font-weight: bold;
   color: @color-grey;
   --font-mono: monospace;
+  --font-normal: "Proxima Nova Semibold", cursive;
+  --font-normal-bold: "Proxima Nova Bold", cursive;
 }
 
 
@@ -14,7 +16,7 @@ h1,h2,h3{
 }
 
 *{
-  font-family: "Proxima Nova Semibold", cursive;
+  font-family: var(--font-normal);
   letter-spacing: 1px;
 }
 
@@ -22,7 +24,7 @@ h1,h2,.h1,.h2, button{
   text-transform: uppercase;
 }
 h1, .h1{
-  font-family: "Proxima Nova Bold", cursive;
+  font-family: var(--font-normal-bold);
   font-size: 21px;
   font-weight: normal;
   &.long{

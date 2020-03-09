@@ -13,10 +13,11 @@ require("./CayceoUi");
 
 ui.displaySplashScreen("Hello world");
 setTimeout(function(){
-    let t=3;
+    let t=1;
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
         ui.screens.home.show();
+        ui.showPopin(ui.popIns.filesReport);
     },t * 1000);
 },2 * 1000);
 
@@ -156,7 +157,7 @@ ui.on("READY",function(){
         "id1",
         "La plage",
         "medias/plage.jpg",
-        "",
+        "La/plage",
         5,
         "Hello world"
         )
@@ -172,7 +173,7 @@ ui.on("READY",function(){
         "id2",
         "La forêt long long text fin",
         "medias/foret.jpg",
-        "",
+        "La_forêt_long_long/text/fin",
         12
         )
         .setDetails(
@@ -198,7 +199,7 @@ ui.on("READY",function(){
         "id3",
         "Le machin",
         "medias/plage.jpg",
-        "",
+        "Le/machin/eeee",
         "",
         "Rose\nBleu"
         )
@@ -215,7 +216,7 @@ ui.on("READY",function(){
         "id4",
         "Le bidule",
         "medias/plage.jpg",
-        "",
+        "Le/bidule",
         60,
         "Machin\nToto\nchose"
         )
@@ -238,7 +239,7 @@ ui.on("READY",function(){
         "id5",
         "Le chose",
         "medias/plage.jpg",
-        "",
+        "Le/chose",
         20,
         "Per-opératoire"
         )
@@ -254,7 +255,7 @@ ui.on("READY",function(){
         "id2",
         "Ne doit pas s'afficher",
         "medias/foret.jpg",
-        "",
+        "Ne/doit/pas/s-afficher",
         35
         )
         ._infoPopIn.displayData(

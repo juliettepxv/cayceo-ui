@@ -25,6 +25,8 @@ import ObjectLogger from "./popin/ObjectLogger";
 import Splash from "./screens/Splash";
 import PinCode from "./popin/PinCode";
 import Dialog from "./components/Dialog/Dialog";
+import FilesReport from "./popin/FilesReport";
+import DevicesTable from "./components/devices-table/DevicesTable";
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
@@ -36,6 +38,9 @@ export default class Ui extends EventEmitter{
 
     set categoriesEnabled(value) {
         this._categoriesEnabled = value;
+        if(!this._categoriesEnabled){
+            this.films.category=null;
+        }
     }
 
 
@@ -264,6 +269,9 @@ export default class Ui extends EventEmitter{
             let popName=$(this).attr("data-show-popin");
             me._showPopinByName(popName);
         });
+
+        this.devicesTable=new DevicesTable();
+
         /**
          * La liste exhaustive des écrans
          * @type {{films: Films, filters: Filters, selectCasques: SelectCasques, validation: Validation, explication: Explication, home: Home}}
@@ -291,9 +299,9 @@ export default class Ui extends EventEmitter{
             "logs":new Logs(),
             "debug":null,
             "webApiData":new ObjectLogger("Web Api data"),
-            "pinCode":new PinCode()
+            "pinCode":new PinCode(),
+            "filesReport":new FilesReport()
         };
-
 
         this.popIns.pinCode.on("SUCCESS",function(){
             me.debugMode.enable();

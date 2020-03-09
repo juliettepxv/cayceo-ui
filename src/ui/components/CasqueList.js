@@ -37,6 +37,7 @@ export default class CasqueList{
         let c=new Casque(fullIp);
         this.list[fullIp]=c;
         this.$main.append(c.$main);
+        ui.devicesTable.addDevice(fullIp,c);
         return c;
     }
 

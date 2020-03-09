@@ -1,0 +1,62 @@
+.devices-table{
+
+  --error:red;
+  --warning: #ffa31e;
+  --success: #d8ffdd;
+
+  display: flex;
+  //justify-content: stretch;
+  >.files-col{
+    //flex-grow: 1;
+  }
+
+
+  .head,.file-cell{
+    padding: 10px;
+    border-bottom: 1px solid #EEE;
+    border-right: 1px solid #EEE;
+    &:last-child{
+      //border-bottom: none;
+    }
+  }
+
+  .head{
+    height: var(--close-btn-size,50px);
+    .name{
+      text-transform: uppercase;
+      color: var(--color-green);
+      height: 20px;
+      font-weight: bold;
+    }
+    .id,.online,.plugged,.apk,.contenusReady{
+      height: 10px;
+      font-size: 8px;
+      font-family: var(--font-mono);
+      color: var(--color-grey-light);
+    }
+
+  }
+
+  .file-cell{
+    text-transform: uppercase;
+    height: 80px;
+    font-size: 10px;
+
+  }
+
+  >.files-col{
+    order:0;
+    font-size: 10px;
+    font-family: var(--font-mono);
+  }
+
+  >.device-col{
+    background-color: #fff;
+    min-width: 120px;
+    >.head,.file-cell{
+      text-align: center;
+    }
+  }
+}
+@import "./file-cell.less";
+@import "./file-head-cell.less";

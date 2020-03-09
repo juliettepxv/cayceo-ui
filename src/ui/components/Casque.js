@@ -106,6 +106,7 @@ export default class Casque {
      */
     setBatteryPlugged(plugged=false){
         this.$main.attr("plugged",plugged?"1":"0");
+        ui.devicesTable.devicesById[this.ip].$plugged.text(plugged?"plugged":"unplugged");
         this._refresh();
         return this;
     }
@@ -209,6 +210,7 @@ export default class Casque {
      */
     setOnline(isOnline=true){
         this.$main.attr("is-online",isOnline?"1":"0");
+        ui.devicesTable.devicesById[this.ip].$online.text(isOnline?"online":"offline");
         if(!isOnline){
             this.setContenu(null);
         }
@@ -229,7 +231,9 @@ export default class Casque {
      * @return {Casque}
      */
     setContenusReady(isReady=true){
+        console.warn("setContenusReady",isReady);
         this.$main.attr("is-contenus-ready",isReady?"1":"0");
+        ui.devicesTable.devicesById[this.ip].$contenusReady.text(isReady?"ready":"not ready");
         this._refresh();
         return this;
     }
@@ -252,6 +256,7 @@ export default class Casque {
      */
     setApkIsOk(isOk=true){
         this.$main.attr("is-apk-ok",isOk?"1":"0");
+        ui.devicesTable.devicesById[this.ip].$apk.text(isOk?"apk ok":"apk not ok");
         this._refresh();
         return this;
     }

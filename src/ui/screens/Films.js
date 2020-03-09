@@ -97,11 +97,13 @@ export default class Films extends ScreenUi{
      */
     addFilm(filmId,title,imgUrl,filePath,minutes,text){
         let f=new Film(filmId,title,imgUrl,filePath,minutes,text="");
+
         let existing=this.getFilmById(filmId);
         if(existing){
             console.warn(`Le film ${filePath} était déjà dans la liste`);
         }else{
             this.list.push(f);
+            //ui.devicesTable.addFile(filePath);
             this.$main.find(".films-list").append(f.$main);
         }
         return f;
