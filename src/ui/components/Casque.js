@@ -231,7 +231,7 @@ export default class Casque {
      * @return {Casque}
      */
     setContenusReady(isReady=true){
-        console.warn("setContenusReady",isReady);
+        //console.warn("setContenusReady",isReady);
         this.$main.attr("is-contenus-ready",isReady?"1":"0");
         ui.devicesTable.devicesById[this.ip].$contenusReady.text(isReady?"ready":"not ready");
         this._refresh();

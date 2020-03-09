@@ -88,7 +88,7 @@ export default class FileCell {
             }
         }
         if(this.deviceCol.casque){
-            console.warn("allReady",allReady)
+            //console.warn("allReady",allReady)
             this.deviceCol.casque.setContenusReady(allReady);
         }else{
             //régie donc faut sans doute faire un truc mais quoi? :)

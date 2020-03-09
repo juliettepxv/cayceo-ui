@@ -13,6 +13,9 @@ export default class DeviceCol{
          * @type {Casque}
          */
         this.casque=casque;
+        if(!casque){
+            this.$main.addClass("is-regie");
+        }
 
         this.$id=this.$main.find(".id");
         this.$id.text(this.id);
@@ -77,6 +80,15 @@ export default class DeviceCol{
             }
         }
         return false;
+    }
+
+    /**
+     * Met tous les doing à zéro
+     */
+    resetDoings(){
+        for(let path in this.filesCells){
+            this.filesCells[path].doing=0;
+        }
     }
 
 
