@@ -96,17 +96,16 @@ export default class Films extends ScreenUi{
      * @return {Film} Le film rajouté
      */
     addFilm(filmId,title,imgUrl,filePath,minutes,text){
-        let f=new Film(filmId,title,imgUrl,filePath,minutes,text="");
-
-        let existing=this.getFilmById(filmId);
-        if(existing){
-            console.warn(`Le film ${filePath} était déjà dans la liste`);
+        let film=this.getFilmById(filmId);
+        if(film){
+            console.log(`Le film ${title} (${filePath}) était déjà dans l'ui `);
         }else{
-            this.list.push(f);
-            //ui.devicesTable.addFile(filePath);
-            this.$main.find(".films-list").append(f.$main);
+            film=new Film(filmId,title,imgUrl,filePath,minutes,text="");
+            console.warn(`ajoute Le film ${title} (${filePath}) dans l'ui `);
+            this.list.push(film);
+            this.$main.find(".films-list").append(film.$main);
         }
-        return f;
+        return film;
     }
 
     /**
