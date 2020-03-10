@@ -1,5 +1,10 @@
 import FileCell from "./FileCell";
 export default class DeviceCol{
+    set ip(value) {
+        this._ip = value;
+        this.$ip.text(this._ip);
+    }
+
     /**
      *
      * @param id
@@ -8,6 +13,7 @@ export default class DeviceCol{
     constructor(id,casque) {
         this.$main=$(require("./device-col.html"));
         this.id=id;
+        this.$ip=this.$main.find(".ip");
         /**
          *
          * @type {Casque}
@@ -15,26 +21,31 @@ export default class DeviceCol{
         this.casque=casque;
         if(!casque){
             this.$main.addClass("is-regie");
+        }else{
+            this.$ip.text(this.id);
         }
 
-        this.$id=this.$main.find(".id");
-        this.$id.text(this.id);
-
         this.$name=this.$main.find(".name");
-        this.$online=this.$main.find(".online");
-        this.$plugged=this.$main.find(".plugged");
-        this.$apk=this.$main.find(".apk");
-        this.$contenusReady=this.$main.find(".contenusReady");
+
+
+        this.filesCells={};
+        this.$files=this.$main.find(".files");
+
+        this._ip="...";
+        this._online=null;
+        this._apk=null;
+        this._plugged=null;
+        this._apk=null;
+        this._contenusReady=null;
 
         if(this.casque){
             this.$name.text(this.casque.numero);
             this.$main.css("order",this.casque.numero);
+            this.ip=this.id;
         }else{
             this.$name.text(this.id);
-            this.$id.text("");
         }
-        this.filesCells={};
-        this.$files=this.$main.find(".files");
+
     }
 
     /**
@@ -89,6 +100,44 @@ export default class DeviceCol{
         for(let path in this.filesCells){
             this.filesCells[path].doing=0;
         }
+    }
+
+
+
+    get online() {
+        return this._online;
+    }
+
+    set online(value) {
+        this._online = value;
+        this.$main.attr("online",value?"1":"0");
+    }
+
+    get plugged() {
+        return this._plugged;
+    }
+
+    set plugged(value) {
+        this._plugged = value;
+        this.$main.attr("plugged",value?"1":"0");
+    }
+
+    get apk() {
+        return this._apk;
+    }
+
+    set apk(value) {
+        this._apk = value;
+        this.$main.attr("apk",value?"1":"0");
+    }
+
+    get contenusReady() {
+        return this._contenusReady;
+    }
+
+    set contenusReady(value) {
+        this._contenusReady = value;
+        this.$main.attr("contenusReady",value?"1":"0");
     }
 
 

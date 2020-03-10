@@ -67,6 +67,7 @@ export default class DevicesTable {
      * Si le fichier était déjà géré ne fera rien
      * @param {string} path
      * @param {bool|null} disabled
+     * @return {FileHeadCell}
      */
     addFile(path,disabled=null){
         let fileHC=this.filesHeadCells[path];
@@ -82,6 +83,7 @@ export default class DevicesTable {
         if(disabled!==null){
             fileHC.disabled=disabled;
         }
+        return fileHC;
     }
 
     /**

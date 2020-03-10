@@ -10,10 +10,11 @@ export default class FileHeadCell {
         this.$serverPath=this.$main.find(".serverPath");
         this._contenuName="";
         this._serverPath="";
+        this.$main.attr("name",path);
     }
     set serverPath(value) {
         this._serverPath = value;
-        this.$serverPath.text(this._serverPath);
+        //this.$serverPath.text(this._serverPath);
     }
     get serverPath(){
         return this._serverPath;

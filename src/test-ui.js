@@ -263,7 +263,16 @@ ui.on("READY",function(){
             "test":Math.random(),
             "id":"id2"
             }
-        );
+            );
+
+
+        //génere des faux fichiers
+        for(let i=0;i<10;i++){
+            let path=ui.devicesTable.addFile("this/is/the/path"+Math.random());
+            path.disabled=Math.random()>0.5;
+            path.serverPath=Math.random();
+            path.contenuName="Hello world " +Math.random();
+        }
 
 
 

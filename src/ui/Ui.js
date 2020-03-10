@@ -162,6 +162,7 @@ export default class Ui extends EventEmitter{
     set isOffline(value) {
         $body.find("[is-offline]").attr("is-offline",value?"1":"0");
         this._isOffline = value;
+        ui.devicesTable.devicesById["régie"].online=!this._isOffline;
     }
     /**
      *

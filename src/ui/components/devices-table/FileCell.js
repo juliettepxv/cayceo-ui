@@ -91,6 +91,7 @@ export default class FileCell {
             //console.warn("allReady",allReady)
             this.casque().setContenusReady(allReady);
         }else{
+            this.deviceCol.contenusReady=allReady;
             //régie donc faut sans doute faire un truc mais quoi? :)
         }
 
