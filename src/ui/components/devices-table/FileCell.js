@@ -87,9 +87,9 @@ export default class FileCell {
                 allReady=false;
             }
         }
-        if(this.deviceCol.casque){
+        if(this.casque()){
             //console.warn("allReady",allReady)
-            this.deviceCol.casque.setContenusReady(allReady);
+            this.casque().setContenusReady(allReady);
         }else{
             //régie donc faut sans doute faire un truc mais quoi? :)
         }
@@ -150,19 +150,38 @@ export default class FileCell {
         this._copyPercent = Number(value);
         this.$copyPercent.text(this._copyPercent.toFixed(2))
         this.$copyPercent.css("width",this._copyPercent+"%");
+
+
+        let mainFile=this.fileHead();
+        let casque=this.casque();
+        if(!casque){
+            //progression du dwd
+            ui.layout.setContenuUpdate(`dwd ${mainFile.contenuName} ${value}%`);
+        }else{
+            ui.layout.setContenuUpdate(`copy ${mainFile.contenuName} ${value}% to ${casque.numero}`);
+            casque.setCopyProgress(Number(value));
+        }
         if(this._copyPercent===100){
             this.$copyPercent.css("width","0%");
+            ui.layout.setContenuUpdate(null);
         }
 
-        let headFile=ui.devicesTable.getFileHead(this.path);
-        if(!this.deviceCol.casque){
-            //progression du dwd
-            ui.layout.setContenuUpdate(`dwd ${headFile.contenuName} ${value}%`);
-        }else{
-            ui.layout.setContenuUpdate(`copy ${headFile.contenuName} ${value}% to ${this.deviceCol.casque.numero}`);
-            this.deviceCol.casque.setCopyProgress(Number(value));
-        }
+    }
 
+    /**
+     * La référence au fichier principal dans le tableau
+     * @return {FileHeadCell}
+     */
+    fileHead(){
+        return ui.devicesTable.getFileHead(this.path);
+    }
+
+    /**
+     *
+     * @return {Casque}
+     */
+    casque(){
+        return this.deviceCol.casque;
     }
 
 
