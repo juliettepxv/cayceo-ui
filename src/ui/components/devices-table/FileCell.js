@@ -1,9 +1,11 @@
-export default class FileCell {
+import Ui from "../../Ui";
+
+export default class FileCell{
 
 
     /**
-     *
-     * @param path
+     * Un fichier sur un device donné
+     * @param {string} path chemin relatif vers le fichier
      * @param {DeviceCol} deviceCol
      */
     constructor(path,deviceCol) {
@@ -16,12 +18,36 @@ export default class FileCell {
          * @type {DeviceCol}
          */
         this.deviceCol=deviceCol;
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$main=$(require("./file-cell.html"));
         this.$main.attr("title",path);
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$exists=this.$main.find(".exists");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$shouldExists=this.$main.find(".shouldExists");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$toDo=this.$main.find(".toDo");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$doing=this.$main.find(".doing");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$copyPercent=this.$main.find(".copyPercent");
         /**
          *
@@ -49,6 +75,7 @@ export default class FileCell {
          * @private
          */
         this._copyPercent=0;
+
 
         this.refreshValues();
 
@@ -100,10 +127,16 @@ export default class FileCell {
 
 
     set exists(value) {
+        let changed=value !== this.exists;
         this._exists = value;
         this.refreshValues();
         if(this._exists===-1){
             ui.devicesTable.testFileStillInUse(this.path);
+        }
+        if(changed){
+            if(this._exists===1){
+                ui.emit(Ui.EVENT_FILE_EXISTS,this);
+            }
         }
     }
     get exists() {
@@ -168,6 +201,9 @@ export default class FileCell {
         }
 
     }
+
+
+
 
     /**
      * La référence au fichier principal dans le tableau

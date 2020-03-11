@@ -61,6 +61,17 @@ export default class DevicesTable {
         }
         return r;
     }
+    /**
+     * Revoie la liste des entetes de fichier sous forme de tableau
+     * @returns {FileHeadCell[]}
+     */
+    filesHeadCellsArray(){
+        let r=[];
+        for (let f in this.filesHeadCells){
+            r.push(this.filesHeadCells[f]);
+        }
+        return r;
+    }
 
     /**
      * Ajoute un ficher à gérer.

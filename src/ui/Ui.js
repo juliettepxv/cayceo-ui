@@ -478,4 +478,9 @@ export default class Ui extends EventEmitter{
 * @type {string}
 */
 Ui.EVENT_ADDED_TO_STAGE="EVENT_ADDED_TO_STAGE";
+/**
+ * Appelé quand un fichier est marqué comme existant
+ * @type {string}
+ */
+Ui.EVENT_FILE_EXISTS="EVENT_FILE_EXISTS";
 

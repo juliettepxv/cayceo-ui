@@ -3,15 +3,60 @@ export default class FileHeadCell {
 
     constructor(path) {
         this.path=path;
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$main=$(require("./file-head-cell.html"));
         this.$main.find(".path").text(path);
+        this.$main.attr("name",path);
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$disabled=this.$main.find(".disabled");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$contenuName=this.$main.find(".contenuName");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$serverPath=this.$main.find(".serverPath");
         this._contenuName="";
         this._serverPath="";
-        this.$main.attr("name",path);
+        /**
+         * Si true alors le fichier devra exister sur la régie uniquement
+         * @type {boolean}
+         */
+        this._isLogo=false;
+        /**
+         * Si true alors le fichier devra exister sur la régie uniquement
+         * @type {boolean}
+         */
+        this._isApk=false;
+        /**
+         * Si true alors le fichier devra exister sur la régie uniquement
+         * @type {boolean}
+         */
+        this._isThumbnail=false;
+
     }
+
+    /**
+     * Liste de fichiers sur les devices
+     * @return {FileCell[]}
+     */
+    fileCellsArray(){
+        let r=[];
+        for(let device of ui.devicesTable.devicesArray()){
+            r.push(ui.devicesTable.getDeviceFile(device.id,this.path));
+        }
+        return r;
+    }
+
     set serverPath(value) {
         this._serverPath = value;
         //this.$serverPath.text(this._serverPath);
@@ -59,5 +104,45 @@ export default class FileHeadCell {
 
 
 
+    }
+    get isLogo() {
+        return this._isLogo;
+    }
+    set isLogo(value) {
+        if(value){
+            //désactive les autres
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isLogo){
+                    file.isLogo=false;
+                }
+            }
+            //présent sur la régie, pas sur les casques
+            for(let fc of this.fileCellsArray()){
+                if(fc.casque()){
+                    fc.shouldExists=-1;
+                }else{
+                    fc.shouldExists=1;
+                }
+            }
+        }
+        this.$contenuName.text(value?'logo':'old logo');
+        this.$main.attr("is-logo",value?'1':'');
+        this._isLogo = value;
+    }
+
+    get isApk() {
+        return this._isApk;
+    }
+
+    set isApk(value) {
+        this._isApk = value;
+    }
+
+    get isThumbnail() {
+        return this._isThumbnail;
+    }
+
+    set isThumbnail(value) {
+        this._isThumbnail = value;
     }
 }

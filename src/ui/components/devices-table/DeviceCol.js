@@ -1,35 +1,58 @@
 import FileCell from "./FileCell";
 export default class DeviceCol{
-    set ip(value) {
-        this._ip = value;
-        this.$ip.text(this._ip);
-    }
+
 
     /**
      *
-     * @param id
-     * @param {Casque} casque
+     * @param {String} id Addresse ip d'un casque ou "régie"
+     * @param {Casque} casque Le casque dans l'ui
      */
     constructor(id,casque) {
-        this.$main=$(require("./device-col.html"));
+        /**
+         * Addresse ip d'un casque ou "régie"
+         * @type {String}
+         */
         this.id=id;
-        this.$ip=this.$main.find(".ip");
         /**
          *
          * @type {Casque}
          */
         this.casque=casque;
+
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$main=$(require("./device-col.html"));
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$ip=this.$main.find(".ip");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$name=this.$main.find(".name");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$files=this.$main.find(".files");
+
+
+
+
+
         if(!casque){
             this.$main.addClass("is-regie");
         }else{
             this.$ip.text(this.id);
         }
 
-        this.$name=this.$main.find(".name");
-
 
         this.filesCells={};
-        this.$files=this.$main.find(".files");
+
 
         this._ip="...";
         this._online=null;
@@ -138,6 +161,11 @@ export default class DeviceCol{
     set contenusReady(value) {
         this._contenusReady = value;
         this.$main.attr("contenusReady",value?"1":"0");
+    }
+
+    set ip(value) {
+        this._ip = value;
+        this.$ip.text(this._ip);
     }
 
 
