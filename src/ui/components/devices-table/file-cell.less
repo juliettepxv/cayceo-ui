@@ -1,3 +1,10 @@
+.file-cell{
+  &[is-deleted='1'],&[exists='-1'][shouldExists='-1']{
+    >div{
+      opacity: 0.2;
+    }
+  }
+}
 .device-col{
   .file-cell{
 
@@ -113,10 +120,7 @@
     &[exists='1'][shouldExists='-1']{
       background-color: var(--error);
     }
-    &[exists='-1'][shouldExists='-1']{
-      //background-color: var(--color-grey-light);
-      opacity: 0.2;
-    }
+
 
 
   }

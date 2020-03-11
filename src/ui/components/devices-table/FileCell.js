@@ -127,6 +127,7 @@ export default class FileCell{
 
 
     set exists(value) {
+        let oldValue=this._exists;
         let changed=value !== this.exists;
         this._exists = value;
         this.refreshValues();
@@ -134,8 +135,13 @@ export default class FileCell{
             ui.devicesTable.testFileStillInUse(this.path);
         }
         if(changed){
-            if(this._exists===1){
+            if(value === 1){
                 ui.emit(Ui.EVENT_FILE_EXISTS,this);
+                if(oldValue===-1){
+                    ui.emit(Ui.EVENT_FILE_EXISTS_NEW,this);
+                }
+            }else if(value === -1){
+                ui.emit(Ui.EVENT_FILE_DELETED,this);
             }
         }
     }

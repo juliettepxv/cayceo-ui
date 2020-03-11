@@ -134,23 +134,27 @@ export default class DevicesTable {
      * @param path
      */
     testFileStillInUse(path){
-        return;
         let me=this;
         //setTimeout(function(){
             let d;
             for(d in me.devicesById){
                 if(me.getDeviceFile(d,path).exists !== -1){
+                    //est utilisé
+                    me.getFileHead(path).isDeleted=false;
                     return;
                 }
             }
-            console.warn("delete file "+path)
+            //console.warn("delete file "+path)
             //n'est plus utilisé nulle part
+            me.getFileHead(path).isDeleted=true;
+            /*
             me.filesHeadCells[path].$main.remove();
             delete me.filesHeadCells[path];
             for(d in me.devicesById){
                 me.devicesById[d].filesCells[path].$main.remove();
                 delete me.devicesById[d].filesCells[path];
             }
+            */
         //},5000);
 
 

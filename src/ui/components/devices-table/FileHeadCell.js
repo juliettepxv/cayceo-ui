@@ -1,6 +1,7 @@
 export default class FileHeadCell {
 
 
+
     constructor(path) {
         this.path=path;
         /**
@@ -43,6 +44,14 @@ export default class FileHeadCell {
          */
         this._isThumbnail=false;
 
+        this._isDeleted=false;
+
+        /**
+         * Le contenu json relatif
+         * @type {Contenu|null}
+         */
+        this.contenu=null;
+
     }
 
     /**
@@ -70,6 +79,14 @@ export default class FileHeadCell {
     }
     get contenuName(){
         return this._contenuName;
+    }
+    get isDeleted() {
+        return this._isDeleted;
+    }
+
+    set isDeleted(value) {
+        this._isDeleted = value;
+        this.$main.attr("is-deleted",value?'1':'');
     }
     get disabled(){
         return this._disabled;
@@ -105,24 +122,32 @@ export default class FileHeadCell {
 
 
     }
+
+    get isContenu() {
+        return this._isContenu;
+    }
+    set isContenu(value) {
+        this._isContenu = value;
+        this.$main.attr("is-contenu",value?'1':'');
+    }
+
     get isLogo() {
         return this._isLogo;
     }
     set isLogo(value) {
         if(value){
-            //désactive les autres
+            //désactive les autres LOGO
             for(let file of ui.devicesTable.filesHeadCellsArray()){
                 if(file.isLogo){
                     file.isLogo=false;
                 }
             }
             //présent sur la régie, pas sur les casques
+            this._shouldExistsOnRegieOnly();
+        }else{
+            //va effacer le vieux logo
             for(let fc of this.fileCellsArray()){
-                if(fc.casque()){
-                    fc.shouldExists=-1;
-                }else{
-                    fc.shouldExists=1;
-                }
+                fc.shouldExists=-1;
             }
         }
         this.$contenuName.text(value?'logo':'old logo');
@@ -135,6 +160,23 @@ export default class FileHeadCell {
     }
 
     set isApk(value) {
+        if(value){
+            //désactive les autres LOGO
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isApk){
+                    file.isApk=false;
+                }
+            }
+            //présent sur la régie, pas sur les casques
+            this._shouldExistsOnRegieOnly();
+        }else{
+            //va effacer le vieux apk
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'apk':'old apk');
+        this.$main.attr("is-apk",value?'1':'');
         this._isApk = value;
     }
 
@@ -144,5 +186,24 @@ export default class FileHeadCell {
 
     set isThumbnail(value) {
         this._isThumbnail = value;
+        this.$main.attr("is-thumbnail",value?'1':'');
+        this._isThumbnail = value;
+        //présent sur la régie, pas sur les casques
+        this._shouldExistsOnRegieOnly();
     }
+
+    /**
+     * Marque le fichier comme ne devant être présent que sur la régie
+     * @private
+     */
+    _shouldExistsOnRegieOnly(){
+        for(let fc of this.fileCellsArray()){
+            if(fc.casque()){
+                fc.shouldExists=-1;
+            }else{
+                fc.shouldExists=1;
+            }
+        }
+    }
+
 }

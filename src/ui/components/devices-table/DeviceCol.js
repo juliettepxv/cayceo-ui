@@ -40,23 +40,16 @@ export default class DeviceCol{
          */
         this.$files=this.$main.find(".files");
 
-
-
-
-
         if(!casque){
             this.$main.addClass("is-regie");
         }else{
             this.$ip.text(this.id);
         }
 
-
         this.filesCells={};
-
 
         this._ip="...";
         this._online=null;
-        this._apk=null;
         this._plugged=null;
         this._apk=null;
         this._contenusReady=null;
@@ -69,6 +62,26 @@ export default class DeviceCol{
             this.$name.text(this.id);
         }
 
+    }
+
+    /**
+     * Renvoie true si c'est la régie
+     * @return {boolean}
+     */
+    isRegie(){
+        return this.casque?false:true;
+    }
+
+    /**
+     * Les fichiers du device sous forme de tableau
+     * @return {FileCell[]}
+     */
+    filesCellsArray(){
+        let r=[];
+        for(let path in this.filesCells){
+            r.push(this.filesCells[path]);
+        }
+        return r;
     }
 
     /**

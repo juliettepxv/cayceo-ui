@@ -1,6 +1,7 @@
 .file-head-cell{
   --success:#0f0;
   .disabled{
+    display: none;
     color: var(--color-grey-light);
   }
   &[is-disabled="1"]{
@@ -24,4 +25,41 @@
     text-transform: none;
     font-size: 10px;
   }
+
+
+
+  &[is-apk],&[is-logo],&[is-thumbnail],&[is-contenu]{
+    .contenuName{
+      margin-left: -4px;
+      padding: 4px;
+      border-radius: 4px;
+      background-color: var(--color-grey-light);
+      color: #fff;
+      display: inline-flex;
+      line-height: 1;
+      justify-content: center;
+      align-items: center;
+    }
+
+  }
+  &[is-apk='1'],&[is-logo='1']{
+    .contenuName{
+      background-color: var(--success);
+    }
+  }
+  &[is-thumbnail='1']{
+    .contenuName{
+      background-color: var(--color-green);
+    }
+  }
+  &[is-contenu='1']{
+    .contenuName{
+      background-color: #f0f0f0;
+      color: var(--color-green);
+    }
+    .disabled{
+      display: inline-flex;
+    }
+  }
+
 }

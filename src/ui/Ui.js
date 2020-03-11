@@ -483,4 +483,14 @@ Ui.EVENT_ADDED_TO_STAGE="EVENT_ADDED_TO_STAGE";
  * @type {string}
  */
 Ui.EVENT_FILE_EXISTS="EVENT_FILE_EXISTS";
+/**
+ * Appelé quand un fichier est marqué comme supprimé
+ * @type {string}
+ */
+Ui.EVENT_FILE_DELETED="EVENT_FILE_DELETED";
+/**
+ * Appelé quand un fichier est marqué comme existant et qu'il n'existait pas avant
+ * @type {string}
+ */
+Ui.EVENT_FILE_EXISTS_NEW="EVENT_FILE_EXISTS_NEW";
 
