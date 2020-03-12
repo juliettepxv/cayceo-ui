@@ -19,6 +19,14 @@ export default class DevicesTable {
     }
 
     /**
+     * La colonne de la régie
+     * @return {DeviceCol}
+     */
+    regie(){
+        return this.devicesById["régie"];
+    }
+
+    /**
      * Renvoie true si un des devices est occupé
      * @returns {boolean}
      */
