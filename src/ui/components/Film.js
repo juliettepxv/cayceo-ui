@@ -52,8 +52,8 @@ export default class Film {
 
 
         //applique les propriétés
-        this._setImage(imgUrl)
-            ._setTitle(title);
+        this.setImage(imgUrl)
+            .setTitle(title);
 
         if(minutes){
             minutes=minutes*1;
@@ -109,9 +109,8 @@ export default class Film {
      *
      * @param {string} title titre du film
      * @returns {Film}
-     * @private
      */
-    _setTitle(title){
+    setTitle(title){
         this.title=title;
         this.$main.find(".title").text(title);
         return this;
@@ -121,11 +120,12 @@ export default class Film {
      *
      * @param imgUrl
      * @returns {Film}
-     * @private
      */
-    _setImage(imgUrl){
-        this.image=imgUrl;
-        this.$main.find("img").attr("src",imgUrl);
+    setImage(imgUrl){
+        if(imgUrl != this.image){
+            this.image=imgUrl;
+            this.$main.find("img").attr("src",imgUrl);
+        }
         return this;
     }
 

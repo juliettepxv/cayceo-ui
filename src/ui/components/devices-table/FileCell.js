@@ -208,9 +208,6 @@ export default class FileCell{
 
     }
 
-
-
-
     /**
      * La référence au fichier principal dans le tableau
      * @return {FileHeadCell}
@@ -218,13 +215,59 @@ export default class FileCell{
     fileHead(){
         return ui.devicesTable.getFileHead(this.path);
     }
+    /**
+     * Racourcis: Renvoie le contenu relatif à ce fichier (si il existe)
+     * @return {Contenu}
+     */
+    contenu(){
+        return this.fileHead().contenu;
+    }
 
     /**
-     *
+     * Racourcis: renvoie si le fichier est marqué comme thumbnail
+     * @return {boolean}
+     */
+    isThumbnail(){
+        return this.fileHead().isThumbnail;
+    }
+
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme étant un contenu
+     * @return {*}
+     */
+    isContenu(){
+        return this.fileHead().isContenu;
+    }
+
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme lgo
+     * @return {boolean}
+     */
+    isLogo(){
+        return this.fileHead().isLogo;
+    }
+
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme apk
+     * @return {boolean}
+     */
+    isApk(){
+        return this.fileHead().isApk;
+    }
+
+    /**
+     * Racourcis: renvoie le casque
      * @return {Casque}
      */
     casque(){
         return this.deviceCol.casque;
+    }
+
+    /**
+     * Racourcis: true si le devices est la régie
+     */
+    isRegie(){
+       return this.deviceCol.isRegie();
     }
 
 

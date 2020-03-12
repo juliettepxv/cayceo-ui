@@ -99,6 +99,8 @@ export default class Films extends ScreenUi{
         let film=this.getFilmById(filmId);
         if(film){
             console.log(`Le film ${title} (${filePath}) était déjà dans l'ui `);
+            film.setImage(imgUrl);
+            film.setTitle(title);
         }else{
             film=new Film(filmId,title,imgUrl,filePath,minutes,text="");
             console.warn(`ajoute Le film ${title} (${filePath}) dans l'ui `);
