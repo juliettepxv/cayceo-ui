@@ -89,10 +89,10 @@ window.CMD.UPDATE_CONTENT="UPDATE_CONTENT";
  */
 window.CMD.RESET_ALL="RESET_ALL";
 /**
- * zzz
+ * Demande l'ouverture de la documentation (PDF)
  * @type {string}
  */
-window.CMD.ZZZ="ZZZ";
+window.CMD.OPEN_DOC="OPEN_DOC";
 /**
  * zzz
  * @type {string}

@@ -80,7 +80,7 @@ export default class Dialog {
      * @returns {Dialog}
      */
     setText(text){
-        this.$message.text(text);
+        this.$message.html(text);
         return this;
     }
 

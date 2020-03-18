@@ -211,9 +211,27 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_STOP,$(this).closest("[casque]").attr("casque"));
                    break;
 
+               case "open-doc":
+                   me.emit(CMD.OPEN_DOC);
+                   break;
 
                case "shut-down-all":
                    me.shutDownAll();
+                   break;
+
+               case "reset-all":
+                   me.dialog
+                       .display()
+                       .setText(
+                           "Êtes-vous certain de vouloir tout réinitialiser?" +
+                           "<br>" +
+                           "<span style='color: var(--color-pink);'>" +
+                           "ATTENTION" +
+                           " cette action est irréversible et nécessitera une ré-installation complète de la configuration, des casques et des fichiers!" +
+                           "</span>")
+                       .oui("oui",function(){
+                           me.emit(CMD.RESET_ALL);
+                       });
                    break;
 
                case "select-casques":
