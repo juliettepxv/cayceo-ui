@@ -33,6 +33,12 @@ export default class DeviceCol{
          * @private
          * @type {jQuery|HTMLElement}
          */
+        this.$realip=this.$main.find(".realip");
+        this.$adbstatus=this.$main.find(".adbstatus");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$name=this.$main.find(".name");
         /**
          * @private
@@ -49,6 +55,8 @@ export default class DeviceCol{
         this.filesCells={};
 
         this._ip="...";
+        this._realip="...";
+        this._adbstatus="...";
         this._online=null;
         this._plugged=null;
         this._apk=null;
@@ -179,7 +187,25 @@ export default class DeviceCol{
     set ip(value) {
         this._ip = value;
         this.$ip.text(this._ip);
+        this._testIps();
     }
+    set realip(value) {
+        this._realip = value;
+        this.$realip.text(this._realip);
+        this._testIps();
+    }
+    _testIps(){
+        if(this._realip!==this._ip){
+            this.$realip.addClass("error");
+        }else{
+            this.$realip.removeClass("error");
+        }
+    }
+    set adbstatus(value) {
+        this._adbstatus = value;
+        this.$adbstatus.text(this._adbstatus);
+    }
+
 
 
 

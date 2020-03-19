@@ -2,14 +2,29 @@
 
   .head{
     --success: var(--color-green);
-
   }
 
-  .ip{
+  &.is-regie{
+    .realip,.adbstatus{
+      visibility: hidden !important;
+    }
+  }
+
+  .ip,.realip,.adbstatus{
     color: var(--color-grey-light);
     font-size: 10px;
     font-family: var(--font-mono);
   }
+
+  .realip{
+    visibility: hidden;
+    color: var(--error);
+    &.error{
+      visibility: visible;
+    }
+  }
+
+
 
   .online,.plugged,.apk,.contenusReady{
     color: var(--success);

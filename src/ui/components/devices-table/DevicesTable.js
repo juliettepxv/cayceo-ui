@@ -5,6 +5,7 @@ export default class DevicesTable {
     constructor() {
         this.$main=$(require("./devices-table.html"));
         this.$filesCol=this.$main.find(".files-col");
+        this.$devices=this.$filesCol.find(".devices")
         /**
          *
          * @type {FileHeadCell[]}
@@ -16,6 +17,10 @@ export default class DevicesTable {
          */
         this.devicesById={};
         this.addDevice("régie",null);
+    }
+
+    logDevices(devicesString){
+        this.$devices.text(devicesString);
     }
 
     /**
