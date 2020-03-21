@@ -34,7 +34,31 @@ export default class DeviceCol{
          * @type {jQuery|HTMLElement}
          */
         this.$realip=this.$main.find(".realip");
+        /**
+         * @private
+         * @type {jQuery|[]}
+         */
         this.$adbstatus=this.$main.find(".adbstatus");
+        /**
+         * @private
+         * @type {jQuery|[]}
+         */
+        this.$disk=this.$main.find(".disk");
+        /**
+         * @private
+         * @type {jQuery|[]}
+         */
+        this.$diskSize=this.$disk.find(".size");
+        /**
+         * @private
+         * @type {jQuery|[]}
+         */
+        this.$diskUsed=this.$disk.find(".used");
+        /**
+         * @private
+         * @type {jQuery|[]}
+         */
+        this.$diskAvailable=this.$disk.find(".available");
         /**
          * @private
          * @type {jQuery|HTMLElement}
@@ -45,6 +69,20 @@ export default class DeviceCol{
          * @type {jQuery|HTMLElement}
          */
         this.$files=this.$main.find(".files");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$icons=this.$main.find(".icons");
+        /**
+         * @private
+         */
+        this._$$icons={
+            $plugged:this.$icons.find(".plugged"),
+            $online:this.$icons.find(".online"),
+            $apk:this.$icons.find(".apk"),
+            $contenusReady:this.$icons.find(".contenusReady"),
+        }
 
         if(!casque){
             this.$main.addClass("is-regie");
@@ -66,9 +104,12 @@ export default class DeviceCol{
             this.$name.text(this.casque.numero);
             this.$main.css("order",this.casque.numero);
             this.ip=this.id;
+            this.realip="unknown";
         }else{
             this.$name.text(this.id);
         }
+
+
 
     }
 
@@ -78,6 +119,13 @@ export default class DeviceCol{
      */
     isRegie(){
         return this.casque?false:true;
+    }
+    /**
+     * Renvoie true si c'est un casque
+     * @return {boolean}
+     */
+    isCasque(){
+        return !this.isRegie()
     }
 
     /**
@@ -130,7 +178,7 @@ export default class DeviceCol{
      */
     isDoingSomething(){
         for (let path in this.filesCells){
-            if(this.filesCells[path].doing!==0){
+            if(this.filesCells[path].doing !==0 && this.filesCells[path].doing !==-2){
                 return true;
             }
         }
@@ -191,19 +239,74 @@ export default class DeviceCol{
     }
     set realip(value) {
         this._realip = value;
+        if(!this._realip){
+            this._realip="no ip"
+        }
         this.$realip.text(this._realip);
         this._testIps();
     }
+
+    /**
+     * Fait réagit l'affichage à la cohérence des ips
+     * @private
+     */
     _testIps(){
-        if(this._realip!==this._ip){
-            this.$realip.addClass("error");
-        }else{
-            this.$realip.removeClass("error");
+
+        this.$realip.removeClass("error");
+        this._$$icons.$online.attr("state","");
+
+        switch (true) {
+
+            case this._realip === "unknown":
+                break;
+
+            case this._realip === "no ip":
+            case this.isCasque() && this._realip !== this._ip:
+
+                this.$realip.addClass("error");
+                this._$$icons.$online.attr("state","error");
+                break;
+
         }
+
     }
     set adbstatus(value) {
         this._adbstatus = value;
         this.$adbstatus.text(this._adbstatus);
+        this.$adbstatus.attr("state","");
+        this._$$icons.$plugged.attr("state","");
+        switch (this._adbstatus) {
+            case 'unknown':
+            case '':
+                this.$adbstatus.attr("state","");
+                break;
+
+            case 'device':
+                this.$adbstatus.attr("state","success");
+                break;
+
+            case 'connecting':
+            default:
+                this.$adbstatus.attr("state","error");
+                this._$$icons.$plugged.attr("state","error");
+
+        }
+    }
+
+    /**
+     * Affiche l'etat du disque
+     * @param {{label:string,available:string,size:string,used:string}} obj
+     */
+    set diskSpace(obj){
+        this.$diskAvailable.text("?");
+        this.$diskSize.text("?");
+        this.$diskUsed.text("?");
+        if(obj){
+            this.$diskAvailable.text(obj.available);
+            this.$diskSize.text(obj.size);
+            this.$diskUsed.text(obj.used);
+        }
+        this.$diskAvailable.attr("state",obj.label);
     }
 
 

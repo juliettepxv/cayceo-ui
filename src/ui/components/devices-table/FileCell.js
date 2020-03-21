@@ -3,6 +3,7 @@ import Ui from "../../Ui";
 export default class FileCell{
 
 
+
     /**
      * Un fichier sur un device donné
      * @param {string} path chemin relatif vers le fichier
@@ -48,6 +49,11 @@ export default class FileCell{
          * @private
          * @type {jQuery|HTMLElement}
          */
+        this.$errorsTry=this.$main.find(".errorsTry");
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
         this.$copyPercent=this.$main.find(".copyPercent");
         /**
          *
@@ -75,9 +81,20 @@ export default class FileCell{
          * @private
          */
         this._copyPercent=0;
-
+        /**
+         * Quand une erreur se produit est palcé sur une valeur qui sera décrémentée
+         * Quand la valeur est égale à zéro alors la todo peut se faire
+         * @type {number}
+         * @private
+         */
+        this._errorsTry=0;
 
         this.refreshValues();
+
+
+
+
+
 
     }
 
@@ -104,6 +121,7 @@ export default class FileCell{
         this.$shouldExists.text(this.shouldExists);
         this.$toDo.text(this.toDo);
         this.$doing.text(this.doing);
+        this.$errorsTry.text(this.errorsTry);
 
 
         //teste si tous les contenus du device sont ready
@@ -182,7 +200,20 @@ export default class FileCell{
         return this._doing;
     }
     set doing(value) {
+
+        if(value===1 && this._doing===-2){
+            console.error("reset doing 0")
+        }
         this._doing = value;
+        this.refreshValues();
+    }
+
+    get errorsTry() {
+        return this._errorsTry;
+    }
+
+    set errorsTry(value) {
+        this._errorsTry = value;
         this.refreshValues();
     }
 
@@ -268,6 +299,12 @@ export default class FileCell{
      */
     isRegie(){
        return this.deviceCol.isRegie();
+    }
+    /**
+     * Racourcis: true si le devices est un casque
+     */
+    isCasque(){
+        return this.deviceCol.isCasque();
     }
 
 

@@ -13,6 +13,10 @@
 
     position: relative;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     .copyPercent{
       border-radius: 0;
       background-color: #fff;
@@ -29,8 +33,10 @@
     }
 
     >div{
-      border-radius: 4px;
-      overflow: hidden;
+      flex-grow: 1;
+      position: relative;
+      //border-radius: 4px;
+      //overflow: hidden;
       font-family: var(--font-mono);
       font-weight: normal;
       font-size: 8px;
@@ -54,6 +60,24 @@
       &:last-child{
         margin-right: 0;
       }
+    }
+
+    .errorsTry{
+      visibility: hidden;
+      position: absolute;
+      background-color: #f00;
+      color: #fff;
+      border-radius: 100%;
+      width: 15px;
+      height: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: -8px;
+      right: -7px;
+      padding: 0;
+      line-height: 1;
+      box-shadow: 0px 0px 2px #fff;
     }
 
     &[toDo='1']{
@@ -85,6 +109,9 @@
     &[doing='-2']{
       .doing{
         background-color: var(--error);
+      }
+      .errorsTry{
+        visibility: visible;
       }
     }
 

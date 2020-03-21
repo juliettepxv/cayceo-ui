@@ -2,6 +2,22 @@
 
   .head{
     --success: var(--color-green);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  [state='error']{
+    color:var(--error) !important;
+  }
+  [state='success']{
+    color:var(--success) !important;
+  }
+  [state='warning']{
+    color:var(--warning) !important;
+  }
+  [state='']{
+    //color:var(--warning) !important;
   }
 
   &.is-regie{
@@ -10,10 +26,14 @@
     }
   }
 
-  .ip,.realip,.adbstatus{
+  .ip,.realip,.adbstatus,.disk{
     color: var(--color-grey-light);
-    font-size: 10px;
+    font-size: 8px;
     font-family: var(--font-mono);
+    >*{
+      font-family: inherit;
+      font-size: inherit;
+    }
   }
 
   .realip{
@@ -22,6 +42,23 @@
     &.error{
       visibility: visible;
     }
+  }
+
+  .disk{
+    display: flex;
+    justify-content: space-between;
+    >*{
+      font-family: var(--font-normal);
+      font-size: 8px;
+      padding: 4px;
+      text-align: center;
+      width: 30%;
+    }
+  }
+
+  .adbstatus{
+    font-family: var(--font-normal);
+    font-size: 10px;
   }
 
 
@@ -85,16 +122,10 @@
         width: 100%;
         height: 100%;
       }
+      &[state='error'],&[state='warning']{
+        filter: none;
+      }
     }
-
-  }
-
-  .icone-casque{
-    svg{
-      width: 12px;
-      height: 12px;
-    }
-
   }
 
 }

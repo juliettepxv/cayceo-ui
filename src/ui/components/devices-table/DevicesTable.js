@@ -64,7 +64,8 @@ export default class DevicesTable {
     }
 
     /**
-     * Revoie la liste des devices
+     * Revoie la liste des devices.
+     * Les devices sont classés comme affiché dans la table (régie, puis les casques par numéro)
      * @returns {DeviceCol[]}
      */
     devicesArray(){
@@ -72,6 +73,31 @@ export default class DevicesTable {
         for (let d in this.devicesById){
             r.push(this.devicesById[d]);
         }
+
+        /**
+         *
+         * @param {DeviceCol} a
+         * @param {DeviceCol} b
+         * @return {number}
+         */
+        function compare( a, b ) {
+            if(a.isRegie()){
+                return -1;
+            }
+            if(b.isRegie()){
+                return 1;
+            }
+            if ( a.casque.numero < b.casque.numero ){
+                return -1;
+            }
+            if ( a.casque.numero > b.casque.numero ){
+                return 1;
+            }
+            return 0;
+        }
+
+        r.sort( compare );
+
         return r;
     }
     /**

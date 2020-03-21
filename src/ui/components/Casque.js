@@ -106,7 +106,7 @@ export default class Casque {
      */
     setBatteryPlugged(plugged=false){
         this.$main.attr("plugged",plugged?"1":"0");
-        ui.devicesTable.devicesById[this.ip].plugged=plugged;
+        this.deviceColumn().plugged=plugged;
         this._refresh();
         return this;
     }
@@ -210,7 +210,7 @@ export default class Casque {
      */
     setOnline(isOnline=true){
         this.$main.attr("is-online",isOnline?"1":"0");
-        ui.devicesTable.devicesById[this.ip].online=isOnline;
+        this.deviceColumn().online=isOnline;
         if(!isOnline){
             this.setContenu(null);
         }
@@ -233,7 +233,7 @@ export default class Casque {
     setContenusReady(isReady=true){
         //console.warn("setContenusReady",isReady);
         this.$main.attr("is-contenus-ready",isReady?"1":"0");
-        ui.devicesTable.devicesById[this.ip].contenusReady=isReady
+        this.deviceColumn().contenusReady=isReady
         this._refresh();
         return this;
     }
@@ -249,6 +249,14 @@ export default class Casque {
         this._refresh();
         return this;
     }
+
+    /**
+     * Renvoie la colonne du device dans la device table
+     * @return {DeviceCol}
+     */
+    deviceColumn(){
+        return ui.devicesTable.devicesById[this.ip];
+    }
     /**
      * Définir si l'APK est à jour ou non'
      * @param {boolean} isOk
@@ -256,7 +264,7 @@ export default class Casque {
      */
     setApkIsOk(isOk=true){
         this.$main.attr("is-apk-ok",isOk?"1":"0");
-        ui.devicesTable.devicesById[this.ip].apk=isOk;
+        this.deviceColumn().apk=isOk;
         this._refresh();
         return this;
     }
