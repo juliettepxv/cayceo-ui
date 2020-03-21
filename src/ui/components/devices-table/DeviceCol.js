@@ -2,6 +2,7 @@ import FileCell from "./FileCell";
 export default class DeviceCol{
 
 
+
     /**
      *
      * @param {String} id Addresse ip d'un casque ou "régie"
@@ -69,6 +70,12 @@ export default class DeviceCol{
          * @type {jQuery|HTMLElement}
          */
         this.$files=this.$main.find(".files");
+
+        /**
+         * @private
+         * @type {jQuery|HTMLElement}
+         */
+        this.$apkVersion=this.$main.find(".apkVersion");
         /**
          * @private
          * @type {jQuery|HTMLElement}
@@ -99,6 +106,7 @@ export default class DeviceCol{
         this._plugged=null;
         this._apk=null;
         this._contenusReady=null;
+        this._apkVersion="v?.???";
 
         if(this.casque){
             this.$name.text(this.casque.numero);
@@ -307,6 +315,16 @@ export default class DeviceCol{
             this.$diskUsed.text(obj.used);
         }
         this.$diskAvailable.attr("state",obj.label);
+    }
+
+
+    get apkVersion() {
+        return this._apkVersion;
+    }
+
+    set apkVersion(value) {
+        this._apkVersion = value;
+        this.$apkVersion.text(this._apkVersion);
     }
 
 
