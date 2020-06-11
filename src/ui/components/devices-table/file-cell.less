@@ -16,24 +16,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     .copyPercent{
       border-radius: 0;
-      background-color: #fff;
+      background-color: var(--color-green);
       opacity: 0.5;
       position: absolute;
       top: 0;
       left: 0;
       height: 100%;
       width: 0;
-      text-align: left;
-      &:after{
-        //content: '%';
-      }
     }
 
     >div{
-      flex-grow: 1;
       position: relative;
       //border-radius: 4px;
       //overflow: hidden;
@@ -44,6 +40,29 @@
       >*{
         width: 25%;
         text-align: center;
+      }
+    }
+    >.dev-debug{
+      display: none;
+    }
+    >.icons{
+      display: flex;
+      flex-direction: row;
+      color: var(--color-grey-light);
+      >.etat,>.action{
+        width: 20px;
+        height: 20px;
+      }
+      >.action{
+        margin-left: 5px;
+      }
+      svg{
+        width: 20px;
+        height: 20px;
+        &.copier,&.effacer{
+          padding: 3px;
+        }
+        //outline: 1px solid red;
       }
     }
 
@@ -80,30 +99,56 @@
       box-shadow: 0px 0px 2px #fff;
     }
 
+    .icons{
+      --success: var(--color-green);
+      --error: var(--color-pink);
+      svg{
+        display: none;
+      }
+    }
+    &[todo='0'][doing='0']{
+      .icons .action{
+        display: none;
+      }
+    }
     &[toDo='1']{
       .toDo{
         background-color: var(--success);
+      }
+      .icons .action .copier{
+          display: block;
       }
     }
     &[toDo='-1']{
       .toDo{
         background-color: var(--warning);
       }
+      .icons .action .effacer{
+        display: block;
+      }
     }
     &[doing='1'],&[doing='-1']{
-      animation-name: blink;
-      animation-duration: 0.5s;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
+      .icons .action{
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+      }
     }
     &[doing='1']{
       .doing{
         background-color: var(--success);
       }
+      .icons .action{
+        color: var(--success);
+      }
     }
     &[doing='-1']{
       .doing{
         background-color: var(--warning);
+      }
+      .icons .action{
+        color: var(--success);
       }
     }
     &[doing='-2']{
@@ -115,15 +160,25 @@
       }
     }
 
-
+    &[exists='0']{
+      .icons .etat .indefini{
+        display: block;
+      }
+    }
     &[exists='1']{
       .exists{
         background-color: var(--success);
+      }
+      .icons .etat .existe{
+        display: block;
       }
     }
     &[exists='-1']{
       .exists{
         background-color: var(--warning);
+      }
+      .icons .etat .existepas{
+        display: block;
       }
     }
     &[shouldExists='1']{
@@ -137,15 +192,22 @@
       }
     }
 
-
-    &[exists='1'][shouldExists='1']{
-      background-color: var(--success);
+    &[exists='-1'][shouldExists='-1'],
+    &[exists='1'][shouldExists='1']
+    {
+      .icons .etat{
+        color: var(--success);
+      }
     }
     &[exists='-1'][shouldExists='1']{
-      background-color: var(--error);
+      .icons .etat{
+        color: var(--error);
+      }
     }
     &[exists='1'][shouldExists='-1']{
-      background-color: var(--error);
+      .icons .action{
+        color: var(--error);
+      }
     }
 
 

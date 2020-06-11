@@ -218,7 +218,7 @@ export default class FileCell{
     }
 
     set copyPercent(value) {
-        //this._copyPercent = Number(value);
+        this._copyPercent = Number(value);
         //this.$copyPercent.text(this._copyPercent.toFixed(2))
         this.$copyPercent.css("width",this._copyPercent+"%");
 
@@ -227,9 +227,9 @@ export default class FileCell{
         let casque=this.casque();
         if(!casque){
             //progression du dwd
-            ui.layout.setContenuUpdate(`dwd ${mainFile.contenuName} ${value}%`);
+            ui.layout.setContenuUpdate(`Télécharge ${mainFile.contenuName} ${value}%`);
         }else{
-            ui.layout.setContenuUpdate(`copy ${mainFile.contenuName} ${value}% to ${casque.numero}`);
+            ui.layout.setContenuUpdate(`copie ${mainFile.contenuName} ${value}% sur ${casque.numero}`);
             casque.setCopyProgress(Number(value));
         }
         if(this._copyPercent===100){
