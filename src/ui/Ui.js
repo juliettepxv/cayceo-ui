@@ -182,7 +182,6 @@ export default class Ui extends EventEmitter{
                    me.emit($(this).attr("emit-name"));
                    break;
 
-
                case "casque-remove":
                    me.emit(CMD.CASQUE_REMOVE,           $(this).attr("ip"));
                    break;
@@ -200,16 +199,15 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "casque-wake-up":
-                   me.emit(CMD.CASQUE_WAKE_UP,           $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_WAKE_UP,          $(this).attr("ip"));
                    break;
 
-               case "casques-play-all":
-                   me.emit(CMD.CASQUES_PLAY_ALL);
+               case "casque-play":
+                   me.emit(CMD.CASQUE_PLAY,            $(this).closest("[casque]").attr("casque"));
                    break;
-
 
                case "casques-play-multiple":
-                   for(let ip of $(this).attr("ips")){
+                   for(let ip of $(this).attr("ips").split(",")){
                        me.emit(CMD.CASQUE_PLAY,ip);
                    }
                    me.showPopin(me.popIns.dashboard);

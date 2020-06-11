@@ -68,4 +68,11 @@ export default class SelectCasques extends ScreenUi{
         this.$main.find("#casques [casque]").attr("is-selected","0");
         this.refresh();
     }
+    /**
+     * Sélectionne tous les casques
+     */
+    selectAll(){
+        this.$main.find("#casques [casque]").attr("is-selected","1");
+        this.refresh();
+    }
 }
