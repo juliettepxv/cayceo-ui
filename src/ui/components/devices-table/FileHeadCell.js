@@ -37,6 +37,11 @@ export default class FileHeadCell {
          * Si true alors le fichier devra exister sur la régie uniquement
          * @type {boolean}
          */
+        this._isModeEmploi=false;
+        /**
+         * Si true alors le fichier devra exister sur la régie uniquement
+         * @type {boolean}
+         */
         this._isApk=false;
         /**
          * Si true alors le fichier devra exister sur la régie uniquement
@@ -153,6 +158,30 @@ export default class FileHeadCell {
         this.$contenuName.text(value?'logo':'old logo');
         this.$main.attr("is-logo",value?'1':'');
         this._isLogo = value;
+    }
+
+    get isModeEmploi() {
+        return this._isModeEmploi;
+    }
+    set isModeEmploi(value) {
+        if(value){
+            //désactive les autres
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isModeEmploi){
+                    file.isModeEmploi=false;
+                }
+            }
+            //présent sur la régie, pas sur les casques
+            this._shouldExistsOnRegieOnly();
+        }else{
+            //va effacer le vieux mode d'emploi
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'mode emploi':'old mode emploi');
+        this.$main.attr("is-mode-emploi",value?'1':'');
+        this._isModeEmploi = value;
     }
 
     get isApk() {

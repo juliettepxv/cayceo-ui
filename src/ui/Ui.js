@@ -164,6 +164,15 @@ export default class Ui extends EventEmitter{
         this._isOffline = value;
         ui.devicesTable.devicesById["régie"].online=!this._isOffline;
     }
+
+    /**
+     * Permet d'activer le mode d'emploi
+     * @param imgUrl
+     */
+    activeModeEmploi(){
+        this.popIns.dashboard.docEnabled=true;
+    }
+
     /**
      *
      * @private

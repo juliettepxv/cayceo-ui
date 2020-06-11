@@ -271,11 +271,18 @@ export default class FileCell{
     }
 
     /**
-     * Racourcis: renvoie si le fichier est marqué comme lgo
+     * Racourcis: renvoie si le fichier est marqué comme logo
      * @return {boolean}
      */
     isLogo(){
         return this.fileHead().isLogo;
+    }
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme mode d'emploi
+     * @return {boolean}
+     */
+    isModeEmploi(){
+        return this.fileHead().isModeEmploi;
     }
 
     /**
