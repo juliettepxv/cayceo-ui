@@ -65,6 +65,9 @@ ui.on(CMD.CASQUE_PLAY,function(ip){
         }
     },1000)
 });
+ui.on(CMD.CASQUES_PLAY_MULTIPLE,function(ips){
+    alert(`Lancer la lecture sur les casques ${ips.join(" et ")}`);
+})
 ui.on(CMD.WAKE_UP_CASQUES,function(){
     alert(`il faut réveiller les casques`);
 });

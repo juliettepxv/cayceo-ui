@@ -29,6 +29,11 @@ window.CMD.CASQUE_REMOVE="CASQUE_REMOVE";
  */
 window.CMD.CASQUE_PLAY="CASQUE_PLAY";
 /**
+ * Lancer la lecture plusieurs casque. Le premier argument est un tableau d'ip' des casques
+ * @type {string}
+ */
+window.CMD.CASQUES_PLAY_MULTIPLE="CASQUES_PLAY_MULTIPLE";
+/**
  * Installer ou réinstaller l'aAPK sur le casque donné sur le casque spécifié. Le premier argument est l'ip' du casque
  * @type {string}
  */

@@ -203,8 +203,16 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_WAKE_UP,           $(this).attr("ip"));
                    break;
 
-               case "casque-play":
-                   me.emit(CMD.CASQUE_PLAY,$(this).closest("[casque]").attr("casque"));
+               case "casques-play-all":
+                   me.emit(CMD.CASQUES_PLAY_ALL);
+                   break;
+
+
+               case "casques-play-multiple":
+                   for(let ip of $(this).attr("ips")){
+                       me.emit(CMD.CASQUE_PLAY,ip);
+                   }
+                   me.showPopin(me.popIns.dashboard);
                    break;
 
                case "casque-stop":
@@ -258,6 +266,10 @@ export default class Ui extends EventEmitter{
                    me.screens.validation.show("from-right");
                    break;
 
+               case "select-all":
+                   me.screens.selectCasques.selectAll();
+                   break;
+
 
                case "valid-seance":
                    let casquesIps=[];
@@ -272,6 +284,9 @@ export default class Ui extends EventEmitter{
                    me.screens.validation.displayLoading(true);
                    me.screens.selectCasques.unSelectAll();
                    break;
+
+
+
 
                default:
                    alert(`action ${a} non prise en charge`);
