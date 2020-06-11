@@ -218,8 +218,8 @@ export default class FileCell{
     }
 
     set copyPercent(value) {
-        this._copyPercent = Number(value);
-        this.$copyPercent.text(this._copyPercent.toFixed(2))
+        //this._copyPercent = Number(value);
+        //this.$copyPercent.text(this._copyPercent.toFixed(2))
         this.$copyPercent.css("width",this._copyPercent+"%");
 
 
