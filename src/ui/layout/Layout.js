@@ -8,6 +8,7 @@ export default class Layout {
          */
         this.$main=$(require("./layout.html"));
         this._$logo=this.$main.find("#logo");
+        this._$qrcode=this.$main.find("#qrcode");
         this._$contenuUpdate=this.$main.find("#contenu-update");
         this._loadAssets();
         this.setContenuUpdate(null);
@@ -59,6 +60,15 @@ export default class Layout {
      */
     setLogo(imgUrl){
         this._$logo.find("img").attr("src",imgUrl);
+    }
+    /**
+     * Permet de définir le qrCode
+     * @param imgUrl
+     */
+    setQrcode(imgUrl){
+        this._$qrcode.addClass("active");
+        this._$qrcode.find("img").attr("src",imgUrl);
+        ui.popIns.Qrcode.setImg(imgUrl);
     }
 
     /**

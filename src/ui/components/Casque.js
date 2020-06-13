@@ -293,27 +293,32 @@ export default class Casque {
      * @private
      */
     _refresh(){
-        let me=this;
-        let isSelectable=function(){
-            switch (true) {
-                case !me._isOnline(): //pas online
-                    return false;
-                case me._isPlaying(): //en cours de lecture
-                    return false;
-                case me._isBatteryLow(): //batterie faible
-                    return false;
-                case me.contenu && me._isPlaying: // a un contenu en cours de lecture
-                    return false;
-                case !me._isContenusReady(): // les contenus ne sont pas tous copiés
-                    return false;
-                case !me._isApkOk(): // apk ok ou pas?
-                    return false;
-                default:
-                    return true;
-            }
-        };
-        this.$main.attr("is-selectable",isSelectable()?"1":"0");
+        this.$main.attr("is-selectable",this.isSelectable()?"1":"0");
         ui.screens.selectCasques.refresh();
+    }
+    
+    /**
+     * Renvoie true si il est possible de selectionner ce casque
+     * @return {boolean}
+     */
+    isSelectable(){
+        let me=this;
+        switch (true) {
+            case !me._isOnline(): //pas online
+                return false;
+            case me._isPlaying(): //en cours de lecture
+                return false;
+            case me._isBatteryLow(): //batterie faible
+                return false;
+            case me.contenu && me._isPlaying: // a un contenu en cours de lecture
+                return false;
+            case !me._isContenusReady(): // les contenus ne sont pas tous copiés
+                return false;
+            case !me._isApkOk(): // apk ok ou pas?
+                return false;
+            default:
+                return true;
+        }
     }
 
 

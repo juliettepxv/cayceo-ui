@@ -136,6 +136,29 @@ export default class FileHeadCell {
         this.$main.attr("is-contenu",value?'1':'');
     }
 
+    get isQrCode(){
+        return this._isQrCode;
+    }
+    set isQrCode(value) {
+        if(value){
+            //désactive les autres LOGO
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isQrCode){
+                    file.isQrCode=false;
+                }
+            }
+            //présent sur la régie, pas sur les casques
+            this._shouldExistsOnRegieOnly();
+        }else{
+            //va effacer le vieux qrcode
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'QR Code':'old QR Code');
+        this.$main.attr("is-special",value?'1':'');
+        this._isQrCode = value;
+    }
     get isLogo() {
         return this._isLogo;
     }

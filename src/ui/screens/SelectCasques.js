@@ -12,6 +12,7 @@ export default class SelectCasques extends ScreenUi{
 
         this.$main=$(require("./selectCasques.html"));
         this.$main.data("obj",this);
+        this.$btnSelectAll=this.$main.find("[action='select-all']");
 
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
 
@@ -40,6 +41,13 @@ export default class SelectCasques extends ScreenUi{
      */
     refresh(){
         let me=this;
+        if(me.$main.find("[is-selectable='1']").length){
+            me.$btnSelectAll.addClass("active");
+        }else{
+            me.$btnSelectAll.removeClass("active");
+        }
+
+
         let $ok=me.$main.find("[ok]");
         if(me.getSelecteds().length){
             $ok.attr("visible","1");

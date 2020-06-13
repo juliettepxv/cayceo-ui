@@ -11,9 +11,10 @@ export default class Film {
      * @param {string} imgUrl url de l'image du film
      * @param {string} filePath url du fichier
      * @param minutes
-     * @param text
+     * @param {string} text
+     * @param {string} imgHttp url http de l'image
      */
-    constructor(filmId,title,imgUrl,filePath,minutes,text){
+    constructor(filmId,title,imgUrl,filePath,minutes,text,imgHttp){
         /**
          * Affiche ou pas le film
          * @type {boolean}
@@ -29,7 +30,7 @@ export default class Film {
          */
         this.filePath=filePath;
         /**
-         * @type {number} duréée en minutes du film
+         * @type {number} duréée en minutes du contenu
          */
         this.minutes = minutes;
         /**
@@ -38,14 +39,19 @@ export default class Film {
          */
         this.text = text;
         /**
-         * @type {string} titre du film
+         * @type {string} titre du contenu
          */
         this.title="";
         /**
-         * @type {string} url de l'image du film
+         * @type {string} url de l'image du contenu
          */
         this.image="";
-
+        /**
+         *
+         * @type {string} url http de l'image
+         */
+        this.imgHttp=imgHttp;
+        
         //construit le html
         this.$main=$(require("./film.html"));
         this.$main.attr("film",filmId);
@@ -68,7 +74,7 @@ export default class Film {
         //popin...
         let popinName=`Film ${this.filmId}`;
         /**
-         * La popin où on affichera les infos du film
+         * La popin où on affichera les infos du contenu
          * @type {ObjectLogger}
          * @private
          */
@@ -84,7 +90,7 @@ export default class Film {
     }
 
     /**
-     * Permet d'afficher dans la popin de détail du film ses infos
+     * Permet d'afficher dans la popin de détail du contenu
      * @param {object|array|string} details Les infos à afficher
      */
     setDetails(details){
@@ -107,7 +113,7 @@ export default class Film {
 
     /**
      *
-     * @param {string} title titre du film
+     * @param {string} title titre du contenu
      * @returns {Film}
      */
     setTitle(title){

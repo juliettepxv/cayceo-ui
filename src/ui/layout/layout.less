@@ -68,4 +68,15 @@ body{
   display: flex;
   align-items: center;
 }
+#qrcode{
+  display: none;
+  &.active{
+    display: block;
+  }
+  img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+  }
+}
 

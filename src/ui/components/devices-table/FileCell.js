@@ -269,7 +269,13 @@ export default class FileCell{
     isContenu(){
         return this.fileHead().isContenu;
     }
-
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme qrCode
+     * @return {boolean}
+     */
+    isQrcode(){
+        return this.fileHead().isQrCode;
+    }
     /**
      * Racourcis: renvoie si le fichier est marqué comme logo
      * @return {boolean}

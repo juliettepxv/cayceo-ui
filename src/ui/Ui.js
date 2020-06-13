@@ -11,6 +11,7 @@ import Explication from "./screens/Explication";
 
 import PopinUi from "./popin/PopinUi"
 import PopInWindow from "./popin/PopInWindow";
+import Qrcode from "./popin/Qrcode";
 import ControlsMenu from "./popin/ControlsMenu";
 import Dashboard from "./popin/Dashboard";
 import SelectDuree from "./screens/SelectDuree";
@@ -341,7 +342,8 @@ export default class Ui extends EventEmitter{
             "debug":null,
             "webApiData":new ObjectLogger("Web Api data"),
             "pinCode":new PinCode(),
-            "filesReport":new FilesReport()
+            "filesReport":new FilesReport(),
+            "Qrcode":new Qrcode(),
         };
 
         this.popIns.pinCode.on("SUCCESS",function(){
