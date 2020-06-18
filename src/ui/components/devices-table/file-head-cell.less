@@ -25,10 +25,15 @@
     text-transform: none;
     font-size: 10px;
   }
+  .bytes{
+    font-size: 9px;
+    font-weight: normal;
+    font-family: var(--font-mono);
+  }
 
 
 
-  &[is-apk],&[is-logo],&[is-thumbnail],&[is-contenu],&[is-mode-emploi]{
+  &[is-thumbnail],&[is-contenu],&[is-doc]{
     .contenuName{
       margin-left: -4px;
       padding: 4px;
@@ -42,7 +47,7 @@
     }
 
   }
-  &[is-apk='1'],&[is-logo='1'],&[is-mode-emploi]{
+  &[is-doc]{
     .contenuName{
       background-color: var(--success);
     }

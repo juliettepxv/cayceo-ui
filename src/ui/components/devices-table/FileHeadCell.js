@@ -1,4 +1,13 @@
+const filesize=require("filesize");
+
 export default class FileHeadCell {
+    set bytes(value) {
+        let num=Number(value);
+        this._bytes = num;
+        if(!isNaN(num)){
+            this.$main.find(".bytes").text(filesize(num));
+        }
+    }
 
 
 
@@ -56,6 +65,8 @@ export default class FileHeadCell {
          * @type {Contenu|null}
          */
         this.contenu=null;
+
+        this._bytes=0;
 
     }
 
@@ -156,7 +167,7 @@ export default class FileHeadCell {
             }
         }
         this.$contenuName.text(value?'QR Code':'old QR Code');
-        this.$main.attr("is-special",value?'1':'');
+        this.$main.attr("is-doc",value?'1':'');
         this._isQrCode = value;
     }
     get isLogo() {
@@ -179,7 +190,7 @@ export default class FileHeadCell {
             }
         }
         this.$contenuName.text(value?'logo':'old logo');
-        this.$main.attr("is-logo",value?'1':'');
+        this.$main.attr("is-doc",value?'1':'');
         this._isLogo = value;
     }
 
@@ -203,14 +214,13 @@ export default class FileHeadCell {
             }
         }
         this.$contenuName.text(value?'mode emploi':'old mode emploi');
-        this.$main.attr("is-mode-emploi",value?'1':'');
+        this.$main.attr("is-doc",value?'1':'');
         this._isModeEmploi = value;
     }
 
     get isApk() {
         return this._isApk;
     }
-
     set isApk(value) {
         if(value){
             //désactive les autres LOGO
@@ -228,7 +238,7 @@ export default class FileHeadCell {
             }
         }
         this.$contenuName.text(value?'apk':'old apk');
-        this.$main.attr("is-apk",value?'1':'');
+        this.$main.attr("is-doc",value?'1':'');
         this._isApk = value;
     }
 
