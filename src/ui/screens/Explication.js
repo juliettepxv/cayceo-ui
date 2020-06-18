@@ -4,7 +4,6 @@ import Ui from "../Ui";
 export default class Explication extends ScreenUi{
     constructor(){
         super();
-        let me=this;
         this.$main=$(require("./explication.html"));
         this.$main.data("obj",this);
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
@@ -15,6 +14,13 @@ export default class Explication extends ScreenUi{
     }
     $btnPlayMultiple(){
         return this.$main.find("[action='casques-play-multiple']");
+    }
+    enablePlayAll(enable){
+        if(enable){
+           this.$btnPlayMultiple().addClass("enabled")
+        }else{
+            this.$btnPlayMultiple().removeClass("enabled")
+        }
     }
     /**
      * Affiche l'écran Explication et donne un feedback sur les (non)installations

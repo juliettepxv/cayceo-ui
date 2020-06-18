@@ -4,6 +4,12 @@
     top: calc(50vh - 190px);
     left: 50%;
     transform: translateX(-50%);
+    visibility: hidden;
+    pointer-events: none;
+    &.active.enabled{
+      visibility: visible;
+      pointer-events: auto;
+    }
   }
   #casques{
     [casque]{

@@ -70,6 +70,13 @@ export default class Layout {
         this._$qrcode.find("img").attr("src",imgUrl);
         ui.popIns.Qrcode.setImg(imgUrl);
     }
+    enableQrCode(enable){
+        if(enable){
+            this._$qrcode.addClass("enabled");
+        }else{
+            this._$qrcode.removeClass("enabled");
+        }
+    }
 
     /**
      * Charge la CSS et les icones SVG
@@ -87,4 +94,5 @@ export default class Layout {
         let $svg=$(require("../../../dist/icon.lib.html"));
         $body.append($svg);
     }
+
 }

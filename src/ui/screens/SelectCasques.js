@@ -83,4 +83,11 @@ export default class SelectCasques extends ScreenUi{
         this.$main.find("#casques [casque]").attr("is-selected","1");
         this.refresh();
     }
+    enableSelectAll(enable){
+        if(enable){
+            this.$btnSelectAll.addClass("enabled")
+        }else{
+            this.$btnSelectAll.removeClass("enabled")
+        }
+    }
 }

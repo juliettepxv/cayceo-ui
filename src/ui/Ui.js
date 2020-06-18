@@ -33,6 +33,32 @@ import DevicesTable from "./components/devices-table/DevicesTable";
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */
 export default class Ui extends EventEmitter{
+    get ipneoRemoteEnabled() {
+        return this._ipneoRemoteEnabled;
+    }
+
+    set ipneoRemoteEnabled(value) {
+        this._ipneoRemoteEnabled = value;
+        this.layout.enableQrCode(value)
+    }
+
+    get btnPlayAllEnabled() {
+        return this._btnPlayAllEnabled;
+    }
+
+    set btnPlayAllEnabled(value) {
+        this._btnPlayAllEnabled = value;
+        this.screens.explication.enablePlayAll(value);
+    }
+
+    get btnSelectAllEnabled() {
+        return this._btnSelectAllEnabled;
+    }
+
+    set btnSelectAllEnabled(value) {
+        this._btnSelectAllEnabled = value;
+        this.screens.selectCasques.enableSelectAll(value);
+    }
     get categoriesEnabled() {
         return this._categoriesEnabled;
     }
@@ -116,6 +142,9 @@ export default class Ui extends EventEmitter{
          * @type {boolean}
          */
         this._categoriesEnabled=false;
+        this._ipneoRemoteEnabled=false;
+        this._btnPlayAllEnabled=false;
+        this._btnSelectAllEnabled=false;
 
 
         /**
