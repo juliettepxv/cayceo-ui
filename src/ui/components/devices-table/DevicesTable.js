@@ -122,7 +122,7 @@ export default class DevicesTable {
     addFile(path,disabled=null){
         let fileHC=this.filesHeadCells[path];
         if(!fileHC){
-            console.warn("addFile",path);
+            //console.warn("addFile",path);
             fileHC=new FileHeadCell(path);
             this.filesHeadCells[path]=fileHC;
             this.$filesCol.find(".files").prepend(fileHC.$main);

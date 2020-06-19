@@ -103,7 +103,7 @@ export default class Films extends ScreenUi{
             film.setTitle(title);
         }else{
             film=new Film(filmId,title,imgUrl,filePath,minutes,text="",imgHttp);
-            console.warn(`ajoute Le film ${title} (${filePath}) dans l'ui ${imgHttp}`);
+            //console.warn(`ajoute Le film ${title} (${filePath}) dans l'ui ${imgHttp}`);
             this.list.push(film);
             this.$main.find(".films-list").append(film.$main);
         }

@@ -4,6 +4,7 @@ export default class FileCell{
 
 
 
+
     /**
      * Un fichier sur un device donné
      * @param {string} path chemin relatif vers le fichier
@@ -90,7 +91,7 @@ export default class FileCell{
         this._errorsTry=0;
 
         this.refreshValues();
-
+        this._droidWorking=false;
 
 
 
@@ -237,6 +238,19 @@ export default class FileCell{
             ui.layout.setContenuUpdate(null);
         }
 
+    }
+
+    get droidWorking() {
+        return this._droidWorking;
+    }
+
+    set droidWorking(value) {
+        this._droidWorking = value;
+        if(value){
+            this.$main.attr('droidWorking',1);
+        }else{
+            this.$main.attr('droidWorking',"");
+        }
     }
 
     /**

@@ -68,6 +68,14 @@ export default class FileHeadCell {
 
         this._bytes=0;
 
+        this._isDoc=false;
+
+        let regexApk = /.*\.apk/gmi;
+        this.isMimeApk=regexApk.test(this.path);
+        if(this.isMimeApk){
+            this.$main.attr("is-mime-apk","1")
+        }
+
     }
 
     /**
@@ -169,6 +177,12 @@ export default class FileHeadCell {
         this.$contenuName.text(value?'QR Code':'old QR Code');
         this.$main.attr("is-doc",value?'1':'');
         this._isQrCode = value;
+    }
+    get isDoc() {
+        return this._isDoc;
+    }
+    set isDoc(value) {
+        this.$main.attr("is-doc",value?'1':'');
     }
     get isLogo() {
         return this._isLogo;

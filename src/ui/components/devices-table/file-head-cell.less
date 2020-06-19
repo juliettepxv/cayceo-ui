@@ -1,5 +1,16 @@
 .file-head-cell{
   --success:#0f0;
+  .is-mime-apk{
+    display: none;
+  }
+  &[is-mime-apk="1"]{
+    .is-mime-apk{
+      display: inline-flex;
+      .tag();
+      background-color: #ff0;
+      color: #333;
+    }
+  }
   .disabled{
     display: none;
     color: var(--color-grey-light);
@@ -31,21 +42,23 @@
     font-family: var(--font-mono);
   }
 
+  .tag(){
+    padding: 4px;
+    border-radius: 4px;
+    background-color: var(--color-grey-light);
+    color: #fff;
+    display: inline-flex;
+    line-height: 1;
+    justify-content: center;
+    align-items: center;
+  }
 
 
   &[is-thumbnail],&[is-contenu],&[is-doc]{
     .contenuName{
       margin-left: -4px;
-      padding: 4px;
-      border-radius: 4px;
-      background-color: var(--color-grey-light);
-      color: #fff;
-      display: inline-flex;
-      line-height: 1;
-      justify-content: center;
-      align-items: center;
+      .tag();
     }
-
   }
   &[is-doc]{
     .contenuName{
