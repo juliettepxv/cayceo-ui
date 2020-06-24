@@ -312,6 +312,13 @@ export default class FileCell{
     isApk(){
         return this.fileHead().isApk;
     }
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme service apk
+     * @return {boolean}
+     */
+    isServiceApk(){
+        return this.fileHead().isServiceApk;
+    }
 
     /**
      * Racourcis: renvoie le casque

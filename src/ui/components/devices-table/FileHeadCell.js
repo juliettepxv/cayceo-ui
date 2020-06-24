@@ -48,10 +48,19 @@ export default class FileHeadCell {
          */
         this._isModeEmploi=false;
         /**
-         * Si true alors le fichier devra exister sur la régie uniquement
+         * L'ancien player APK (remplacé par le service)
+         * @deprecated
          * @type {boolean}
          */
         this._isApk=false;
+        this._isServiceApk=false;
+        this._isVideoPlayerApk=false;
+        this._isHomeScreenApk=false;
+        /**
+         * Si true on empechera la désinstallation de cet APK
+         * @type {boolean}
+         */
+        this.preventUnistall=false;
         /**
          * Si true alors le fichier devra exister sur la régie uniquement
          * @type {boolean}
@@ -76,6 +85,27 @@ export default class FileHeadCell {
             this.$main.attr("is-mime-apk","1")
         }
 
+    }
+
+    /**
+     * Dit si il faut désinstaller le fichier ou simplement le supprimer
+     * @return {boolean}
+     */
+    shouldBeUninstalled(){
+        if(this.preventUnistall){
+            return false;
+        }
+        if(this.isMimeApk){
+            switch (true) {
+                case this.isServiceApk:
+                case this.isHomeScreenApk:
+                case this.isVideoPlayerApk:
+                    return false;
+                default:
+                    return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -196,7 +226,7 @@ export default class FileHeadCell {
                 }
             }
             //présent sur la régie, pas sur les casques
-            this._shouldExistsOnRegieOnly();
+            this._shouldExistsEveryWhere();
         }else{
             //va effacer le vieux logo
             for(let fc of this.fileCellsArray()){
@@ -232,9 +262,18 @@ export default class FileHeadCell {
         this._isModeEmploi = value;
     }
 
+    /**
+     * @deprecated
+     * @return {boolean}
+     */
     get isApk() {
         return this._isApk;
     }
+
+    /**
+     * @deprecated
+     * @param value
+     */
     set isApk(value) {
         if(value){
             //désactive les autres LOGO
@@ -255,6 +294,83 @@ export default class FileHeadCell {
         this.$main.attr("is-doc",value?'1':'');
         this._isApk = value;
     }
+
+    get isServiceApk() {
+        return this._isServiceApk;
+    }
+    set isServiceApk(value) {
+        if(value){
+            this.contenuName="Service APK";
+            this.preventUnistall=true;
+            //désactive les autres LOGO
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isServiceApk){
+                    file.isServiceApk=false;
+
+                }
+            }
+            //présent sur la régie, pas sur les casques
+            this._shouldExistsEveryWhere();
+        }else{
+            //va effacer le vieux apk
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'service apk':'old service apk');
+        this.$main.attr("is-doc",value?'1':'');
+        this._isServiceApk = value;
+    }
+
+
+    get isHomeScreenApk() {
+        return this._isHomeScreenApk;
+    }
+    set isHomeScreenApk(value) {
+        if(value){
+            this.contenuName="Home screen APK";
+            this.preventUnistall=true;
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isHomeScreenApk){
+                    file.isHomeScreenApk=false;
+                }
+            }
+            this._shouldExistsEveryWhere();
+        }else{
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'home screen apk':'old home screen apk');
+        this.$main.attr("is-doc",value?'1':'');
+        this._isHomeScreenApk = value;
+    }
+
+    get isVideoPlayerApk() {
+        return this._isVideoPlayerApk;
+    }
+    set isVideoPlayerApk(value) {
+        if(value){
+            this.contenuName="Vidéo player APK";
+            this.preventUnistall=true;
+            for(let file of ui.devicesTable.filesHeadCellsArray()){
+                if(file.isVideoPlayerApk){
+                    file.isVideoPlayerApk=false;
+                }
+            }
+            this._shouldExistsEveryWhere();
+        }else{
+            for(let fc of this.fileCellsArray()){
+                fc.shouldExists=-1;
+            }
+        }
+        this.$contenuName.text(value?'video player apk':'old video player apk');
+        this.$main.attr("is-doc",value?'1':'');
+        this._isVideoPlayerApk = value;
+    }
+
+
+
 
     get isThumbnail() {
         return this._isThumbnail;
@@ -279,6 +395,11 @@ export default class FileHeadCell {
             }else{
                 fc.shouldExists=1;
             }
+        }
+    }
+    _shouldExistsEveryWhere(){
+        for(let fc of this.fileCellsArray()){
+            fc.shouldExists=1;
         }
     }
 

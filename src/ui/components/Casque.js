@@ -110,6 +110,17 @@ export default class Casque {
         this._refresh();
         return this;
     }
+    setAdbError(error){
+        this.$main.attr("adb-error",error?"1":"0");
+    }
+
+    /**
+     * Affiche le texte en haut
+     * @param text
+     */
+    setTitle(text){
+       this.$main.find(".state>span").text(text);
+    }
 
     /**
      *
