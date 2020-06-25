@@ -319,6 +319,13 @@ export default class FileCell{
     isServiceApk(){
         return this.fileHead().isServiceApk;
     }
+    /**
+     * Racourcis: renvoie si le fichier est marqué comme étant le home screen
+     * @return {boolean}
+     */
+    isHomeScreenApk(){
+        return this.fileHead().isHomeScreenApk;
+    }
 
     /**
      * Racourcis: renvoie le casque
