@@ -233,6 +233,10 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_DELETE_ALL_FILES, $(this).attr("ip"));
                    break;
 
+               case "casque-configure-all":
+                   me.emit(CMD.CASQUE_CONFIGURE_ALL, $(this).attr("ip"));
+                   break;
+
                case "casque-reboot":
                    me.emit(CMD.CASQUE_REBOOT,           $(this).attr("ip"));
                    break;

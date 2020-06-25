@@ -49,6 +49,9 @@ export default class Casque {
         let $emptyBtn=$(`<button action='casque-delete-all-files' ip='${this.ip}' class='btn-tiny'>Delete files</button>`);
         this._infoPopIn.$main.find("nav").append($emptyBtn);
 
+        let $configBtn=$(`<button action='casque-configure-all' ip='${this.ip}' class='btn-tiny'>Config all</button>`);
+        this._infoPopIn.$main.find("nav").append($configBtn);
+
         let $rebootBtn=$(`<button action='casque-reboot' ip='${this.ip}' class='btn-tiny'>Reboot</button>`);
         this._infoPopIn.$main.find("nav").append($rebootBtn);
 

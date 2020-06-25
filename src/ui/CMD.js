@@ -40,6 +40,11 @@ window.CMD.CASQUE_INSTALL_APK="CASQUE_INSTALL_APK";
  */
 window.CMD.CASQUE_DELETE_ALL_FILES="CASQUE_DELETE_ALL_FILES";
 /**
+ * Donne les autorisations aux APKs, lance le service etc etc
+ * @type {string}
+ */
+window.CMD.CASQUE_CONFIGURE_ALL="CASQUE_CONFIGURE_ALL";
+/**
  * Reboter le casque spécifié. Le premier argument est l'ip du casque
  * @type {string}
  */
@@ -59,6 +64,11 @@ window.CMD.NEW_SEANCE="NEW_SEANCE";
  * @type {string}
  */
 window.CMD.SHUT_DOWN_ALL="SHUT_DOWN_ALL";
+/**
+ * Reboote le pc mais n'eteint pas les casques
+ * @type {string}
+ */
+window.CMD.REBOOT_PC_ONLY="REBOOT_PC_ONLY";
 /**
  * Quitter l'application
  * @type {string}
