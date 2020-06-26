@@ -35,6 +35,16 @@ window.CMD.CASQUE_PLAY="CASQUE_PLAY";
  */
 window.CMD.CASQUE_INSTALL_APK="CASQUE_INSTALL_APK";
 /**
+ * Demande l'affichage du stream screen de casque
+ * @type {string}
+ */
+window.CMD.CASQUE_SHOW_STREAM_SCREEN="CASQUE_SHOW_STREAM_SCREEN";
+/**
+ * Demande la fermeture du stream screen de casque
+ * @type {string}
+ */
+window.CMD.CASQUE_CLOSE_STREAM_SCREEN="CASQUE_CLOSE_STREAM_SCREEN";
+/**
  * Effacer tous les fichiers sur le casque spécifié. Le premier argument est l'ip' du casque
  * @type {string}
  */

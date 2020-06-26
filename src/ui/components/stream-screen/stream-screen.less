@@ -1,0 +1,26 @@
+#stream-screen{
+  position: fixed;
+  z-index: calc( var(---z-popin) + 1);
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  &.active{
+    display: block;
+  }
+
+  .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .stream{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #00FFE6;
+    display: block;
+  }
+}

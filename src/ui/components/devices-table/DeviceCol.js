@@ -25,6 +25,7 @@ export default class DeviceCol{
          * @type {jQuery|HTMLElement}
          */
         this.$main=$(require("./device-col.html"));
+        this.$main.find("[ip]").attr("ip",this.id);
         /**
          * @private
          * @type {jQuery|HTMLElement}

@@ -28,6 +28,7 @@ import PinCode from "./popin/PinCode";
 import Dialog from "./components/Dialog/Dialog";
 import FilesReport from "./popin/FilesReport";
 import DevicesTable from "./components/devices-table/DevicesTable";
+import StreamScreen from "./components/stream-screen/StreamScreen";
 
 /**
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
@@ -92,6 +93,11 @@ export default class Ui extends EventEmitter{
          * @type {string}
          */
         this.pinCode="0000";
+        /**
+         * Overlay qui permet d'afficher une copie d'écran d'un casque en temps presque réel
+         * @type {StreamScreen}
+         */
+        this.streamScreen=new StreamScreen();
 
         /**
          * La popin en cours
@@ -223,6 +229,16 @@ export default class Ui extends EventEmitter{
 
                case "casque-remove":
                    me.emit(CMD.CASQUE_REMOVE,           $(this).attr("ip"));
+                   break;
+
+               case "casque-show-stream-screen":
+                   me.emit(CMD.CASQUE_SHOW_STREAM_SCREEN,      $(this).attr("ip"));
+                   me.streamScreen.show($(this).attr("ip"));
+                   break;
+
+               case "casque-close-stream-screen":
+                   me.emit(CMD.CASQUE_CLOSE_STREAM_SCREEN,      $(this).attr("ip"));
+                   me.streamScreen.close();
                    break;
 
                case "casque-install-apk":
