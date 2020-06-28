@@ -37,7 +37,6 @@ export default class StreamScreen{
     _initListeners(){
         let me=this;
         this.$main.find(".close").on("click",function(){
-            me.stop();
             me.hide();
         });
         /**
@@ -52,20 +51,30 @@ export default class StreamScreen{
             calculateMousePos(e);
             me._refreshProps();
         });
+
+        // TOUCH / CLICK
         this.$stream.on("click",function(e){
             calculateMousePos(e);
             me._refreshProps();
             ui.emit(CMD.CASQUE_INPUT_TAP,me.mouse.x,me.mouse.y,me.streamIp)
         });
+
+        //scroll WHEEL
+        this.$stream.on("wheel",function(e){
+            let delta=e.originalEvent.deltaY;
+            ui.emit(CMD.CASQUE_INPUT_SCROLL_Y,delta,me.streamIp)
+        });
+
+        //TOUCH MOVE SWIPE
         this.$stream.on("touchstart",function(e){
+            //TODO convertir les coordonnées (là c'est des coordonnées window.screen, ça fonctionne pour les swipes les plus courrants mais bon...)
             me.touchStart.x=e.originalEvent.changedTouches[0].clientX;
             me.touchStart.y=e.originalEvent.changedTouches[0].clientY;
-            //ui.emit(CMD.CASQUE_INPUT_SCROLL_Y,delta,me.streamIp)
         });
         this.$stream.on("touchend",function(e){
+            //TODO convertir les coordonnées (là c'est des coordonnées window.screen, ça fonctionne pour les swipes les plus courrants mais bon...)
             me.touchEnd.x=e.originalEvent.changedTouches[0].clientX;
             me.touchEnd.y=e.originalEvent.changedTouches[0].clientY;
-            console.log(CMD.CASQUE_INPUT_SWIPE,me.touchStart,me.touchEnd);
             ui.emit(CMD.CASQUE_INPUT_SWIPE,
                 me.touchStart.x,
                 me.touchStart.y,
@@ -114,7 +123,6 @@ export default class StreamScreen{
     show(ip){
         this.streamIp=ip;
         this.$main.addClass("active");
-        this.play();
     }
 
     /**
@@ -123,7 +131,6 @@ export default class StreamScreen{
     hide(){
         this.$main.removeClass("active");
         ui.emit(CMD.CASQUE_CLOSE_STREAM_SCREEN,this.streamIp);
-        this.stop();
     }
 
 
@@ -132,36 +139,12 @@ export default class StreamScreen{
      * @param value
      */
     set imgUrl(value) {
-        console.error("stream",value);
-        this._imgUrl = value;
-        this.$stream.attr("src",value);
-
-    }
-
-    /**
-     * Arrete la boucle de mise à jour
-     */
-    stop(){
-        if(this._loop){
-            this.$main.removeClass("active");
-            clearInterval(this._loop);
-            this._loop=null;
-        }
-    }
-
-    /**
-     * Démarre la boucle de mise à jour
-     */
-    play(){
         let me=this;
-        this.stop();
-        this._loop=setInterval(
-            function(){
-                me.$stream.attr("src",me._imgUrl+"?r="+Math.random());
-            }
-            ,500
-        );
+        me.$stream.removeClass("fresh");
+        setTimeout(function(){
+            me.$stream.addClass("fresh");
+        },10);
+        this.$stream.attr("src",value+"?r="+Math.random());
     }
-
 
 }

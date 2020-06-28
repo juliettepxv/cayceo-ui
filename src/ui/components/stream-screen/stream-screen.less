@@ -33,5 +33,24 @@
     height: auto;
     background-color: #00FFE6;
     display: block;
+    &.fresh{
+      animation-name: kf-fresh;
+      animation-duration: 4s;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
+    }
   }
+
+  @keyframes kf-fresh{
+    0%{
+      filter:sepia(0);
+    }
+    50%{
+      filter:sepia(0);
+    }
+    100%{
+      filter:sepia(5);
+    }
+  }
+
 }
