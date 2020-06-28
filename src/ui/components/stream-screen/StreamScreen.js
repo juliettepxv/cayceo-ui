@@ -145,6 +145,7 @@ export default class StreamScreen{
             me.$stream.addClass("fresh");
         },10);
         this.$stream.attr("src",value+"?r="+Math.random());
+        //this.$stream.attr("src",value);
     }
 
 }
