@@ -28,6 +28,46 @@ window.CMD.CASQUE_REMOVE="CASQUE_REMOVE";
  * @type {string}
  */
 window.CMD.CASQUE_PLAY="CASQUE_PLAY";
+/**
+ * Demande un input tap (un click) sur le casque
+ * Le 1er argument est la position x
+ * Le 2e argument est la position y
+ * Le 3e argument est l'ip' du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_INPUT_TAP="CASQUE_INPUT_TAP";
+/**
+ * Demande un input de touche sur le casque
+ * 3 --> KEYCODE_HOME,
+ * 24 -->  "KEYCODE_VOLUME_UP"
+ * 25 -->  "KEYCODE_VOLUME_DOWN"
+ * 26 -->  "KEYCODE_POWER"
+ * 66 -->  "KEYCODE_ENTER"
+ * 81 -->  "KEYCODE_PLUS"
+ * 82 -->  "KEYCODE_MENU"
+ * Le 1er argument est le code de la touche
+ * Le 2e argument est l'ip' du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_INPUT_TOUCH="CASQUE_INPUT_TOUCH";
+/**
+ * Demande scroll sur le casque
+ * Le 1er argument est le facteur de scroll positif ou négatif selon si on veut monter ou descendre
+ * Le 2e argument est l'ip' du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_INPUT_SCROLL_Y="CASQUE_INPUT_SCROLL_Y";
+/**
+ * Effectue un swipe sur le casque
+ * Le 1e argument est start_x
+ * Le 2e argument est start_y
+ * Le 3e argument est end_x
+ * Le 4e argument est end_y
+ * Le 5e argument est millisecondes
+ * Le 6e argument est l'ip' du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_INPUT_SWIPE="CASQUE_INPUT_SWIPE";
 
 /**
  * Installer ou réinstaller l'aAPK sur le casque donné sur le casque spécifié. Le premier argument est l'ip' du casque
