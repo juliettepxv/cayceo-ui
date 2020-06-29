@@ -85,6 +85,13 @@ export default class StreamScreen{
                 )
         });
 
+
+        //boutons
+        this.$main.on("click",".actions>button[keycode]",function(e){
+           let code=$(this).attr("keycode");
+           ui.emit(CMD.CASQUE_INPUT_TOUCH,code,me.streamIp);
+        });
+
         this._refreshProps();
     }
 
