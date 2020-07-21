@@ -138,10 +138,12 @@ export default class Casque {
      * @param {number} remainingSeconds
      */
     displayTime(remainingSeconds){
-        let d=new Date();
-        d.setTime(0);
-        d.setSeconds(remainingSeconds);
-        this.$main.find(".timer").text(`${d.toLocaleTimeString("en-US", {hour12: false}).substr(3,5)}`)
+        let abs=Math.abs(remainingSeconds);
+        let txt=new Date(abs * 1000).toISOString().substr(14, 5);
+        if(remainingSeconds<0){
+            txt="-"+txt;
+        }
+        this.$main.find(".timer").text(txt);
     }
 
     /**
