@@ -34,6 +34,15 @@ import StreamScreen from "./components/stream-screen/StreamScreen";
  * Il s'agit de l'objet permettant de controler toute l'interface utilisateur
  */
 export default class Ui extends EventEmitter{
+    get casqueRemotreControlEnabled() {
+        return this._casqueRemotreControlEnabled;
+    }
+
+    set casqueRemotreControlEnabled(value) {
+        console.log("ui casqueRemotreControlEnabled",value)
+        this._casqueRemotreControlEnabled = value;
+        this.layout.enableCasqueRemotreControl(value)
+    }
     get ipneoRemoteEnabled() {
         return this._ipneoRemoteEnabled;
     }
@@ -149,6 +158,12 @@ export default class Ui extends EventEmitter{
          */
         this._categoriesEnabled=false;
         this._ipneoRemoteEnabled=false;
+        /**
+         * Définit si on active ou non la télécommande sur les casques
+         * @type {boolean}
+         * @private
+         */
+        this._casqueRemotreControlEnabled=false;
         this._btnPlayAllEnabled=false;
         this._btnSelectAllEnabled=false;
 
@@ -262,7 +277,15 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "casque-play":
-                   me.emit(CMD.CASQUE_PLAY,            $(this).closest("[casque]").attr("casque"));
+                   me.emit(CMD.CASQUE_PLAY,                     $(this).closest("[casque]").attr("casque"));
+                   break;
+
+               case "casque-stop":
+                   me.emit(CMD.CASQUE_STOP,                     $(this).closest("[casque]").attr("casque"));
+                   break;
+
+               case "casque-remotre-control-config":
+                   me.emit(CMD.CASQUE_REMOTE_CONTROL_CONFIG,    $(this).closest("[casque]").attr("casque"));
                    break;
 
                case "casques-play-multiple":
@@ -270,10 +293,6 @@ export default class Ui extends EventEmitter{
                        me.emit(CMD.CASQUE_PLAY,ip);
                    }
                    me.showPopin(me.popIns.dashboard);
-                   break;
-
-               case "casque-stop":
-                   me.emit(CMD.CASQUE_STOP,$(this).closest("[casque]").attr("casque"));
                    break;
 
                case "open-doc":

@@ -105,6 +105,11 @@ window.CMD.CASQUE_REBOOT="CASQUE_REBOOT";
  */
 window.CMD.CASQUE_WAKE_UP="CASQUE_WAKE_UP";
 /**
+ * Dire d'ouvrir la config de la télécommande du casque. Le premier argument est l'ip' du casque
+ * @type {string}
+ */
+window.CMD.CASQUE_REMOTE_CONTROL_CONFIG="CASQUE_REMOTE_CONTROL_CONFIG";
+/**
  * Demande l'installation d'une nouvelle séance. Le premier argument est un objet qui contient les casques, le film et la durée
  * @type {string}
  */

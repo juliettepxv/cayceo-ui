@@ -77,6 +77,10 @@ export default class Layout {
             this._$qrcode.removeClass("enabled");
         }
     }
+    enableCasqueRemotreControl(enable){
+        this.$main.attr("casques-remote-control-enabled",enable?"1":"");
+
+    }
 
     /**
      * Charge la CSS et les icones SVG

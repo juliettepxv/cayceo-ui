@@ -116,6 +116,22 @@
 
   .badge{
     background-color: var(--color-pink);
+
+    &[action="casque-remotre-control-config"]{
+      display: none !important;
+      //en fonction du layout afiche ou pas...
+      [casques-remote-control-enabled='1'] & {
+        display: flex !important;
+      }
+      top: 100px;
+      background-color: var(--color-green);
+      cursor: pointer;
+      pointer-events: auto;
+      >svg{
+        display: block !important;
+      }
+    }
+
   }
   .badge-none();
 
