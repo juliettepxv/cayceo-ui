@@ -292,6 +292,7 @@ export default class Ui extends EventEmitter{
                    for(let ip of $(this).attr("ips").split(",")){
                        me.emit(CMD.CASQUE_PLAY,ip);
                    }
+                   me.screens.home.show();
                    me.showPopin(me.popIns.dashboard);
                    break;
 
