@@ -57,19 +57,14 @@ export default class Film {
         this.$main.attr("film",filmId);
 
 
+
         //applique les propriétés
         this.setImage(imgUrl)
-            .setTitle(title);
+            .setTitle(title)
+            .setText(text)
+            .setMinutes(minutes)
 
-        if(minutes){
-            minutes=minutes*1;
-        }
-        if(minutes && !isNaN(minutes) && minutes > 0){
-            this.addTag(`${minutes}:00`);
-        }
-        if(text){
-            this.addTag(text);
-        }
+
 
         //popin...
         let popinName=`Film ${this.filmId}`;
@@ -121,6 +116,24 @@ export default class Film {
         this.$main.find(".title").text(title);
         return this;
     }
+    setText(text){
+        this.text=text;
+        this.$main.find(".text").text(text);
+        return this;
+    }
+    setMinutes(minutes){
+        if(minutes){
+            minutes=minutes*1;
+        }
+        let minutesString="";
+        if(minutes && !isNaN(minutes) && minutes > 0){
+            minutesString=`${minutes}:00`;
+        }else {
+            minutesString=`infini`;
+        }
+        this.$main.find(".minutes").text(minutesString);
+        return this;
+    }
 
     /**
      *
@@ -134,6 +147,7 @@ export default class Film {
         }
         return this;
     }
+
 
     /**
      * Ajoute un tag

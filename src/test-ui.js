@@ -272,11 +272,30 @@ ui.on("READY",function(){
             path.disabled=Math.random()>0.5;
             path.serverPath=Math.random();
             path.contenuName="Hello world " +Math.random();
+            for(let d of path.fileCellsArray()){
+                d.exists=1;
+                d.shouldExists=1;
+            }
         }
 
 
 
     //fake datas en boucle...
+
+    for(let c in ui.casques.list){
+        let casque=ui.casques.list[c];
+            casque.setOnline(Math.random()>0.05);
+            casque.setBattery(Math.round(Math.random()*100));
+            casque.setBatteryPlugged(Math.random()>0.5);
+            casque.setApkIsOk(Math.random()>0.01);
+            casque.setDetails({
+                ip:casque.ip,
+                "some":{
+                    random:Math.random(),
+                    datas:Math.random()
+                }
+            })
+    }
 
     setInterval(function(){
         ui.log("Hello "+new Date().getTime().toString())
@@ -293,7 +312,7 @@ ui.on("READY",function(){
                 casque.setBatteryPlugged(Math.random()>0.5);
             }
             if(Math.random()>0.95){
-                casque.setApkIsOk(Math.random()>0.5);
+                casque.setApkIsOk(Math.random()>0.01);
             }
             casque.setDetails({
                 ip:casque.ip,

@@ -100,10 +100,10 @@ export default class Films extends ScreenUi{
         if(film){
             console.log(`Le film ${title} (${filePath}) était déjà dans l'ui `);
             film.setImage(imgUrl);
+            film.setText(text);
             film.setTitle(title);
         }else{
-            film=new Film(filmId,title,imgUrl,filePath,minutes,text="",imgHttp);
-            //console.warn(`ajoute Le film ${title} (${filePath}) dans l'ui ${imgHttp}`);
+            film=new Film(filmId,title,imgUrl,filePath,minutes,text,imgHttp);
             this.list.push(film);
             this.$main.find(".films-list").append(film.$main);
         }
@@ -125,20 +125,5 @@ export default class Films extends ScreenUi{
         }
         console.warn(`Le film ayant pour id ${filmId} ne peut pas être supprimé, il n'est pas dans la liste`)
     }
-
-    /**
-     * Supprime les films dont l'id n'est pas spécifié dans la liste
-     * @param {string[]} toKeepIds La liste des ids qui doivent rester
-     */
-    /*
-    cleanList(toKeepIds){
-        let ids=this._ids();
-        for(let i=0;i<ids.length;i++){
-            if($.inArray(ids[i],toKeepIds) === -1){
-                ui.log(`supression du film ${this.getFilmById(ids[i]).title}`);
-                this.removeFilm(ids[i]);
-            }
-        }
-    }
-    */
+    
 }
