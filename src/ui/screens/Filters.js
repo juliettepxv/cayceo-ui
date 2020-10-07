@@ -19,7 +19,6 @@ export default class Filters extends ScreenUi{
         });
 
         /**
-         * @private
          * @type {*[]}
          */
         this.categories=[];

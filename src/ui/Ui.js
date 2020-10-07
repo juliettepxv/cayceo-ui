@@ -292,8 +292,8 @@ export default class Ui extends EventEmitter{
                    for(let ip of $(this).attr("ips").split(",")){
                        me.emit(CMD.CASQUE_PLAY,ip);
                    }
-                   me.screens.home.show();
-                   me.showPopin(me.popIns.dashboard);
+                   me.screens.selectCasques.show();
+                   //me.showPopin(me.popIns.dashboard);
                    break;
 
                case "open-doc":
@@ -302,6 +302,20 @@ export default class Ui extends EventEmitter{
 
                case "shut-down-all":
                    me.shutDownAll();
+                   break;
+
+               case "reboot-pc":
+                   me.dialog
+                       .display()
+                       .setText(
+                           "<span style='color: var(--color-pink);'>" +
+                           "ATTENTION<br>" +
+                           "</span>"+
+                           "Êtes-vous certain de vouloir redémarrer la régie?"
+                           )
+                       .oui("oui",function(){
+                           me.emit(CMD.REBOOT_PC_ONLY);
+                       });
                    break;
 
                case "reset-all":
@@ -427,6 +441,7 @@ export default class Ui extends EventEmitter{
 
     }
 
+
     /**
      * Demande à arrêter les casque et le système en pasant par quelques confirmations
      */
@@ -506,7 +521,7 @@ export default class Ui extends EventEmitter{
         //retourne sur la home au bout de 30 secondes
         setTimeout(function () {
             if(ui.screens.explication.isActive()){
-                ui.screens.home.show(null,false);
+                ui.screens.selectCasques.show(null,false);
             }
         },30*1000)
     }

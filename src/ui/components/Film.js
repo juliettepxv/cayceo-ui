@@ -1,9 +1,7 @@
 import ObjectLogger from "../popin/ObjectLogger";
 
 export default class Film {
-
-
-
+    
     /**
      *
      * @param {string} filmId identifiant du film
@@ -12,9 +10,8 @@ export default class Film {
      * @param {string} filePath url du fichier
      * @param minutes
      * @param {string} text
-     * @param {string} imgHttp url http de l'image
      */
-    constructor(filmId,title,imgUrl,filePath,minutes,text,imgHttp){
+    constructor(filmId,title,imgUrl,filePath,minutes,text){
         /**
          * Affiche ou pas le film
          * @type {boolean}
@@ -46,18 +43,11 @@ export default class Film {
          * @type {string} url de l'image du contenu
          */
         this.image="";
-        /**
-         *
-         * @type {string} url http de l'image
-         */
-        this.imgHttp=imgHttp;
-        
+
         //construit le html
         this.$main=$(require("./film.html"));
         this.$main.attr("film",filmId);
-
-
-
+        
         //applique les propriétés
         this.setImage(imgUrl)
             .setTitle(title)
@@ -116,11 +106,23 @@ export default class Film {
         this.$main.find(".title").text(title);
         return this;
     }
+
+    /**
+     *
+     * @param text
+     * @return {Film}
+     */
     setText(text){
         this.text=text;
         this.$main.find(".text").text(text);
         return this;
     }
+
+    /**
+     *
+     * @param minutes
+     * @return {Film}
+     */
     setMinutes(minutes){
         if(minutes){
             minutes=minutes*1;
@@ -150,15 +152,6 @@ export default class Film {
 
 
     /**
-     * Ajoute un tag
-     * @param tag
-     * @returns {Film}
-     */
-    addTag(tag){
-        this.$main.find(".tags").append($(`<div class='tag'>${tag}</div>`));
-        return this;
-    }
-    /**
      * Ajoute une Categorie
      * @param {string} category
      * @returns {Film}
@@ -167,7 +160,6 @@ export default class Film {
         if(this.categories.indexOf(category) === -1){
             this.categories.push(category);
             ui.screens.filters.addCategory(category);
-            this.addTag(category);
         }
 
         return this;

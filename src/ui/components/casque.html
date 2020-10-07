@@ -18,13 +18,14 @@
                 <use xlink:href="#icon-casque"/>
             </svg>
         </div>
-        <div class="preview-film">
+        <div class="preview-film"
+             hidden-is-online='0'
+             hidden-has-film='0'>
             <img class="bg-circle" src="../components/placeholder.jpg" alt="">
             <h3 class="title">...</h3>
             <h3 class="timer">...</h3>
         </div>
         <span numero>...</span>
-        <span full-ip debug-enabled='block'>...</span>
     </button>
 
     <div class="badge" action="casque-remotre-control-config">
@@ -36,9 +37,6 @@
     <div class="badge warning">
         <svg class="ico-24 check">
             <use xlink:href="#icon-check"/>
-        </svg>
-        <svg class="ico-24 paused">
-            <use xlink:href="#icon-pause"/>
         </svg>
         <svg class="ico-24 attention">
             <use xlink:href="#icon-warning"/>
@@ -64,14 +62,32 @@
     </div>
 
     <div class="actions">
-        <button action="casque-play" class="btn-tiny">
-            <span>Démarrer</span>
+        <button action="casque-play"
+                hidden-is-online='0'
+                hidden-has-film='0'
+                hidden-is-playing='1'
+                class="btn-tiny  btn-green">
+                <span>Démarrer</span>
         </button>
-        <button action="casque-stop" class="btn-tiny">
-            <span>Stop</span>
+
+        <button action="casque-stop"
+                hidden-is-online='0'
+                hidden-has-film='0'
+                hidden-is-playing="0"
+                class="btn-tiny btn-warning">
+                arrêter
         </button>
+
+        <button action="casque-stop"
+                hidden-is-online='0'
+                hidden-has-film='0'
+                hidden-is-playing="1"
+                class="btn-tiny btn-white btn-text">
+                Rendre disponible
+        </button>
+
         <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-tiny btn-circle">
-            <svg class="ico-16"><use xlink:href="#icon-settings"></use></svg>
+            <svg class="ico-16"><use xlink:href="#icon-info"></use></svg>
         </button>
     </div>
 

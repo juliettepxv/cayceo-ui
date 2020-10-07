@@ -13,7 +13,11 @@
   }
   #casques{
     [casque]{
+      .preview-film{
+        filter: saturate(0);
+      }
       //dans tous les cas sur cet écran...
+      /*
       .preview-film,
       [action='casque-stop'],
       .badge .paused,
@@ -24,6 +28,7 @@
       .ico-casque{
         display: flex;
       }
+      */
 
       //PAS selectionnable
       &[is-selectable='0']{
@@ -34,7 +39,10 @@
           display: none;
         }
         //tout est gris
-        .label,.badge,.ico-casque{
+        .label,
+        .ico-casque
+        //.badge
+        {
           background-color: @color-grey-light;
         }
       }
@@ -43,7 +51,7 @@
         button.circle{
           pointer-events: auto !important;
         }
-        .badge-none();
+        //.badge-none();
         &[is-selected='1']{
           .badge-check();
         }

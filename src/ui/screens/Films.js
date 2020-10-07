@@ -28,7 +28,12 @@ export default class Films extends ScreenUi{
         this.list=[];
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
             ui.nav.displayHome(true,false);
-            ui.nav.displayBack(true,"selectCasques");
+            if(ui.categoriesEnabled && ui.screens.filters.categories.length>0){
+                ui.nav.displayBack(true,"filters");
+            }else{
+                ui.nav.displayBack(true,"selectCasques");
+            }
+
             ui.nav.displayDashboard(true);
         });
 
@@ -92,10 +97,9 @@ export default class Films extends ScreenUi{
      * @param {string} filePath url du fichier
      * @param {number} minutes Nombre de minutes que ça dure
      * @param {string} text texte à afficher sous le film
-     * @param {string} imgHttp url absolue
      * @return {Film} Le film rajouté
      */
-    addFilm(filmId,title,imgUrl,filePath,minutes,text,imgHttp){
+    addFilm(filmId,title,imgUrl,filePath,minutes,text){
         let film=this.getFilmById(filmId);
         if(film){
             console.log(`Le film ${title} (${filePath}) était déjà dans l'ui `);
@@ -103,7 +107,7 @@ export default class Films extends ScreenUi{
             film.setText(text);
             film.setTitle(title);
         }else{
-            film=new Film(filmId,title,imgUrl,filePath,minutes,text,imgHttp);
+            film=new Film(filmId,title,imgUrl,filePath,minutes,text);
             this.list.push(film);
             this.$main.find(".films-list").append(film.$main);
         }

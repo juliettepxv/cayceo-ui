@@ -28,7 +28,6 @@ export default class Casque {
         //html
         me.$main.css("order",me.numero);
         me.$main.find("[numero]").text(me.numero);
-        me.$main.find("[full-ip]").text(me.ip);
         me.$main.attr("casque",me.ip);
 
         //popin...
@@ -248,6 +247,9 @@ export default class Casque {
      */
     setContenusReady(isReady=true){
         //console.warn("setContenusReady",isReady);
+        if(isReady){
+            this.$main.css("--state-copy",`'Synchronisation'`)
+        }
         this.$main.attr("is-contenus-ready",isReady?"1":"0");
         this.deviceColumn().contenusReady=isReady
         this._refresh();
@@ -321,16 +323,11 @@ export default class Casque {
         let me=this;
         switch (true) {
             case !me._isOnline(): //pas online
-                return false;
             case me._isPlaying(): //en cours de lecture
-                return false;
             case me._isBatteryLow(): //batterie faible
-                return false;
-            case me.contenu && me._isPlaying: // a un contenu en cours de lecture
-                return false;
-            case !me._isContenusReady(): // les contenus ne sont pas tous copiés
-                return false;
+            case me.contenu !== null: // a un contenu
             case !me._isApkOk(): // apk ok ou pas?
+            case !me._isContenusReady(): // les contenus ne sont pas tous copiés
                 return false;
             default:
                 return true;
