@@ -3,6 +3,7 @@
      has-film="0"
      battery-low="0"
      plugged="0"
+     adb-error="0"
      is-online="0"
      is-playing="0"
      is-selectable="0"
@@ -34,12 +35,14 @@
         </svg>
     </div>
 
-    <div class="badge warning">
-        <svg class="ico-24 check">
-            <use xlink:href="#icon-check"/>
-        </svg>
-        <svg class="ico-24 attention">
+    <div class="badge warning attention">
+        <svg class="ico-24">
             <use xlink:href="#icon-warning"/>
+        </svg>
+    </div>
+    <div class="badge green-dark check">
+        <svg class="ico-24">
+            <use xlink:href="#icon-check"/>
         </svg>
     </div>
 
@@ -82,8 +85,8 @@
                 hidden-is-online='0'
                 hidden-has-film='0'
                 hidden-is-playing="1"
-                class="btn-tiny btn-white btn-text">
-                Rendre disponible
+                class="btn-tiny btn-white">
+                annuler
         </button>
 
         <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-tiny btn-circle">
