@@ -76,11 +76,11 @@ export default class Validation extends ScreenUi{
          * @type {number}
          */
         this.duree=minutes;
-        this.$main.find("[minutes]").text(minutes);
-        if(!this.duree){
-            this.$caseDuree.addClass("hidden");
+        if(this.duree*1===0){
+            minutes="Durée Infinie"
         }else{
-            this.$caseDuree.removeClass("hidden");
+            minutes+=" Minutes";
         }
+        this.$main.find("[minutes]").text(minutes);
     }
 }
