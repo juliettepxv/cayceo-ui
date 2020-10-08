@@ -9,6 +9,7 @@ export default class Layout {
         this.$main=$(require("./layout.html"));
         this._$logo=this.$main.find("#logo");
         this._$qrcode=this.$main.find("#qrcode");
+        this._$modeEmploi=this.$main.find("[action='open-doc']");
         this._$contenuUpdate=this.$main.find("#contenu-update");
         this._loadAssets();
         this.setContenuUpdate(null);
@@ -77,10 +78,17 @@ export default class Layout {
             this._$qrcode.removeClass("enabled");
         }
     }
+    enableModeEmploi(enable){
+        if(enable){
+            this._$modeEmploi.addClass("enabled");
+        }else{
+            this._$modeEmploi.removeClass("enabled");
+        }
+    }
     enableCasqueRemotreControl(enable){
         this.$main.attr("casques-remote-control-enabled",enable?"1":"");
-
     }
+
 
     /**
      * Charge la CSS et les icones SVG

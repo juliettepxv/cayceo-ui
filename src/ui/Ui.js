@@ -220,8 +220,9 @@ export default class Ui extends EventEmitter{
      * Permet d'activer le mode d'emploi
      * @param imgUrl
      */
-    activeModeEmploi(){
-        this.popIns.dashboard.docEnabled=true;
+    activeModeEmploi(enable=true){
+        console.warn("mode d'emploi",enable)
+        this.layout.enableModeEmploi(enable);
     }
 
     /**
