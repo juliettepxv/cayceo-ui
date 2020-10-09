@@ -105,6 +105,11 @@ window.CMD.CASQUE_REBOOT="CASQUE_REBOOT";
  */
 window.CMD.CASQUE_WAKE_UP="CASQUE_WAKE_UP";
 /**
+ * Envoyer une commande via msg au casque
+ * @type {string}
+ */
+window.CMD.CASQUE_SEND_MSG="CASQUE_SEND_MSG";
+/**
  * Dire d'ouvrir la config de la télécommande du casque. Le premier argument est l'ip' du casque
  * @type {string}
  */

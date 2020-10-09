@@ -16,8 +16,11 @@
 
   max-width: calc( 100% - 2px);
   min-height: 500px;
-  padding-top: 130px;
-  padding-bottom: 180px;
+  min-height: calc(100vh - 200px);
+  //padding-top: 130px;
+  //padding-bottom: 180px;
+  margin-top: auto;
+  margin-bottom: auto;
   display: flex;
 
   .medias-scroll-container{ //la liste
@@ -26,9 +29,12 @@
     flex-grow: 1;
     padding-left: 20px;
     padding-right: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
     // >*les items sont ici...
     >*{ //item
       //outline: 1px solid green;
+      margin-block-start: 140px;
     }
   }
 }

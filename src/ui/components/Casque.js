@@ -197,6 +197,13 @@ export default class Casque {
         }
     }
 
+    setLiveUi(html){
+        if(this._liveUiHtml !== html){
+            this._liveUiHtml=html;
+            this.$main.find(".live-ui").html(html);
+        }
+
+    }
     /**
      * Définir si en cours de lecture ou pas
      * @param {boolean} isPlaying

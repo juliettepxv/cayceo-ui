@@ -289,6 +289,11 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_REMOTE_CONTROL_CONFIG,    $(this).closest("[casque]").attr("casque"));
                    break;
 
+
+               case "casque-send-msg":
+                   me.emit(CMD.CASQUE_SEND_MSG,    $(this).closest("[casque]").attr("casque"),$(this).attr("msg"));
+                   break;
+
                case "casques-play-multiple":
                    for(let ip of $(this).attr("ips").split(",")){
                        me.emit(CMD.CASQUE_PLAY,ip);

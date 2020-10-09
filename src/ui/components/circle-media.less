@@ -3,6 +3,11 @@
   *{
     pointer-events: none;
   }
+  [popin-info]{
+    position: absolute;
+    top: 25px;
+    left: 0;
+  }
   button{
     cursor: pointer;
     pointer-events: auto;
@@ -47,7 +52,7 @@
   text-align: center;
   --radius:180px;
   width: var(--radius);
-  height: var(--radius);
+  min-height: var(--radius);
   flex-grow: 0;
   flex-shrink: 0;
 
@@ -99,7 +104,7 @@
 
   >.actions{
     //top: var(--radius);
-    margin-top: 40px;
+    margin-top: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
