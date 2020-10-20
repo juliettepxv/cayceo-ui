@@ -60,9 +60,15 @@ export default class StreamScreen{
         });
 
         //scroll WHEEL
+        let lastScroll=0;
         this.$stream.on("wheel",function(e){
-            let delta=e.originalEvent.deltaY;
-            ui.emit(CMD.CASQUE_INPUT_SCROLL_Y,delta,me.streamIp)
+            let now = Date.now();
+            if(now-lastScroll>2000){
+                lastScroll=now;
+                let delta=e.originalEvent.deltaY;
+                ui.emit(CMD.CASQUE_INPUT_SCROLL_Y,delta,me.streamIp)
+            }
+
         });
 
         //TOUCH MOVE SWIPE
@@ -110,8 +116,13 @@ export default class StreamScreen{
      * @param h
      */
     setResolution(w,h){
-        this.resolution.w=w;
-        this.resolution.h=h;
+        if(h>w){
+            this.resolution.h=w;
+            this.resolution.w=h;
+        }else{
+            this.resolution.w=w;
+            this.resolution.h=h;
+        }
         this._refreshProps();
     }
 
