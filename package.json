@@ -16,6 +16,7 @@
     "url": "git://github.com/juliettepxv/cayceo-ui.git"
   },
   "dependencies": {
+    "@material/elevation": "^8.0.0",
     "event-emitter-es6": "^1.1.5",
     "filesize": "^6.1.0",
     "jquery": "^3.4.1"
