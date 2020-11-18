@@ -17,8 +17,8 @@ export default class SelectCasques extends ScreenUi{
         this.on(Ui.EVENT_ADDED_TO_STAGE,function(){
 
             ui.nav.displayHome(true,false);
-            ui.nav.displayBack(true,"home");
-            ui.nav.displayDashboard(true);
+            ui.nav.displayBack(false,"home");
+            ui.nav.displayDashboard(false);
             ui.emit(CMD.WAKE_UP_CASQUES);
 
             me.$main.find("#casques").append(CasqueList.inst().$main);
