@@ -8,6 +8,7 @@ export default class CasqueList{
         }
         CasqueList._inst=this;
         this.$main=$(require("./casque-list.html"));
+        this.$points=$("#casques-points");
         /**
          * La liste des casques
          * @type {Casque[]}
@@ -37,6 +38,7 @@ export default class CasqueList{
         let c=new Casque(fullIp);
         this.list[fullIp]=c;
         this.$main.append(c.$main);
+        this.$points.append(c.$point);
         ui.devicesTable.addDevice(fullIp,c);
         return c;
     }
@@ -49,6 +51,7 @@ export default class CasqueList{
         let c=this.getCasqueByIp(ip);
         if(c){
             c.$main.remove();
+            c.$point.remove();
             this.list[ip]=null;
             delete this.list[ip];
         }

@@ -8,6 +8,7 @@ export default class Casque {
     constructor(ip){
         let me=this;
         this.$main=$(require("./casque.html"));
+        this.$point=$(require("./casque-point.html"));
 
         /**
          * Adresse ip complète
@@ -27,6 +28,7 @@ export default class Casque {
 
         //html
         me.$main.css("order",me.numero);
+        me.$point.css("order",me.numero);
         me.$main.find("[numero]").text(me.numero);
         me.$main.attr("casque",me.ip);
 
@@ -83,7 +85,7 @@ export default class Casque {
         }
         this.$main.find("[battery-level]").text(`${percent}%`);
 
-        if(percent<=5){
+        if(percent<=20){
             this.$main.attr("battery-low","1");
         }else{
             this.$main.attr("battery-low","0");
@@ -318,7 +320,7 @@ export default class Casque {
      * @private
      */
     _refresh(){
-        this.$main.attr("is-selectable",this.isSelectable()?"1":"0");
+        this.$main.add(this.$point).attr("is-selectable",this.isSelectable()?"1":"0");
         ui.screens.selectCasques.refresh();
     }
     
