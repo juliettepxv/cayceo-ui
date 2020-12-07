@@ -12,6 +12,26 @@
      is-apk-ok="0"
 >
 
+    <div class="popin-config shadow">
+        <button class="close" action="toggle-config">
+            <svg class="ico-16">
+                <use xlink:href="#icon-close"></use>
+            </svg>
+        </button>
+        <div class="content">
+
+            <button class="btn-tiny btn-white" action="casque-remotre-control-config">
+                Télécommande
+            </button>
+
+            <div class="live-config-ui">
+                live config ui
+            </div>
+        </div>
+
+    </div>
+
+
     <button class="circle" >
 
         <div class="ico-casque">
@@ -29,9 +49,15 @@
         <span numero>...</span>
     </button>
 
-    <div class="badge" action="casque-remotre-control-config">
+    <div class="badge" action="toggle-config">
         <svg class="ico-24">
-            <use xlink:href="#icon-gamepad"></use>
+            <use xlink:href="#icon-dashboard"></use>
+        </svg>
+    </div>
+
+    <div class="badge">
+        <svg class="ico-24">
+            <use xlink:href="#icon-warning"/>
         </svg>
     </div>
 

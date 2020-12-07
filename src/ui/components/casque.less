@@ -1,5 +1,9 @@
 @import "casque-badge";
+@import "casque-popin-config";
 [casque]{
+
+
+
   >.circle{
     background-color: var(--color-green);
     pointer-events: none;
@@ -80,8 +84,9 @@
   }
   &[battery-low="1"]{
     .battery{
-      background-color: var(--color-pink);
+      background-color: var(--color-pink) !important;
     }
+
   }
 
   //branché ou pas...
@@ -104,12 +109,9 @@
 
   .badge{
 
-
-    &[action="casque-remotre-control-config"]{
-      display: none !important;
-      //en fonction du layout afiche ou pas...
-      [casques-remote-control-enabled='1'] & {
-        display: flex !important;
+    &[action='toggle-config']{
+      &.active {
+        display: flex;
       }
       top: 130px;
       right: 0px;
@@ -120,7 +122,6 @@
         display: block !important;
       }
     }
-
   }
   .badge-none();
 
@@ -149,7 +150,6 @@
       display: none;
     }
   }
-
   &[is-online='1']{
     &[has-film='0']{
       --state-text:"Disponible";
@@ -165,11 +165,10 @@
         --state-text:"En cours";
       }
     }
+    &[battery-low='1']{
+      --state-text:"Batterie faible";
+    }
   }
-
-
-
-
   &[is-online='0']{
     --state-text:"Hors ligne";
     .circle,.label{
@@ -177,7 +176,6 @@
     }
     .badge-none();
   }
-
   &[is-contenus-ready="0"]{
     --state-text:var(--state-copy,"Copie...") !important;
     .circle,.label{
@@ -186,8 +184,6 @@
     .badge-attention();
 
   }
-
-
   &[is-apk-ok='1']{
     .apk{
       visibility: hidden;
@@ -198,7 +194,6 @@
       visibility: visible;
     }
   }
-
   &[plugged='0']{
     &[is-apk-ok='0'],&[is-contenus-ready="0"]{
       --state-text:"Branchez moi" !important;
@@ -211,7 +206,15 @@
       }
     }
   }
-
+  &[plugged='1']{
+    [casques-remote-control-enabled='1'] & {
+      .badge{
+        &[action='toggle-config']{
+          display: flex;
+        }
+      }
+    }
+  }
   &[adb-error='1']{
     &.circle-media{ //pour forcer
       --state-text:"Dé/re-branchez" !important;

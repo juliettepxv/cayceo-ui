@@ -243,6 +243,10 @@ export default class Ui extends EventEmitter{
                    me.emit($(this).attr("emit-name"));
                    break;
 
+               case "toggle-config": //ouvre ou ferme la fenetre de config
+                   $(this).closest("[casque]").find(".popin-config").toggleClass("active");
+                   break;
+
                case "casque-remove":
                    me.emit(CMD.CASQUE_REMOVE,           $(this).attr("ip"));
                    break;

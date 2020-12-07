@@ -32,6 +32,8 @@ export default class Casque {
         me.$main.find("[numero]").text(me.numero);
         me.$main.attr("casque",me.ip);
 
+
+
         //popin...
         let popinName=`Casque ${me.ip}`;
         /**
@@ -63,6 +65,7 @@ export default class Casque {
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
         ui.popIns[popinName]=this._infoPopIn;
     }
+
 
     /**
      * Permet d'afficher dans la popin de détail du casque ses infos détaillées
@@ -204,7 +207,22 @@ export default class Casque {
             this._liveUiHtml=html;
             this.$main.find(".live-ui").html(html);
         }
+    }
 
+    /**
+     * Définit le contenu live de la fenêtre de config
+     * @param html
+     */
+    setLiveConfigUi(html){
+        if(this._liveConfigUiHtml !== html){
+            if(html){
+                this.$main.find("[action='toggle-config']").addClass("active");
+            }else{
+                this.$main.find("[action='toggle-config']").removeClass("active");
+            }
+            this._liveConfigUiHtml=html;
+            this.$main.find(".live-config-ui").html(html);
+        }
     }
     /**
      * Définir si en cours de lecture ou pas

@@ -1,0 +1,68 @@
+[casque]{
+  .popin-config{
+    display: none;
+    &.active{
+      display: flex;
+      animation-name:open-popin;
+      animation-duration: 0.3s;
+      animation-iteration-count: 1;
+    }
+
+    >.close{
+      position: absolute;
+      right: 4px;
+      top: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 100%;
+      padding: 6px;
+      color: #000;
+      background-color: transparent;
+    }
+    position: absolute;
+    background-color: rgba(255,255,255,0.95);
+    border-radius: 8px;
+    position: absolute;
+    width: 100%;
+    //height: 200px;
+    z-index: 1;
+    top: -10px;
+
+
+    >.content{
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      padding: 35px 15px 0px 15px;
+      button{
+        margin-right: 0;
+        .mdc-elevation--z2;
+      }
+      >*{
+        margin-bottom: 15px;
+      }
+      >.live-config-ui{
+        display: flex;
+        flex-direction: column;
+        >*{
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+
+
+    [action="casque-remotre-control-config"]{
+      display: none !important;
+      //en fonction du layout afiche ou pas...
+      [casques-remote-control-enabled='1'] & {
+        display: flex !important;
+      }
+    }
+
+  }
+}
