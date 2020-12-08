@@ -25,10 +25,11 @@ export default class Filters extends ScreenUi{
         //this.addCategory("autres");
     }
 
-    addCategory(category){
+    addCategory(category,ordre){
         if(this.categories.indexOf(category) === -1){
             this.categories.push(category);
             let $cat=$(require("../components/category-btn.html"));
+            $cat.css("order",ordre);
             $cat.find("span").text(category);
             $cat.attr("category",category);
             this.$main.find("[categories]").append($cat);

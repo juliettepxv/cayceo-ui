@@ -154,12 +154,13 @@ export default class Film {
     /**
      * Ajoute une Categorie
      * @param {string} category
+     * @param {Number} ordre
      * @returns {Film}
      */
-    addCategory(category){
+    addCategory(category,ordre=1000){
         if(this.categories.indexOf(category) === -1){
             this.categories.push(category);
-            ui.screens.filters.addCategory(category);
+            ui.screens.filters.addCategory(category,ordre);
         }
 
         return this;
