@@ -261,6 +261,10 @@ export default class Ui extends EventEmitter{
                    me.streamScreen.close();
                    break;
 
+               case "casque-start-service":
+                   me.emit(CMD.CASQUE_START_SERVICE,      $(this).attr("ip"));
+                   break;
+
                case "casque-install-apk":
                    me.emit(CMD.CASQUE_INSTALL_APK,      $(this).attr("ip"));
                    break;

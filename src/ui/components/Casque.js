@@ -46,14 +46,15 @@ export default class Casque {
         let $removeBtn=$(`<button action='casque-remove' ip='${this.ip}' class='btn-tiny'>Remove</button>`);
         this._infoPopIn.$main.find("nav").append($removeBtn);
 
-        let $apkBtn=$(`<button action='casque-install-apk' ip='${this.ip}' class='btn-tiny'>Install APK</button>`);
-        this._infoPopIn.$main.find("nav").append($apkBtn);
+        let $serviceBtn=$(`<button action='casque-start-service' ip='${this.ip}' class='btn-tiny'>Service</button>`);
+        this._infoPopIn.$main.find("nav").append($serviceBtn);
 
         let $emptyBtn=$(`<button action='casque-delete-all-files' ip='${this.ip}' class='btn-tiny'>Delete files</button>`);
         this._infoPopIn.$main.find("nav").append($emptyBtn);
 
         let $configBtn=$(`<button action='casque-configure-all' ip='${this.ip}' class='btn-tiny'>Config all</button>`);
         this._infoPopIn.$main.find("nav").append($configBtn);
+
 
         let $rebootBtn=$(`<button action='casque-reboot' ip='${this.ip}' class='btn-tiny'>Reboot</button>`);
         this._infoPopIn.$main.find("nav").append($rebootBtn);
