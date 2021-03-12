@@ -15,7 +15,7 @@ export default class Layout {
         this.setContenuUpdate(null);
         this.version="";
         this.machineName="";
-        this._horloge=this.$main.find("#horloge");
+        this._$horloge=this.$main.find("#horloge");
 
         let me=this;
         setInterval(function(){
@@ -24,12 +24,13 @@ export default class Layout {
         me._displayHorloge();
     }
 
+
     /**
      * Affiche l'heure
      * @private
      */
     _displayHorloge(){
-        this._horloge.text(
+        this._$horloge.text(
             new Date().toLocaleTimeString("fr", {
                 hour: '2-digit',
                 minute:'2-digit'

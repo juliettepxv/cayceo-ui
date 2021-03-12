@@ -17,10 +17,11 @@
   },
   "dependencies": {
     "@material/elevation": "^8.0.0",
+    "@mdi/font": "^5.9.55",
+    "animate.css": "^4.1.1",
     "event-emitter-es6": "^1.1.5",
     "filesize": "^6.1.0",
-    "jquery": "^3.4.1",
-    "animate.css": "^4.1.1"
+    "jquery": "^3.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",

@@ -1,18 +1,18 @@
-[is-offline="0"]{
-  #network-ico{
+[is-machine-plugged="1"]{
+  #machine-plugged-ico{
   }
 }
-[is-offline="1"]{
-  #network-ico{
+[is-machine-plugged="0"]{
+  #machine-plugged-ico{
     visibility:visible;
-    animation-name: kf-offline;
+    animation-name: kf-unplugged;
     animation-iteration-count: infinite;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-direction: alternate;
   }
 }
-@keyframes kf-offline {
+@keyframes kf-unplugged {
   from{
     color:#F00;
   }

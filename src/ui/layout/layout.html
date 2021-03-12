@@ -1,15 +1,20 @@
-<div debug-is-enabled="0" is-offline="1" is-syncing="1" transi="">
+<div debug-is-enabled="0"
+     is-offline="0"
+     is-machine-plugged="1"
+     is-syncing="1"
+     transi="">
 
     <div id="logo">
         <img src="../components/placeholder.jpg" alt="logo"/>
     </div>
 
     <nav id="top-right-nav">
-        <div id="horloge">09:14</div>
+        <span id="network-ico" class="mdi mdi-wifi"></span>
+        <span id="machine-plugged-ico" class="mdi mdi-power-plug"></span>
+        <div  id="horloge">09:14</div>
     </nav>
 
     <nav id="bottom-nav">
-        <svg id="network-ico" debug-enabled='block' ><use xlink:href="#icon-wifi"></use></svg>
         <svg id="refresh-ico" ><use xlink:href="#icon-refresh"></use></svg>
         <div id="contenu-update" >
             <div class="indication-mono"></div>

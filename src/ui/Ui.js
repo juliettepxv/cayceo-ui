@@ -207,7 +207,7 @@ export default class Ui extends EventEmitter{
     }
 
     /**
-     * Si true (et qu'on est en mode debug) affiche qu'on est offline
+     * Si true affiche qu'on est offline
      * @param value
      */
     set isOffline(value) {
@@ -215,6 +215,14 @@ export default class Ui extends EventEmitter{
         this._isOffline = value;
         ui.devicesTable.devicesById["régie"].online=!this._isOffline;
     }
+    /**
+     * Si true affiche que la régine est branchée
+     * @param value
+     */
+    set isMachinePlugged(value){
+        $body.find("[is-machine-plugged]").attr("is-machine-plugged",value?"1":"0");
+    }
+
 
     /**
      * Permet d'activer le mode d'emploi
