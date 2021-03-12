@@ -15,6 +15,26 @@ export default class Layout {
         this.setContenuUpdate(null);
         this.version="";
         this.machineName="";
+        this._horloge=this.$main.find("#horloge");
+
+        let me=this;
+        setInterval(function(){
+            me._displayHorloge();
+        },1000*10);
+        me._displayHorloge();
+    }
+
+    /**
+     * Affiche l'heure
+     * @private
+     */
+    _displayHorloge(){
+        this._horloge.text(
+            new Date().toLocaleTimeString("fr", {
+                hour: '2-digit',
+                minute:'2-digit'
+            })
+        )
     }
     /**
      * Permet de d'afficher un numéro de version'
