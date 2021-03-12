@@ -75,6 +75,11 @@ window.CMD.CASQUE_INPUT_SWIPE="CASQUE_INPUT_SWIPE";
  */
 window.CMD.CASQUE_INSTALL_APK="CASQUE_INSTALL_APK";
 /**
+ * démarrer le service
+ * @type {string}
+ */
+window.CMD.CASQUE_START_SERVICE="CASQUE_START_SERVICE";
+/**
  * Demande l'affichage du stream screen de casque
  * @type {string}
  */
