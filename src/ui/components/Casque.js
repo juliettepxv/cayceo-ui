@@ -90,6 +90,22 @@ export default class Casque {
 
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
         ui.popIns[popinName]=this._infoPopIn;
+
+
+        let w=500;
+        let $imgScreenStream=$(`<img  ip='${this.ip}'
+                                      class="screen-stream" 
+                                      style="position: absolute;
+                                      top:110px;
+                                      right: 35px;
+                                      width: ${w}px;
+                                      height: ${Math.round(9/16*w)}px;
+                                      background-color: #888;
+                                      object-fit: contain;
+                                      "
+                                      />`);
+        this._infoPopIn.$main.append($imgScreenStream);
+
     }
 
 
@@ -227,14 +243,17 @@ export default class Casque {
         );
 
         let $screenImg=this.$main.find("img.screen");
+        let $inPopin=this._infoPopIn.$main.find(".screen-stream");
         if(base64){
             //image
             $screenImg.attr("src",base64);
+            $inPopin.attr("src",base64);
             this.$main.attr("screen-stream","1");
         }else{
             //gif transparent
             //$screenImg.attr("src","data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
 
+            $inPopin.attr("src","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==");
             $screenImg.attr("src","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==");
             this.$main.attr("screen-stream","0");
         }
