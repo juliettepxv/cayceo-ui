@@ -6,6 +6,7 @@
   "main": "dist/cayceoUi.js",
   "scripts": {
     "watch-dev": "webpack --watch --config _builders/webpack.dev.js",
+    "build-dev": "webpack --config _builders/webpack.dev.js",
     "build-prod": "webpack --config _builders/webpack.prod.js",
     "build-prod-stats": "webpack --config _builders/webpack.prod.js --json > _builders/stats-prod.json",
     "npm-install": "npm install",
