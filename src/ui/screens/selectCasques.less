@@ -13,9 +13,7 @@
   }
   #casques{
     [casque]{
-      .preview-film{
-        filter: saturate(0);
-      }
+
       //dans tous les cas sur cet écran...
       /*
       .preview-film,
@@ -32,6 +30,16 @@
 
       //PAS selectionnable
       &[is-selectable='0']{
+        .images-filter{
+          opacity:0.8;
+          background-color: var(--color-grey-light);
+        }
+        &[has-film='1']{
+          .images-filter{
+            opacity:0.3;
+            background-color: #000;
+          }
+        }
         button.circle{
           pointer-events: none !important;
         }
@@ -43,11 +51,15 @@
         .ico-casque
         //.badge
         {
-          background-color: @color-grey-light;
+          //background-color: @color-grey-light;
         }
       }
       //selectionnable
       &[is-selectable='1']{
+        .images-filter{
+          opacity:0.8;
+          background-color: var(--color-green);
+        }
         button.circle{
           pointer-events: auto !important;
         }
