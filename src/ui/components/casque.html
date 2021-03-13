@@ -33,20 +33,28 @@
 
 
     <button class="circle" >
+        <img class="bg-circle contenu"
+             src="../components/placeholder.jpg"
+             hidden-is-online='0'
+             hidden-has-film='0'
+             alt="">
+        <img class="bg-circle screen"
+             src="../components/placeholder.jpg" alt="">
+        <div class="images-filter"></div>
 
+        <div class="preview-film"
+             hidden-is-online='0'
+             hidden-has-film='0'>
+                <h3 class="title">...</h3>
+                <h3 class="timer">...</h3>
+        </div>
         <div class="ico-casque">
             <svg class=" ico-64">
                 <use xlink:href="#icon-casque"/>
             </svg>
         </div>
-        <div class="preview-film"
-             hidden-is-online='0'
-             hidden-has-film='0'>
-            <img class="bg-circle" src="../components/placeholder.jpg" alt="">
-            <h3 class="title">...</h3>
-            <h3 class="timer">...</h3>
-        </div>
         <span numero>...</span>
+
     </button>
 
     <div class="badge" action="toggle-config">
@@ -90,7 +98,6 @@
         <span battery-level>10%</span>
     </div>
 
-
     <button popin-info data-show-popin="" debug-enabled='inline-flex' class="btn-tiny btn-circle btn-white">
         <svg class="ico-16"><use xlink:href="#icon-info"></use></svg>
     </button>
@@ -103,7 +110,6 @@
                 class="btn-tiny  btn-green">
                 <span>Démarrer</span>
         </button>
-
         <button action="casque-stop"
                 hidden-is-online='0'
                 hidden-has-film='0'
@@ -111,7 +117,6 @@
                 class="btn-tiny btn-warning">
                 arrêter
         </button>
-
         <button action="casque-stop"
                 hidden-is-online='0'
                 hidden-has-film='0'
@@ -124,8 +129,6 @@
             ...
         </div>
 
-
     </div>
-
 
 </div>

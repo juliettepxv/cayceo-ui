@@ -242,6 +242,8 @@ export default class Ui extends EventEmitter{
 
         $body.on("click","[action]",function(){
            let a =$(this).attr("action");
+           let ip=$(this).attr("ip");
+           let casque=$(this).closest("[casque]").attr("casque");
            switch(a){
                case "debug-toggle":
                me.debugMode.toggle();
@@ -256,58 +258,65 @@ export default class Ui extends EventEmitter{
                    break;
 
                case "casque-remove":
-                   me.emit(CMD.CASQUE_REMOVE,           $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_REMOVE,ip);
                    break;
 
                case "casque-show-stream-screen":
-                   me.emit(CMD.CASQUE_SHOW_STREAM_SCREEN,      $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_SHOW_STREAM_SCREEN_ADB,ip);
                    me.streamScreen.show($(this).attr("ip"));
                    break;
 
                case "casque-close-stream-screen":
-                   me.emit(CMD.CASQUE_CLOSE_STREAM_SCREEN,      $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_CLOSE_STREAM_SCREEN_ADB,ip);
                    me.streamScreen.close();
                    break;
 
                case "casque-start-service":
-                   me.emit(CMD.CASQUE_START_SERVICE,      $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_START_SERVICE,ip);
                    break;
 
                case "casque-install-apk":
-                   me.emit(CMD.CASQUE_INSTALL_APK,      $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_INSTALL_APK,ip);
                    break;
 
                case "casque-delete-all-files":
-                   me.emit(CMD.CASQUE_DELETE_ALL_FILES, $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_DELETE_ALL_FILES,ip);
                    break;
 
                case "casque-configure-all":
-                   me.emit(CMD.CASQUE_CONFIGURE_ALL, $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_CONFIGURE_ALL,ip);
                    break;
 
                case "casque-reboot":
-                   me.emit(CMD.CASQUE_REBOOT,           $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_REBOOT,ip);
                    break;
 
                case "casque-wake-up":
-                   me.emit(CMD.CASQUE_WAKE_UP,          $(this).attr("ip"));
+                   me.emit(CMD.CASQUE_WAKE_UP,ip);
+                   break;
+
+               case CMD.CASQUE_START_SCREEN_STREAM_SOCKET:
+                   me.emit(CMD.CASQUE_START_SCREEN_STREAM_SOCKET,ip);
+                   break;
+
+               case CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET:
+                   me.emit(CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET,ip);
                    break;
 
                case "casque-play":
-                   me.emit(CMD.CASQUE_PLAY,                     $(this).closest("[casque]").attr("casque"));
+                   me.emit(CMD.CASQUE_PLAY,casque);
                    break;
 
                case "casque-stop":
-                   me.emit(CMD.CASQUE_STOP,                     $(this).closest("[casque]").attr("casque"));
+                   me.emit(CMD.CASQUE_STOP,casque);
                    break;
 
                case "casque-remotre-control-config":
-                   me.emit(CMD.CASQUE_REMOTE_CONTROL_CONFIG,    $(this).closest("[casque]").attr("casque"));
+                   me.emit(CMD.CASQUE_REMOTE_CONTROL_CONFIG,casque);
                    break;
 
-
                case "casque-send-msg":
-                   me.emit(CMD.CASQUE_SEND_MSG,    $(this).closest("[casque]").attr("casque"),$(this).attr("msg"));
+                   me.emit(CMD.CASQUE_SEND_MSG,casque,$(this).attr("msg"));
                    break;
 
                case "casques-play-multiple":

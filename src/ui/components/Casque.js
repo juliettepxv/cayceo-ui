@@ -36,31 +36,56 @@ export default class Casque {
 
         //popin...
         let popinName=`Casque ${me.ip}`;
+
         /**
          * La popin où on affichera les infos du casque
          * @type {ObjectLogger}
          * @private
          */
         this._infoPopIn=new ObjectLogger(popinName);
+        let $nav=this._infoPopIn.$main.find("nav");
+
         //ajoute des boutons
-        let $removeBtn=$(`<button action='casque-remove' ip='${this.ip}' class='btn-tiny'>Remove</button>`);
-        this._infoPopIn.$main.find("nav").append($removeBtn);
+        let $removeBtn=$(`<button action='casque-remove' 
+                                  ip='${this.ip}' 
+                                  class='btn-tiny'>Remove</button>`);
+        $nav.append($removeBtn);
 
-        let $serviceBtn=$(`<button action='casque-start-service' ip='${this.ip}' class='btn-tiny'>Service</button>`);
-        this._infoPopIn.$main.find("nav").append($serviceBtn);
+        let $serviceBtn=$(`<button action='casque-start-service'
+                                   ip='${this.ip}' 
+                                   class='btn-tiny'>Service</button>`);
+        $nav.append($serviceBtn);
 
-        let $emptyBtn=$(`<button action='casque-delete-all-files' ip='${this.ip}' class='btn-tiny'>Delete files</button>`);
-        this._infoPopIn.$main.find("nav").append($emptyBtn);
+        let $emptyBtn=$(`<button action='casque-delete-all-files' 
+                                 ip='${this.ip}' 
+                                 class='btn-tiny'>Delete files</button>`);
+        $nav.append($emptyBtn);
 
-        let $configBtn=$(`<button action='casque-configure-all' ip='${this.ip}' class='btn-tiny'>Config all</button>`);
-        this._infoPopIn.$main.find("nav").append($configBtn);
+        let $configBtn=$(`<button action='casque-configure-all' 
+                                  ip='${this.ip}' 
+                                  class='btn-tiny'>Config all</button>`);
+        $nav.append($configBtn);
 
 
-        let $rebootBtn=$(`<button action='casque-reboot' ip='${this.ip}' class='btn-tiny'>Reboot</button>`);
-        this._infoPopIn.$main.find("nav").append($rebootBtn);
+        let $rebootBtn=$(`<button action='casque-reboot' 
+                                  ip='${this.ip}' 
+                                  class='btn-tiny'>Reboot</button>`);
+        $nav.append($rebootBtn);
 
-        let $reveilBtn=$(`<button action='casque-wake-up' ip='${this.ip}' class='btn-tiny'>Wake up</button>`);
-        this._infoPopIn.$main.find("nav").append($reveilBtn);
+        let $reveilBtn=$(`<button action='casque-wake-up' 
+                                  ip='${this.ip}' 
+                                  class='btn-tiny'>Wake up</button>`);
+        $nav.append($reveilBtn);
+
+        let $streamStartBtn=$(`<button action='${CMD.CASQUE_START_SCREEN_STREAM_SOCKET}' 
+                                       ip='${this.ip}' 
+                                       class='btn-tiny'>Screen ON</button>`);
+        $nav.append($streamStartBtn);
+
+        let $streamStopBtn=$(`<button action='${CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET}' 
+                                      ip='${this.ip}' 
+                                      class='btn-tiny'>Screen OFF</button>`);
+        $nav.append($streamStopBtn);
 
 
         this.$main.find("[popin-info]").attr("data-show-popin",popinName);
@@ -172,7 +197,7 @@ export default class Casque {
         this.contenu=contenu;
         let $film=this.$main.find(".preview-film");
         let $filmTitle=$film.find(".title");
-        let $filmImg=$film.find("img");
+        let $filmImg=this.$main.find("img.contenu");
         if(contenu){
             this.$main.attr("has-film","1");
             $filmTitle.text(contenu.title);
@@ -184,6 +209,35 @@ export default class Casque {
         }
         this._refresh();
         return this;
+    }
+
+    /**
+     * Affiche une copie d'écran de ce qui se passe dans le casque
+     * @param {String|null} base64
+     */
+    setScreenStreamSocket(base64){
+        let me=this;
+        if(me._toScreenStreamSocket){
+            clearInterval(me._toScreenStreamSocket);
+        }
+        me._toScreenStreamSocket=setTimeout(
+            function(){
+                me.setScreenStreamSocket(null);
+            },1000*3
+        );
+
+        let $screenImg=this.$main.find("img.screen");
+        if(base64){
+            //image
+            $screenImg.attr("src",base64);
+            this.$main.attr("screen-stream","1");
+        }else{
+            //gif transparent
+            //$screenImg.attr("src","data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
+
+            $screenImg.attr("src","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z/C/HgAGgwJ/lK3Q6wAAAABJRU5ErkJggg==");
+            this.$main.attr("screen-stream","0");
+        }
     }
 
     /**

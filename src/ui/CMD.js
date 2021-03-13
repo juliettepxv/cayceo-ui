@@ -79,26 +79,42 @@ window.CMD.CASQUE_INSTALL_APK="CASQUE_INSTALL_APK";
  * @type {string}
  */
 window.CMD.CASQUE_START_SERVICE="CASQUE_START_SERVICE";
+
 /**
- * Demande l'affichage du stream screen de casque
+ * Demande l'affichage du stream screen de casque ADB
  * @type {string}
  */
-window.CMD.CASQUE_SHOW_STREAM_SCREEN="CASQUE_SHOW_STREAM_SCREEN";
+window.CMD.CASQUE_SHOW_STREAM_SCREEN_ADB="CASQUE_SHOW_STREAM_SCREEN_ADB";
+
 /**
- * Demande la fermeture du stream screen de casque
+ * Demande la fermeture du stream screen de casque ADB
  * @type {string}
  */
-window.CMD.CASQUE_CLOSE_STREAM_SCREEN="CASQUE_CLOSE_STREAM_SCREEN";
+window.CMD.CASQUE_CLOSE_STREAM_SCREEN_ADB="CASQUE_CLOSE_STREAM_SCREEN_ADB";
+
+/**
+ * Demande l'affichage du stream screen de casque SOCKET
+ * @type {string}
+ */
+window.CMD.CASQUE_START_SCREEN_STREAM_SOCKET="CASQUE_START_SCREEN_STREAM_SOCKET";
+
+/**
+ * Demande la fermeture du stream screen de casque SOCKET
+ * @type {string}
+ */
+window.CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET="CASQUE_STOP_SCREEN_STREAM_SOCKET";
 /**
  * Effacer tous les fichiers sur le casque spécifié. Le premier argument est l'ip' du casque
  * @type {string}
  */
 window.CMD.CASQUE_DELETE_ALL_FILES="CASQUE_DELETE_ALL_FILES";
+
 /**
  * Donne les autorisations aux APKs, lance le service etc etc
  * @type {string}
  */
 window.CMD.CASQUE_CONFIGURE_ALL="CASQUE_CONFIGURE_ALL";
+
 /**
  * Reboter le casque spécifié. Le premier argument est l'ip du casque
  * @type {string}
@@ -134,6 +150,10 @@ window.CMD.SHUT_DOWN_ALL="SHUT_DOWN_ALL";
  * @type {string}
  */
 window.CMD.REBOOT_PC_ONLY="REBOOT_PC_ONLY";
+
+
+
+
 /**
  * Quitter l'application
  * @type {string}
