@@ -17,11 +17,11 @@ setTimeout(function(){
     ui.displaySplashScreen(`Cet écran disparaîtra dans ${t} secondes`);
     setTimeout(function(){
         ui.screens.home.show();
-        ui.showPopin(ui.popIns.filesReport);
+        //ui.showPopin(ui.popIns.filesReport);
     },t * 1000);
 },2 * 1000);
 
-
+ui.debugMode.enable();
 
 ui.on(CMD.QUIT,function(){
     alert("quitter l'application");
@@ -108,6 +108,7 @@ ui.on("READY",function(){
     ui.layout.setVersion("9.99.9");
     ui.layout.setMachineName("machine test");
     ui.layout.setContenuUpdate("contenu Truc 18%");
+    ui.activeModeEmploi(true);
     setTimeout(function(){
         ui.layout.setContenuUpdate(null);
     },5000)

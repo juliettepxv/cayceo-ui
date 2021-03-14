@@ -245,6 +245,19 @@ export default class Ui extends EventEmitter{
            let ip=$(this).attr("ip");
            let casque=$(this).closest("[casque]").attr("casque");
            switch(a){
+
+               case "show-advanced-setting":
+                   if(!me.debugMode.isEnabled()){
+                       me.showPopin(ui.popIns.pinCode);
+                       me.popIns.pinCode.on("SUCCESS",function(){
+                           me.hidePopin();
+                           ui.layout.openMenu();
+                       })
+                   }else{
+                       ui.layout.openMenu();
+                   }
+                   break;
+
                case "debug-toggle":
                me.debugMode.toggle();
                    break;
@@ -566,6 +579,7 @@ export default class Ui extends EventEmitter{
      */
     showScreen(screen,transi="",hidePopin=true){
         let me=this;
+        this.layout.closeMenu();
         if(hidePopin){
             this.hidePopin();
         }
@@ -591,6 +605,7 @@ export default class Ui extends EventEmitter{
      * @param {PopinUi} popin
      */
     showPopin(popin){
+        this.layout.closeMenu();
         this._popInWindow.show();
         $("#popin-content").empty().append(popin.$main);
         popin.emit(Ui.EVENT_ADDED_TO_STAGE);

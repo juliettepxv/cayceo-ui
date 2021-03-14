@@ -1,0 +1,229 @@
+<aside id="menu" >
+
+        <div class="block"></div>
+
+        <ul class="mdc-list mdc-list--two-line big-shadow">
+
+            <li class="mdc-list-item"
+                action="shut-down-all">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-power-sleep"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Éteindre la régie</span>
+                <span class="mdc-list-item__secondary-text">Arrêter la régie et les casques proprement</span>
+            </span>
+            </li>
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="emit" emit-name="FULLSCREEN_TOGGLE">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-fullscreen"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Fullscreen</span>
+                <span class="mdc-list-item__secondary-text">Activer / désactiver</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="emit" emit-name="QUIT">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-close"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Fermer l'application</span>
+                <span class="mdc-list-item__secondary-text">Retourner sur Windows</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="emit" emit-name="REBOOT">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-refresh"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Redémarrer l'application</span>
+                <span class="mdc-list-item__secondary-text">Redémarrer simplement le programme</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="reboot-pc">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-refresh-circle"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Redémarrer la régie</span>
+                <span class="mdc-list-item__secondary-text">Redémarrer Windows</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+
+
+
+
+
+            <li class="mdc-list-divider"></li>
+
+
+
+
+
+
+
+            <li class="mdc-list-item"
+                id="qrcode"
+                data-show-popin="Qrcode">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-cellphone-wireless"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Cayceo control</span>
+                <span class="mdc-list-item__secondary-text">Suivre les séances depuis votre mobile</span>
+            </span>
+            </li>
+
+            <li class="mdc-list-item"
+                action="open-doc">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-file-search-outline"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Mode d'emploi</span>
+                <span class="mdc-list-item__secondary-text">Apprendre à utiliser la solution</span>
+            </span>
+            </li>
+
+
+            <li debug-enabled='flex'
+                class="mdc-list-divider"></li>
+
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="debug-toggle">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__primary-text">Mode développeur</span>
+                    <span class="mdc-list-item__secondary-text">Désactiver les options avancées</span>
+                </span>
+                <span style="color:var(--color-green)" class="mdc-list-item__meta
+                         mdi mdi-check-box-outline"></span>
+            </li>
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                data-show-popin="filesReport">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-database"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Panneau de contrôle</span>
+                <span class="mdc-list-item__secondary-text">Fichiers & Devices</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="emit" emit-name="UPDATE_CONTENT">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-cloud-refresh "></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Synchronisation</span>
+                <span class="mdc-list-item__secondary-text">Mettre à jour depuis le serveur</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="emit" emit-name="OPEN_CONSOLE">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-code-greater-than "></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Console</span>
+                <span class="mdc-list-item__secondary-text">Ouvrir la console javascript</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                data-show-popin="logs">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-code-braces-box"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Logs du programme</span>
+                <span class="mdc-list-item__secondary-text">Afficher</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                data-show-popin="webApiData">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-code-braces-box"></span>
+                <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">Logs de synchronisation</span>
+                <span class="mdc-list-item__secondary-text">Afficher</span>
+            </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+
+
+            <li debug-enabled='flex'
+                class="mdc-list-divider"></li>
+
+
+            <li class="mdc-list-item"
+                debug-enabled='flex'
+                action="reset-all">
+                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-list-item__graphic
+                         mdi mdi-skull " style="color:red;opacity: 1;"></span>
+                <span class="mdc-list-item__text">
+                    <span class="mdc-list-item__primary-text">Tout réinitialiser</span>
+                    <span class="mdc-list-item__secondary-text">Supprimer les contenus et paramètres</span>
+                </span>
+                <span class="mdc-list-item__meta
+                         mdi mdi-bug"></span>
+            </li>
+
+
+        </ul>
+
+</aside>

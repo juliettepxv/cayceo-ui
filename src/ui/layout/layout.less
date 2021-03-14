@@ -1,3 +1,8 @@
+@import "~@material/list/dist/mdc.list.min.css";
+@import "~@material/menu-surface/dist/mdc.menu-surface.min.css";
+@import "~@material/menu/dist/mdc.menu.min.css";
+@import "~@material/drawer/dist/mdc.drawer.min.css";
+
 body{
 
   ---z-screen:10;
@@ -6,6 +11,63 @@ body{
 
   user-select: none;
   overflow: hidden;
+
+  .mdc-drawer-scrim{
+    z-index:var(---z-popin);
+  }
+  #menu{
+
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index:var(---z-popin);
+    >.block{
+      background-color: #000;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    >.mdc-list{
+      overflow-y: auto;
+      background-color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400px;
+      height: 100vh;
+      .mdi{
+        font-size: 24px;
+        opacity: 0.5;
+      }
+    }
+  }
+  #menu{
+    >*{
+      transition: transform 0.3s, opacity 0.5s;
+    }
+    >.block{
+      pointer-events: none;
+      opacity: 0;
+    }
+    >.mdc-list{
+      transform: translateX(200px);
+    }
+  }
+  &.menu-open{
+    #menu{
+      >.block{
+        pointer-events: auto;
+        opacity: 0.1;
+      }
+      >.mdc-list{
+        transform: translateX(-400px);
+      }
+    }
+  }
+
 }
 [transi]{
   overflow: hidden;
@@ -38,10 +100,15 @@ body{
     //outline: 1px solid red;
     padding: 0px 2px;
   }
-  .mdi{
+  >.mdi{
     //outline:1px solid red;
     font-size: 18px;
   }
+  #menu-toggle{
+    font-size: 32px;
+    margin-left: @space-medium;
+  }
+
 }
 #bottom-nav{
   position: absolute;
@@ -90,7 +157,7 @@ body{
 #qrcode{
   display: none;
   &.active.enabled{
-    display: block;
+    display: flex;
   }
   img{
     width: 30px;
@@ -101,7 +168,7 @@ body{
 [action="open-doc"]{
   display: none;
   &.enabled{
-    display: block;
+    display: flex;
   }
 }
 

@@ -7,6 +7,9 @@ export default class Layout {
          * @type {jQuery.fn.init|*|jQuery|HTMLElement}
          */
         this.$main=$(require("./layout.html"));
+        this.$menu=$(require("./menu.html"));
+        this.$main.append(this.$menu);
+
         this._$logo=this.$main.find("#logo");
         this._$qrcode=this.$main.find("#qrcode");
         this._$modeEmploi=this.$main.find("[action='open-doc']");
@@ -22,6 +25,26 @@ export default class Layout {
             me._displayHorloge();
         },1000*10);
         me._displayHorloge();
+
+
+        this.$menu.find(">.block").on("click",function(){
+            me.closeMenu();
+        })
+
+
+        //let menu = new MDCMenu(this.$main.find('.mdc-menu')[0]);
+        //menu.open = true;
+        this.$main.find("#menu-toggle").on("click",function(){
+          $body.toggleClass("menu-open");
+        });
+    }
+
+    closeMenu(){
+        $body.removeClass("menu-open");
+    }
+
+    openMenu(){
+        $body.addClass("menu-open");
     }
 
 

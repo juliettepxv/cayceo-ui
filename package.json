@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@material/elevation": "^8.0.0",
+    "@material/list": "^10.0.0",
+    "@material/menu": "^10.0.0",
     "@mdi/font": "^5.9.55",
     "animate.css": "^4.1.1",
     "event-emitter-es6": "^1.1.5",
