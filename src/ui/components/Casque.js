@@ -79,8 +79,12 @@ export default class Casque {
 
         let $streamStartBtn=$(`<button action='${CMD.CASQUE_START_SCREEN_STREAM_SOCKET}' 
                                        ip='${this.ip}' 
-                                       class='btn-tiny'>Screen ON</button>`);
+                                       class='btn-tiny'>Screen SLOW</button>`);
         $nav.append($streamStartBtn);
+        let $streamStartDastBtn=$(`<button action='${CMD.CASQUE_START_SCREEN_STREAM_REAL_TIME_SOCKET}' 
+                                       ip='${this.ip}' 
+                                       class='btn-tiny'>Screen FAST</button>`);
+        $nav.append($streamStartDastBtn);
 
         let $streamStopBtn=$(`<button action='${CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET}' 
                                       ip='${this.ip}' 

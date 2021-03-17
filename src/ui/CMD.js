@@ -97,6 +97,11 @@ window.CMD.CASQUE_CLOSE_STREAM_SCREEN_ADB="CASQUE_CLOSE_STREAM_SCREEN_ADB";
  * @type {string}
  */
 window.CMD.CASQUE_START_SCREEN_STREAM_SOCKET="CASQUE_START_SCREEN_STREAM_SOCKET";
+/**
+ * Demande l'affichage du stream screen de casque SOCKET en mode REAL TIME
+ * @type {string}
+ */
+window.CMD.CASQUE_START_SCREEN_STREAM_REAL_TIME_SOCKET="CASQUE_START_SCREEN_STREAM_REAL_TIME_SOCKET";
 
 /**
  * Demande la fermeture du stream screen de casque SOCKET

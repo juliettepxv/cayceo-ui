@@ -312,6 +312,10 @@ export default class Ui extends EventEmitter{
                    me.emit(CMD.CASQUE_START_SCREEN_STREAM_SOCKET,ip);
                    break;
 
+               case CMD.CASQUE_START_SCREEN_STREAM_REAL_TIME_SOCKET:
+                   me.emit(CMD.CASQUE_START_SCREEN_STREAM_REAL_TIME_SOCKET,ip);
+                   break;
+
                case CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET:
                    me.emit(CMD.CASQUE_STOP_SCREEN_STREAM_SOCKET,ip);
                    break;
