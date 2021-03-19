@@ -12,6 +12,16 @@
     }
   }
   #casques{
+
+    @media(max-height: 650px){
+      //outline: 1px solid yellow;
+      margin-top: 100px;
+      min-height: calc(100vh - 150px);
+      &.medias-scroll .medias-scroll-container>*{
+        margin-block-start: auto;
+      }
+    }
+
     [casque]{
 
       //dans tous les cas sur cet écran...
